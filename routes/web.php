@@ -1,6 +1,9 @@
 <?php
 
 use App\Livewire\Auth\Login;
+use App\Livewire\Course\CourseCreate;
+use App\Livewire\Course\CourseIndex;
+use App\Livewire\Dashboard\DashboardIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +22,10 @@ Route::get('/', function () {
 });
 
 Route::get('/login', Login::class)->name('login');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', DashboardIndex::class)->name('dashboard');
+
+    Route::get('/courses', CourseIndex::class)->name('courses');
+    Route::get('/course/create', CourseCreate::class)->name('course.create');
+}); 

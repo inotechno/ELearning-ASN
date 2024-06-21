@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignId('participant_id')->constrained('participants')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('course_id')->constrained('courses')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('course_topic_id')->constrained('course_topics')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->enum('status', ['begin', 'process', 'finish'])->default('begin');
+            $table->decimal('progress')->nullable();
             $table->string('file')->nullable();
             $table->timestamps();
         });

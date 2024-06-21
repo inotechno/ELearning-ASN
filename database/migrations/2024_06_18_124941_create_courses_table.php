@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('type_id')->constrained('type_courses')->cascadeOnDelete()->cascadeOnUpdate()->comment('Ambil dari type_course');
             $table->foreignId('teacher_id')->constrained('teachers')->cascadeOnDelete()->cascadeOnUpdate()->comment('Ambil dari table teacher');
             $table->string('img_thumbnail');
+            $table->string('img_thumbnail_path')->nullable();
             $table->string('title');
             $table->string('slug');
             $table->string('description_short');

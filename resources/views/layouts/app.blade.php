@@ -12,11 +12,11 @@
     <div id="layout-wrapper">
 
         <header id="page-topbar">
-            @livewire('components.navbar-header')
+            @livewire('component.navbar-header')
         </header>
 
         <div class="topnav">
-           @livewire('components.navbar-menu')
+            @livewire('component.navbar-menu')
         </div>
 
         <!-- ============================================================== -->
@@ -25,7 +25,15 @@
         <div class="main-content">
 
             <div class="page-content">
-                {{$slot}}
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    @livewire('component.breadcrumb', ['breadcrumb' => $breadcrumbData, 'title' => $title])
+                    <!-- end page title -->
+
+                    {{ $slot }}
+
+                </div>
                 <!-- container-fluid -->
             </div>
             <!-- End Page-content -->

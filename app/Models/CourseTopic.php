@@ -15,12 +15,14 @@ class CourseTopic extends Model
         'title',
         'slug',
         'description',
-        'vide_url',
-        'document_file',
+        'video_url',
+        'document_url',
+        'document_path',
         'zoom_url',
         'start_at',
         'end_at',
         'percentage_value',
+        'status',
         'created_by',
     ];
 

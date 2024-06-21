@@ -13,7 +13,7 @@ class ParticipantActivity extends Model
         'participant_id',
         'course_id',
         'course_topic_id',
-        'status',
+        'progress',
         'file',
     ];
 

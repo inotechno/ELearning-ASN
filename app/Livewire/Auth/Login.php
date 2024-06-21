@@ -24,8 +24,8 @@ class Login extends Component
             if (Auth::attempt(['username' => $this->username, 'password' => $this->password], $this->remember)) {
                 $this->alert('success', 'Login Berhasil, Selamat Datang');
                 return redirect()->route('dashboard');
-            }
-
+            } 
+            
             $this->alert('error', 'Login Gagal, Silahkan Coba Lagi');
             return back();
         } catch (\Throwable $th) {

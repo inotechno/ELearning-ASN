@@ -16,6 +16,7 @@ class Course extends Model
         'category_id',
         'type_id',
         'img_thumbnail',
+        'img_thumbnail_path',
         'description',
         'description_short',
         'implementation_start',
