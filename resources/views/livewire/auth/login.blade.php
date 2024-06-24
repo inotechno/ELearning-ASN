@@ -92,7 +92,7 @@
             <div class="mt-5 text-center">
 
                 <div>
-                    <p>Don't have an account ? <a href="auth-register.html" class="fw-medium text-primary">
+                    <p>Don't have an account ? <a href="{{ route('register') }}" class="fw-medium text-primary">
                             Signup now </a> </p>
                     <p>©
                         <script>

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('institute_id')->nullable()->constrained('institution_masters')->nullOnDelete()->cascadeOnUpdate();
+            $table->foreignId('institution_id')->nullable()->constrained('institution_masters')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('education_id')->nullable()->constrained('education_masters')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('rank_id')->nullable()->constrained('rank_masters')->nullOnDelete()->cascadeOnUpdate();
             $table->string('front_name');

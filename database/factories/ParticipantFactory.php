@@ -22,7 +22,7 @@ class ParticipantFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'institute_id' => $this->faker->optional()->randomElement(InstitutionMaster::pluck('id')->toArray()),
+            'institution_id' => $this->faker->optional()->randomElement(InstitutionMaster::pluck('id')->toArray()),
             'education_id' => $this->faker->optional()->randomElement(EducationMaster::pluck('id')->toArray()),
             'rank_id' => $this->faker->optional()->randomElement(RankMaster::pluck('id')->toArray()),
             'front_name' => $this->faker->firstName,

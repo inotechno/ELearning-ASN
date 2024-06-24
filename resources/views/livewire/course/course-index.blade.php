@@ -6,12 +6,14 @@
                     <div class="col-md-6">
                         <div class="card p-1 border shadow-none">
                             <div class="p-3">
-                                <h5><a href="blog-details.html" class="text-dark">{{ $course->title }}</a></h5>
+                                <h5><a href="{{ route('course.show', $course->slug) }}"
+                                        class="text-dark">{{ $course->title }}</a></h5>
                                 <p class="text-muted mb-0">{{ $course->created_at->diffForHumans() }}</p>
                             </div>
 
                             <div class="position-relative">
-                                <img src="{{ asset('images/small/img-2.jpg') }}" alt="" class="img-thumbnail">
+                                <img src="{{ $course->img_thumbnail ?? asset('images/small/img-2.jpg') }}"
+                                    alt="" class="img-thumbnail">
                             </div>
 
                             <div class="p-3">
@@ -19,37 +21,49 @@
                                     <li class="list-inline-item me-3">
                                         <a href="javascript: void(0);" class="text-muted">
                                             <i class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                            Project
+                                            {{ $course->category->name }}
                                         </a>
                                     </li>
                                     <li class="list-inline-item me-3">
                                         <a href="javascript: void(0);" class="text-muted">
                                             <i class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                            12 Comments
+                                            {{ $course->topics->count() }} Topics
                                         </a>
                                     </li>
                                 </ul>
                                 <p>{{ $course->description_short }}</p>
 
                                 <div>
-                                    <a href="javascript: void(0);" class="text-primary">Read
-                                        more <i class="mdi mdi-arrow-right"></i></a>
+                                    <div class="d-flex justify-content-between">
+                                        <a href="{{ route('course.show', $course->slug) }}" class="text-primary">Read
+                                            more <i class="mdi mdi-arrow-right"></i></a>
+
+                                        @hasrole('administrator|teacher')
+                                            <a href="{{ route('course.edit', $course->slug) }}"
+                                                class="btn btn-sm btn-soft-warning">Edit <i class="mdi mdi-pencil"></i></a>
+                                        @endhasrole
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
+
+            {{ $courses->links('livewire.component.pagination') }}
+
         </div>
 
         <div class="col-xl-3 col-lg-4">
             <div class="card">
                 <div class="card-body p-4">
-                    <div class="d-flex align-items-center">
-                        <a href="{{ route('course.create') }}" class="btn btn-primary w-100">Create a new course</a>
-                    </div>
-                    <hr class="my-4">
+                    @hasrole('administrator|teacher')
+                        <div class="d-flex align-items-center">
+                            <a href="{{ route('course.create') }}" class="btn btn-primary w-100">Create a new course</a>
+                        </div>
 
+                        <hr class="my-4">
+                    @endhasrole
                     <div class="search-box">
                         <p class="text-muted">Search</p>
                         <div class="position-relative">

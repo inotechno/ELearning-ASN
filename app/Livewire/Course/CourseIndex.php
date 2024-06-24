@@ -13,6 +13,7 @@ use Livewire\WithPagination;
 class CourseIndex extends Component
 {
     use LivewireAlert, WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $categories, $types;
 
@@ -31,20 +32,25 @@ class CourseIndex extends Component
         $this->categories = CategoryCourse::get();
         $this->types = TypeCourse::get();
     }
-    
+
     public function render()
-    {   
+    {
         $courses = Course::when($this->search, function ($query) {
             $query->where('name', 'like', '%' . $this->search . '%')
                 ->orWhere('description', 'like', '%' . $this->search . '%');
         })->latest();
 
-        if(Auth::user()->hasRole('administrator')) {
-            $courses = $courses->paginate(10);
-        } else if(Auth::user()->hasRole('teacher')) {
-            $courses = $courses->where('created_by', Auth::user()->teacher->id)->paginate(10);
+        // dd(Auth::user()->hasRole('teacher'));
+        if (Auth::user()->hasRole('administrator')) {
+            $courses = $courses->paginate(6);
+        } else if (Auth::user()->hasRole('teacher')) {
+            $courses = $courses->where('teacher_id', Auth::user()->teacher->id)->paginate(6);
+        } else {
+            $courses = $courses->paginate(6);
         }
-        
+
+
+        // dd($courses);
         return view('livewire.course.course-index', compact('courses'))->layout('layouts.app', ['breadcrumbData' => $this->breadcrumbData])->title(__('Course'));
     }
 }

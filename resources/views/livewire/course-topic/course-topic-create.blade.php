@@ -1,75 +1,47 @@
 <div>
-    @foreach ($topics as $index => $topic)
-        <div id="row-{{ $index }}" class="mb-3" wire:key="topic-{{ $index }}">
-            <div class="row">
-                <div class="col-md mb-3">
-                    <label class="form-label">Status</label>
-                    <select wire:model.live="topics.{{ $index }}.status"
-                        class="form-control @error('status') is-invalid @enderror">
-                        <option value="">Select for status</option>
-                        @foreach ($statuses as $status)
-                            <option value="{{ $status }}">{{ $status }}</option>
-                        @endforeach
-                    </select>
+    <div class="mb-3">
+        <div class="row">
+            <div class="col-md mb-3">
+                <label class="form-label">Status</label>
+                <select class="form-control" wire:model.live="add_status">
+                    <option value="">Select for status</option>
+                    @foreach ($statuses as $status)
+                        <option value="{{ $status }}">{{ $status }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-                    @error('status')
-                        <div class="invalid-feedback">
-                            <span role="alert">{{ $message }}</span>
-                        </div>
-                    @enderror
-                </div>
+            <div class="col-md mb-3">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" wire:model.live="add_title">
+            </div>
 
-                <div class="col-md mb-3">
-                    <label class="form-label">Title</label>
-                    <input type="text" class="form-control @error('title') is-invalid @enderror"
-                        wire:model.live="topics.{{ $index }}.title">
+            <div class="col-md mb-3" wire:ignore>
+                <label for="form-label">Start At</label>
+                <div class="input-group mb-3 start-at-group">
+                    <input type="text" class="form-control start-date" id="start_date" placeholder="yyyy-mm-dd"
+                        data-date-format="yyyy-mm-dd" data-provide="datepicker" wire:model.live="start_date">
 
-                    @error('title')
-                        <div class="invalid-feedback">
-                            <span role="alert">{{ $message }}</span>
-                        </div>
-                    @enderror
-                </div>
-
-                <div class="col-md mb-3">
-                    <label for="form-label">Start At</label>
-                    <div class="input-group mb-3 date-time-group" data-index="{{ $index }}">
-                        <input type="text" class="form-control start-date @error('start_at') is-invalid @enderror"
-                            placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" data-provide="datepicker">
-                
-                        <input type="text" class="form-control start-time" data-provide="timepicker">
-                        <input type="hidden" class="start-at" wire:model.live="topics.{{ $index }}.start_at">
-                    </div>
-                
-                    @error('start_at')
-                        <div class="text-danger">
-                            <span role="alert">{{ $message }}</span>
-                        </div>
-                    @enderror
+                    <input type="text" class="form-control start-time" id="start_time" data-provide="timepicker"
+                        wire:model.live='start_time'>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md mb-3">
+                <div class="col-md mb-3" wire:ignore>
                     <label for="form-label">End At</label>
-                    <div class="input-group mb-3 date-time-group" data-index="{{ $index }}">
-                        <input type="text" class="form-control end-date @error('end_at') is-invalid @enderror"
-                            placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" data-provide="datepicker">
-                
-                        <input type="text" class="form-control end-time" data-provide="timepicker">
-                        <input type="hidden" class="end-at" wire:model.live="topics.{{ $index }}.end_at">
+                    <div class="input-group mb-3 end-at-group">
+                        <input type="text" class="form-control end-date" id="end_date" placeholder="yyyy-mm-dd"
+                            data-date-format="yyyy-mm-dd" data-provide="datepicker" wire:model.live='end_date'>
+
+                        <input type="text" class="form-control end-time" id="end_time" data-provide="timepicker"
+                            wire:model.live="end_time">
                     </div>
-                
-                    @error('end_at')
-                        <div class="text-danger">
-                            <span role="alert">{{ $message }}</span>
-                        </div>
-                    @enderror
                 </div>
 
                 <div class="col-md mb-3">
                     <label class="form-label">Type Topic</label>
-                    <select wire:model.live="topics.{{ $index }}.type_topic_id" class="form-control">
+                    <select class="form-control" wire:model.live='add_type_topic_id'>
                         <option value="">Select for type topic</option>
                         @foreach ($typeTopics as $typeTopic)
                             <option value="{{ $typeTopic->id }}">{{ $typeTopic->name }}</option>
@@ -79,49 +51,21 @@
 
                 <div class="col-md mb-3">
                     <label for="form-label">Percentage Value</label>
-                    <input type="number" class="form-control @error('percentage_value') is-invalid @enderror"
-                        wire:model.live="topics.{{ $index }}.percentage_value">
-
-                    @error('percentage_value')
-                        <div class="invalid-feedback">
-                            <span role="alert">{{ $message }}</span>
-                        </div>
-                    @enderror
+                    <input type="number" class="form-control" wire:model.live='add_percentage_value'>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md mb-3">
-                    @if ($topic['type_topic_id'] == 1)
+                    @if ($add_type_topic_id == 1)
                         <label class="form-label">Video URL</label>
-                        <input type="text" class="form-control @error('video_url') is-invalid @enderror"
-                            wire:model.live="topics.{{ $index }}.video_url">
-
-                        @error('video_url')
-                            <div class="invalid-feedback">
-                                <span role="alert">{{ $message }}</span>
-                            </div>
-                        @enderror
-                    @elseif ($topic['type_topic_id'] == 2)
+                        <input type="text" class="form-control" wire:model.live='add_video_url'>
+                    @elseif ($add_type_topic_id == 2)
                         <label class="form-label">File</label>
-                        <input type="file" class="form-control @error('document_path') is-invalid @enderror"
-                            wire:model.live="topics.{{ $index }}.document_path">
-
-                        @error('document_path')
-                            <div class="invalid-feedback">
-                                <span role="alert">{{ $message }}</span>
-                            </div>
-                        @enderror
-                    @elseif ($topic['type_topic_id'] == 3)
+                        <input type="file" class="form-control" wire:model.live='add_document_path'>
+                    @elseif ($add_type_topic_id == 3)
                         <label class="form-label">Zoom URL</label>
-                        <input type="text" class="form-control @error('zoom_url') is-invalid @enderror"
-                            wire:model.live="topics.{{ $index }}.zoom_url">
-
-                        @error('zoom_url')
-                            <div class="invalid-feedback">
-                                <span role="alert">{{ $message }}</span>
-                            </div>
-                        @enderror
+                        <input type="text" class="form-control" wire:model.live='add_zoom_url'>
                     @endif
                 </div>
             </div>
@@ -129,28 +73,105 @@
             <div class="row">
                 <div class="col-md mb-3-12">
                     <label class="form-label">Description</label>
-                    <textarea class="form-control @error('description') is-invalid @enderror"
-                        wire:model.live="topics.{{ $index }}.description"></textarea>
-
-                    @error('description')
-                        <div class="invalid-feedback">
-                            <span role="alert">{{ $message }}</span>
-                        </div>
-                    @enderror
+                    <textarea class="form-control" wire:model.live='add_description'></textarea>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-12 d-flex justify-content-end gap-2">
-                    @if ($index > 0)
-                        <button type="button" class="btn btn-danger mt-3"
-                            wire:click="removeRow({{ $index }})"><i class="bx bx-minus"></i></button>
-                    @endif
-                    <button type="button" class="btn btn-primary mt-3" wire:click="addRow"><i
-                            class="bx bx-plus"></i></button>
+                    <button type="button" class="btn btn-primary mt-3" wire:click="addRow"><i class="bx bx-plus"></i>
+                        Add Topic</button>
                 </div>
             </div>
         </div>
-    @endforeach
+    </div>
 
+    <div class="table-responsive">
+        <table class="table align-middle table-nowrap table-check">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col" style="width: 70px;">#</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Start At</th>
+                    <th scope="col">End At</th>
+                    <th scope="col">Type Topic</th>
+                    <th scope="col">Percentage Value</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!empty($topics) || count($topics) > 0)
+
+                    @foreach ($topics as $key => $topic)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $topic['status'] }}</td>
+                            <td>{{ $topic['title'] }}</td>
+                            <td>{{ $topic['start_at'] }}</td>
+                            <td>{{ $topic['end_at'] }}</td>
+                            <td>{{ $topic['type_topic_id'] }}</td>
+                            <td>{{ $topic['percentage_value'] }}</td>
+                            <td>
+                                <button class="btn btn-sm btn-danger" wire:click="deleteTopic({{ $key }})"><i
+                                        class="bx bx-trash"></i></button>
+                                <button class="btn btn-sm btn-primary" wire:click="editTopic({{ $key }})"><i
+                                        class="bx bx-edit"></i></button>
+                                {{-- <button class="btn btn-sm btn-danger" wire:click="deleteTopic({{ $topic[$key] }})"><i
+                                        class="bx bx-trash"></i></button>
+                                <button class="btn btn-sm btn-primary" wire:click="editTopic({{ $topic[$key] }})"><i
+                                        class="bx bx-edit"></i></button> --}}
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+            </tbody>
+        </table>
+    </div>
+
+    @script
+        <script>
+            initializeDateTimePickers();
+
+            function initializeDateTimePickers() {
+                $('.start-date').datepicker({
+                    format: 'yyyy-mm-dd',
+                    autoclose: true
+                }).on('changeDate', function(e) {
+                    $wire.set('start_date', e.format(0, 'yyyy-mm-dd'));
+                });
+
+                $('.end-date').datepicker({
+                    format: 'yyyy-mm-dd',
+                    autoclose: true
+                }).on('changeDate', function(e) {
+                    $wire.set('end_date', e.format(0, 'yyyy-mm-dd'));
+                })
+
+                $('.start-time').timepicker({
+                    showMeridian: false, // Set format 24 jam
+                    defaultTime: 'current',
+                    appendWidgetTo: '.start-at-group',
+                    icons: {
+                        up: 'bx bx-chevron-up',
+                        down: 'bx bx-chevron-down'
+                    }
+                }).on('changeTime.timepicker', function(e) {
+                    $wire.set('start_time', e.time.value);
+                });
+
+                $('.end-time').timepicker({
+                    showMeridian: false, // Set format 24 jam
+                    defaultTime: 'current',
+                    appendWidgetTo: '.end-at-group',
+                    icons: {
+                        up: 'bx bx-chevron-up',
+                        down: 'bx bx-chevron-down'
+                    }
+                }).on('changeTime.timepicker', function(e) {
+                    $wire.set('end_time', e.time.value);
+                });
+            }
+        </script>
+    @endscript
 </div>

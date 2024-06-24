@@ -18,7 +18,7 @@ class NavbarMenu extends Component
             'name' => 'Courses',
             'icon' => 'bx bxl-discourse',
             'url' => 'courses',
-            'roles' => 'administrator|teacher',
+            'roles' => 'administrator|teacher|participant',
         ],
         [
             'name' => 'Position',
@@ -143,7 +143,6 @@ class NavbarMenu extends Component
                     break; // No need to check further if one role matches
                 }
             }
-
         }
 
         return view('livewire.component.navbar-menu', compact('menus'));

@@ -2,20 +2,25 @@
 
 namespace App\Livewire\Course;
 
-use App\Livewire\Component\Quill;
 use App\Models\Course;
+use App\Models\Teacher;
+use Livewire\Component;
+use App\Models\TypeCourse;
+use Illuminate\Support\Str;
+use App\Models\CategoryCourse;
 use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Joelwmale\LivewireQuill\Traits\HasQuillEditor;
-use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Str;
 
-class CourseCreate extends Component
+class CourseEdit extends Component
 {
     use WithFileUploads, LivewireAlert, HasQuillEditor;
 
     // Course Variabel
+    public $course;
+    public $courseId;
+    public $slug;
     public $img_thumbnail;
     public $title;
     public $description;
@@ -37,10 +42,7 @@ class CourseCreate extends Component
 
     protected $listeners = ['topicsUpdated' => 'setTopics'];
 
-    public $breadcrumbData = [
-        ['label' => 'Courses', 'url' => '/courses'],
-        ['label' => 'Create Courses', 'url' => '/courses/create'],
-    ];
+    public $breadcrumbData;
 
     protected $rules = [
         'title' => 'required|string|max:255',
@@ -51,28 +53,46 @@ class CourseCreate extends Component
         'implementation_start' => 'required|date',
         'implementation_end' => 'required|date|after_or_equal:implementation_start',
         'is_active' => 'boolean',
-        'img_thumbnail' => 'required|image|max:1024',
+        'img_thumbnail' => 'nullable|image|max:1024',
         'topics.*.status' => 'required|string',
         'topics.*.title' => 'required|string|max:255',
         'topics.*.start_at' => 'required|date',
         'topics.*.end_at' => 'required|date|after_or_equal:topics.*.start_at',
         'topics.*.type_topic_id' => 'nullable',
-        'topics.*.percentage_value' => 'required|integer|min:1|max:100',
+        'topics.*.percentage_value' => 'required|min:1|max:100',
         'topics.*.description' => 'required|string',
         'topics.*.video_url' => 'nullable|required_if:topics.*.type_topic_id,1|url',
         'topics.*.document_path' => 'nullable|required_if:topics.*.type_topic_id,2|file|mimes:pdf,doc,docx|max:2048',
         'topics.*.zoom_url' => 'nullable|required_if:topics.*.type_topic_id,3|url',
     ];
 
-    public function mount()
+    public function mount($slug)
     {
+        $course = Course::where('slug', $slug)->first();
+
+        $this->course = $course;
+        $this->courseId = $course->id;
+        $this->title = $course->title;
+        $this->category_id = $course->category_id;
+        $this->type_id = $course->type_id;
+        $this->teacher_id = $course->teacher_id;
+        $this->description_short = $course->description_short;
+        $this->description = $course->description;
+        $this->implementation_start = $course->implementation_start;
+        $this->implementation_end = $course->implementation_end;
+        $this->is_active = $course->is_active;
+        $this->img_thumbnail_path = $course->img_thumbnail_path;
+        $this->previewThumbnail = $course->img_thumbnail;
+        $this->topics = $course->topics->toArray();
+
         $this->categories = \App\Models\CategoryCourse::get();
         $this->types = \App\Models\TypeCourse::get();
         $this->teachers = \App\Models\Teacher::get();
 
-        if (Auth::user()->hasRole('teacher')) {
-            $this->teacher_id = Auth::user()->teacher->id;
-        }
+        $this->breadcrumbData  = [
+            ['label' => 'Courses', 'url' => '/courses'],
+            ['label' => 'Edit Courses : ' . $this->title, 'url' => `/courses/edit/$this->slug`],
+        ];
     }
 
     public function setTopics($topics)
@@ -94,18 +114,21 @@ class CourseCreate extends Component
         $this->description = $content;
     }
 
-    public function store()
+    public function update()
     {
         // dd($this->validate());
 
         try {
             $this->validate();
+
             if ($this->img_thumbnail) {
                 $this->img_thumbnail_path = $this->img_thumbnail->store('thumbnails', 'public');
                 $this->img_thumbnail = url('storage/' . $this->img_thumbnail_path);
+            } else {
+                $this->img_thumbnail = $this->previewThumbnail;
             }
 
-            $course = Course::create([
+            $this->course->update([
                 'title' => $this->title,
                 'slug' => Str::slug($this->title),
                 'category_id' => $this->category_id,
@@ -129,10 +152,20 @@ class CourseCreate extends Component
 
                 $topic['created_by'] = Auth::user()->id;
                 $topic['slug'] = Str::slug($topic['title']);
-                $course->topics()->create($topic);
+
+                // Find existing topic by unique criteria (e.g., slug or title)
+                $existingTopic = $this->course->topics()->where('slug', $topic['slug'])->first();
+
+                if ($existingTopic) {
+                    // Update existing topic
+                    $existingTopic->update($topic);
+                } else {
+                    // Create new topic
+                    $this->course->topics()->create($topic);
+                }
             }
 
-            $this->alert('success', 'Course has been created');
+            $this->alert('success', 'Course has been updated successfully!');
             return redirect()->route('courses');
         } catch (\Exception $e) {
             dd($e);
@@ -142,6 +175,6 @@ class CourseCreate extends Component
 
     public function render()
     {
-        return view('livewire.course.course-create')->layout('layouts.app', ['breadcrumbData' => $this->breadcrumbData])->title(__('Create Course'));
+        return view('livewire.course.course-edit')->title(__('Edit Course') . ': ' . $this->title)->layout('layouts.app', ['breadcrumbData' => $this->breadcrumbData]);
     }
 }

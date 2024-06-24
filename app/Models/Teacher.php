@@ -15,6 +15,7 @@ class Teacher extends Model
         'front_name',
         'back_name',
         'nik',
+        'gender',
         'phone',
         'address',
         'city'

@@ -109,7 +109,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Course Topics</h4>
-                    @livewire('course-topic.course-topic-create')
+                    @livewire('course-topic.course-topic-create', ['courseId' => $courseId])
                 </div>
             </div>
         </div>
@@ -154,30 +154,28 @@
                         </div>
                     </div>
 
-                    @hasrole('administrator')
-                        <div class="mb-3">
-                            <label for="form-label">Teacher</label>
-                            <select class="form-control @error('teacher_id') is-invalid @enderror" id="select-teacher"
-                                wire:model="teacher_id" aria-label="Default select example">
-                                <option selected value="">Select for teacher</option>
-                                @foreach ($teachers as $teacher)
-                                    <option value="{{ $teacher->id }}">{{ $teacher->user->name }}</option>
-                                @endforeach
-                            </select>
+                    <div class="mb-3">
+                        <label for="form-label">Teacher</label>
+                        <select class="form-control @error('teacher_id') is-invalid @enderror" id="select-teacher"
+                            wire:model="teacher_id" aria-label="Default select example">
+                            <option selected value="">Select for teacher</option>
+                            @foreach ($teachers as $teacher)
+                                <option value="{{ $teacher->id }}">{{ $teacher->user->name }}</option>
+                            @endforeach
+                        </select>
 
-                            @error('teacher_id')
-                                <div class="invalid-feedback">
-                                    <span role="alert">{{ $message }}</span>
-                                </div>
-                            @enderror
-                        </div>
-                    @endhasrole
+                        @error('teacher_id')
+                            <div class="invalid-feedback">
+                                <span role="alert">{{ $message }}</span>
+                            </div>
+                        @enderror
+                    </div>
                 </div>
             </div>
 
             <div class="d-flex justify-content-end">
-                <button type="submit" wire:click.prevent="store()" wire:loading.attr="disabled" wire:target="store"
-                    class="btn btn-primary w-md">Save</button>
+                <button type="submit" wire:click.prevent="update()" wire:loading.attr="disabled"
+                    wire:target="update" class="btn btn-primary w-md">Update</button>
             </div>
         </div>
 
