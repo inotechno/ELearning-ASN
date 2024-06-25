@@ -46,7 +46,7 @@ class CourseCreate extends Component
         'title' => 'required|string|max:255',
         'category_id' => 'required|integer',
         'type_id' => 'required|integer',
-        'description_short' => 'required|string',
+        'description_short' => 'required|string|max:255',
         'description' => 'required|string',
         'implementation_start' => 'required|date',
         'implementation_end' => 'required|date|after_or_equal:implementation_start',
@@ -97,9 +97,9 @@ class CourseCreate extends Component
     public function store()
     {
         // dd($this->validate());
+        $this->validate();
 
         try {
-            $this->validate();
             if ($this->img_thumbnail) {
                 $this->img_thumbnail_path = $this->img_thumbnail->store('thumbnails', 'public');
                 $this->img_thumbnail = url('storage/' . $this->img_thumbnail_path);
@@ -135,7 +135,6 @@ class CourseCreate extends Component
             $this->alert('success', 'Course has been created');
             return redirect()->route('courses');
         } catch (\Exception $e) {
-            dd($e);
             $this->alert('error', $e->getMessage());
         }
     }

@@ -3,10 +3,15 @@
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\RegisterTeacher;
+use App\Livewire\Category\CategoryIndex;
+use App\Livewire\Course\CourseActive;
+use App\Livewire\Course\CourseActivity;
 use App\Livewire\Course\CourseCreate;
 use App\Livewire\Course\CourseDetail;
 use App\Livewire\Course\CourseEdit;
 use App\Livewire\Course\CourseIndex;
+use App\Livewire\Course\CourseParticipant;
+use App\Livewire\Course\CourseProgress;
 use App\Livewire\Dashboard\DashboardIndex;
 use Illuminate\Support\Facades\Route;
 
@@ -34,13 +39,24 @@ Route::group(['middleware' => ['guest']], function () {
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', DashboardIndex::class)->name('dashboard');
 
-
     Route::group(['prefix' => 'course', 'middleware' => ['role:administrator|teacher']], function () {
         Route::get('create', CourseCreate::class)->name('course.create');
         Route::get('edit/{slug}', CourseEdit::class)->name('course.edit');
     });
 
+    Route::get('/category', CategoryIndex::class)->name('category');
+
     Route::get('/courses', CourseIndex::class)->name('courses');
+    Route::group(['middleware' => ['role:teacher']], function () {
+        Route::get('/course-active', CourseActive::class)->name('course.active');
+        Route::get('/course-activity/{slug}', CourseActivity::class)->name('course.activity');
+    });
+
+    Route::group(['middleware' => ['role:participant']], function () {
+        Route::get('/my-course', CourseParticipant::class)->name('courses.my-course');
+        Route::get('/my-course/progress/{slug}', CourseProgress::class)->name('courses.my-course.progress');
+    });
+
     Route::get('/course/{slug}', CourseDetail::class)->name('course.show');
     // Route::get('/course/{slug}', CourseDetail::class)->name('course.show');
     // Route::get('/course/create', CourseCreate::class)->name('course.create');

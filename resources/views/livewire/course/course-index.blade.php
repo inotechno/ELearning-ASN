@@ -34,13 +34,17 @@
                                 <p>{{ $course->description_short }}</p>
 
                                 <div>
-                                    <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
                                         <a href="{{ route('course.show', $course->slug) }}" class="text-primary">Read
                                             more <i class="mdi mdi-arrow-right"></i></a>
 
                                         @hasrole('administrator|teacher')
+                                        <div class="ms-auto">
+                                            <a href="javascript: void(0);"
+                                                class="btn btn-sm btn-soft-danger" wire:click="destroy({{ $course->id }})">Delete <i class="mdi mdi-trash-can"></i></a>
                                             <a href="{{ route('course.edit', $course->slug) }}"
                                                 class="btn btn-sm btn-soft-warning">Edit <i class="mdi mdi-pencil"></i></a>
+                                        </div>
                                         @endhasrole
                                     </div>
                                 </div>
@@ -110,9 +114,4 @@
         </div>
     </div>
 
-    @push('plugin')
-        <!-- apexcharts -->
-        <script src="{{ asset('libs/apexcharts/apexcharts.min.js') }}"></script>
-        <script src="{{ asset('js/pages/dashboard.init.js') }}"></script>
-    @endpush
 </div>

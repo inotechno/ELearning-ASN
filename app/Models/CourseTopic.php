@@ -26,6 +26,11 @@ class CourseTopic extends Model
         'created_by',
     ];
 
+    protected $dates = [
+        'start_at',
+        'end_at'
+    ];
+
     public function course()
     {
         return $this->belongsTo(Course::class);

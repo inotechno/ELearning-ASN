@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $casts = [
         'implementation_start' => 'datetime',
@@ -32,6 +33,8 @@ class Course extends Model
         'deleted_by',
     ];
 
+
+
     public function category()
     {
         return $this->belongsTo(CategoryCourse::class, 'category_id');
@@ -49,7 +52,7 @@ class Course extends Model
 
     public function participants()
     {
-        return $this->belongsToMany(Participant::class, 'courses_participants', 'course_id', 'participant_id');
+        return $this->belongsToMany(Participant::class, 'participants_courses', 'course_id', 'participant_id');
     }
 
     public function topics()

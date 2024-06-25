@@ -118,6 +118,10 @@
 
                                             </div>
                                         </div>
+
+                                        @hasrole('participant')
+                                            @livewire('component.button-follow-course', ['id' => $course->id], key($course->id))
+                                        @endhasrole
                                     </div>
 
                                 </div>

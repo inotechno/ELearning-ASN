@@ -48,7 +48,7 @@ class Participant extends Model
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'courses_participants', 'participant_id', 'course_id');
+        return $this->belongsToMany(Course::class, 'participants_courses', 'participant_id', 'course_id');
     }
 
     public function activities()

@@ -7,7 +7,7 @@ use Livewire\Component;
 class CourseTeacher extends Component
 {
     public $breadcrumbData = [
-        ['label' => 'My Courses', 'url' => '/my-courses'],
+        ['label' => 'My Courses', 'url' => '/courses'],
     ];
 
     public function render()
