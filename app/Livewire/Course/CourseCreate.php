@@ -58,12 +58,56 @@ class CourseCreate extends Component
         'topics.*.start_at' => 'required|date',
         'topics.*.end_at' => 'required|date|after_or_equal:topics.*.start_at',
         'topics.*.type_topic_id' => 'nullable',
-        'topics.*.percentage_value' => 'required|integer|min:1|max:100',
+        'topics.*.percentage_value' => 'required|min:1|max:100',
         'topics.*.description' => 'required|string',
         'topics.*.video_url' => 'nullable|required_if:topics.*.type_topic_id,1',
         'topics.*.document_path' => 'nullable|required_if:topics.*.type_topic_id,2',
         'topics.*.zoom_url' => 'nullable|required_if:topics.*.type_topic_id,3|url',
     ];
+
+    protected $messages = [
+        'title.required' => 'Judul wajib diisi.',
+        'title.string' => 'Judul harus berupa teks.',
+        'title.max' => 'Judul maksimal 255 karakter.',
+        'category_id.required' => 'Kategori wajib dipilih.',
+        'category_id.integer' => 'Kategori harus berupa angka.',
+        'type_id.required' => 'Tipe wajib dipilih.',
+        'type_id.integer' => 'Tipe harus berupa angka.',
+        'description_short.required' => 'Deskripsi singkat wajib diisi.',
+        'description_short.string' => 'Deskripsi singkat harus berupa teks.',
+        'description_short.max' => 'Deskripsi singkat maksimal 255 karakter.',
+        'description.required' => 'Deskripsi wajib diisi.',
+        'description.string' => 'Deskripsi harus berupa teks.',
+        'implementation_start.required' => 'Tanggal mulai implementasi wajib diisi.',
+        'implementation_start.date' => 'Tanggal mulai implementasi harus berupa tanggal.',
+        'implementation_end.required' => 'Tanggal selesai implementasi wajib diisi.',
+        'implementation_end.date' => 'Tanggal selesai implementasi harus berupa tanggal.',
+        'implementation_end.after_or_equal' => 'Tanggal selesai implementasi harus setelah atau sama dengan tanggal mulai implementasi.',
+        'is_active.boolean' => 'Status harus berupa true atau false.',
+        'img_thumbnail.required' => 'Thumbnail gambar wajib diunggah.',
+        'img_thumbnail.image' => 'Thumbnail harus berupa file gambar.',
+        'img_thumbnail.max' => 'Ukuran thumbnail tidak boleh lebih dari 1MB.',
+        'topics.*.status.required' => 'Status topik wajib diisi.',
+        'topics.*.status.string' => 'Status topik harus berupa teks.',
+        'topics.*.title.required' => 'Judul topik wajib diisi.',
+        'topics.*.title.string' => 'Judul topik harus berupa teks.',
+        'topics.*.title.max' => 'Judul topik maksimal 255 karakter.',
+        'topics.*.start_at.required' => 'Tanggal mulai topik wajib diisi.',
+        'topics.*.start_at.date' => 'Tanggal mulai topik harus berupa tanggal.',
+        'topics.*.end_at.required' => 'Tanggal selesai topik wajib diisi.',
+        'topics.*.end_at.date' => 'Tanggal selesai topik harus berupa tanggal.',
+        'topics.*.end_at.after_or_equal' => 'Tanggal selesai topik harus setelah atau sama dengan tanggal mulai topik.',
+        'topics.*.percentage_value.required' => 'Persentase nilai wajib diisi.',
+        'topics.*.percentage_value.min' => 'Persentase nilai minimal 1.',
+        'topics.*.percentage_value.max' => 'Persentase nilai maksimal 100.',
+        'topics.*.description.required' => 'Deskripsi topik wajib diisi.',
+        'topics.*.description.string' => 'Deskripsi topik harus berupa teks.',
+        'topics.*.video_url.required_if' => 'URL video wajib diisi untuk topik dengan tipe video.',
+        'topics.*.document_path.required_if' => 'Path dokumen wajib diisi untuk topik dengan tipe dokumen.',
+        'topics.*.zoom_url.required_if' => 'URL Zoom wajib diisi untuk topik dengan tipe Zoom.',
+        'topics.*.zoom_url.url' => 'Format URL Zoom tidak valid.',
+    ];
+    
 
     public function mount()
     {
@@ -99,9 +143,10 @@ class CourseCreate extends Component
     public function store()
     {
         // dd($this->validate());
-        $this->validate();
-
+        
         try {
+            $this->validate();
+            
             if ($this->img_thumbnail) {
                 $this->img_thumbnail_path = $this->img_thumbnail->store('thumbnails', 'public');
                 $this->img_thumbnail = url('storage/' . $this->img_thumbnail_path);

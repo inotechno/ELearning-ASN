@@ -15,13 +15,14 @@ class CourseActivity extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $course, $courseId;
+    public $course, $courseId, $start_date, $end_date, $type_topic_id;
     public $breadcrumbData;
     public $type_topics, $courses;
 
     public function mount($slug = null)
     {
         $this->courses = Course::query();
+
         if(Auth::user()->hasRole('teacher')) {
             $this->courses->where('teacher_id', Auth::user()->teacher->id);
         }

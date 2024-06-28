@@ -2,7 +2,7 @@
     <div class="mb-3">
         <div class="row">
             <div class="col-md mb-3">
-                <label class="form-label">Status</label>
+                <label class="form-label">Status <small class="text-danger"> * Field Required </small></label>
                 <select class="form-control" wire:model.live="add_status">
                     <option value="">Select for status</option>
                     @foreach ($statuses as $status)
@@ -12,12 +12,12 @@
             </div>
 
             <div class="col-md mb-3">
-                <label class="form-label">Title</label>
+                <label class="form-label">Title <small class="text-danger"> * Field Required </small></label>
                 <input type="text" class="form-control" wire:model.live="add_title">
             </div>
 
             <div class="col-md mb-3" wire:ignore>
-                <label for="form-label">Start At</label>
+                <label for="form-label">Start At <small class="text-danger"> * Field Required </small></label>
                 <div class="input-group mb-3 start-at-group">
                     <input type="text" class="form-control start-date" id="start_date" placeholder="yyyy-mm-dd"
                         data-date-format="yyyy-mm-dd" data-provide="datepicker" wire:model.live="start_date">
@@ -29,7 +29,7 @@
 
             <div class="row">
                 <div class="col-md mb-3" wire:ignore>
-                    <label for="form-label">End At</label>
+                    <label for="form-label">End At <small class="text-danger"> * Field Required </small></label>
                     <div class="input-group mb-3 end-at-group">
                         <input type="text" class="form-control end-date" id="end_date" placeholder="yyyy-mm-dd"
                             data-date-format="yyyy-mm-dd" data-provide="datepicker" wire:model.live='end_date'>
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="col-md mb-3">
-                    <label for="form-label">Percentage Value</label>
+                    <label for="form-label">Percentage Value <small class="text-danger"> * Field Required </small></label>
                     <input type="number" class="form-control" wire:model.live='add_percentage_value'>
                 </div>
             </div>
@@ -72,7 +72,7 @@
 
             <div class="row">
                 <div class="col-md mb-3-12">
-                    <label class="form-label">Description</label>
+                    <label class="form-label">Description <small class="text-danger"> * Field Required </small></label>
                     <textarea class="form-control" wire:model.live='add_description'></textarea>
                 </div>
             </div>

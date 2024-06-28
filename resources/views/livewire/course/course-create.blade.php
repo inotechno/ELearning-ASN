@@ -7,7 +7,7 @@
                         <h4 class="card-title">Course</h4>
                     </div>
                     <div class="mb-3">
-                        <label for="formrow-email-input" class="form-label">Thumbnail</label>
+                        <label for="formrow-email-input" class="form-label">Thumbnail <small class="text-danger"> * Field Required </small></label>
                         <input type="file" class="form-control @error('img_thumbnail') is-invalid @enderror"
                             wire:model="img_thumbnail" placeholder="Enter Your Thumbnail">
 
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="formrow-firstname-input" class="form-label">Title</label>
+                        <label for="formrow-firstname-input" class="form-label">Title <small class="text-danger"> * Field Required </small></label>
                         <input type="text" class="form-control @error('title') is-invalid @enderror"
                             wire:model="title" placeholder="Enter Your Title">
 
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Description Short</label>
+                        <label class="form-label">Description Short <small class="text-danger"> * Field Required </small></label>
                         <textarea class="form-control @error('description_short') is-invalid @enderror" wire:model="description_short"
                             cols="30" rows="10"></textarea>
 
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Description</label>
+                        <label class="form-label">Description <small class="text-danger"> * Field Required </small></label>
 
                         @livewire('livewire-quill', [
                             'quillId' => 'description',
@@ -79,7 +79,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label>Implementation Date</label>
+                        <label>Implementation Date <small class="text-danger"> * Field Required </small></label>
 
                         <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd"
                             data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
@@ -119,7 +119,7 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Data Relationship</h4>
                     <div class="mb-3">
-                        <label class="form-label">Category</label>
+                        <label class="form-label">Category <small class="text-danger"> * Field Required </small></label>
                         <div class="row">
                             @foreach ($categories as $category)
                                 <div class="col-md-6">
@@ -137,7 +137,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Type</label>
+                        <label class="form-label">Type <small class="text-danger"> * Field Required </small></label>
                         <div class="row">
                             @foreach ($types as $type)
                                 <div class="col-md-6">
@@ -156,7 +156,7 @@
 
                     @hasrole('administrator')
                         <div class="mb-3">
-                            <label for="form-label">Teacher</label>
+                            <label for="form-label">Teacher <small class="text-danger"> * Field Required </small></label>
                             <select class="form-control @error('teacher_id') is-invalid @enderror" id="select-teacher"
                                 wire:model="teacher_id" aria-label="Default select example">
                                 <option selected value="">Select for teacher</option>

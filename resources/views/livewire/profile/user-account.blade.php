@@ -31,7 +31,7 @@
         </div>
 
         <div class="col-12 d-flex justify-content-end gap-2">
-            <button type="button" class="btn btn-primary mt-3" wire:click="updateProfile"><i class="bx bx-save"></i>
+            <button type="button" class="btn btn-primary mt-3" wire:click="updateProfile" wire:loading.attr="disabled" wire:target="updateProfile" wire:target="image"><i class="bx bx-save"></i>
                 Update</button>
         </div>
     </div>

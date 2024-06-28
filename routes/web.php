@@ -42,7 +42,7 @@ Route::group(['middleware' => ['guest']], function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', DashboardIndex::class)->name('dashboard');
-    Route::get('/profile', ProfileIndex::class)->name('profile')->middleware('role:teacher|participant');
+    Route::get('/profile', ProfileIndex::class)->name('profile')->middleware('role:teacher|participant|administrator');
 
     Route::group(['prefix' => 'course', 'middleware' => ['role:administrator|teacher']], function () {
         Route::get('create', CourseCreate::class)->name('course.create');
