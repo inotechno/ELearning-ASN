@@ -21,7 +21,7 @@ class Login extends Component
         ]);
 
         try {
-            if (Auth::attempt(['username' => $this->username, 'password' => $this->password], $this->remember)) {
+            if (Auth::attempt(['username' => $this->username, 'password' => $this->password, 'status' => 1], $this->remember)) {
                 $this->alert('success', 'Login Berhasil, Selamat Datang');
                 return redirect()->route('dashboard');
             } 

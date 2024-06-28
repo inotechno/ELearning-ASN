@@ -163,7 +163,81 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label for="nip">NIP</label>
+                                                <input type="text"
+                                                class="form-control @error('nip') is-invalid @enderror"
+                                                placeholder="Enter Your NIP" wire:model='nip'>
+
+                                                @error('nip')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <span>{{ $message }}</span>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label>Front Title</label>
+                                                <input type="text"
+                                                    class="form-control @error('front_title') is-invalid @enderror"
+                                                    placeholder="Enter Your Front Title" wire:model='front_title'>
+
+                                                @error('front_title')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <span>{{ $message }}</span>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label>Back Title</label>
+                                                <input type="text"
+                                                    class="form-control @error('back_title') is-invalid @enderror"
+                                                    placeholder="Enter Your Back Title" wire:model='back_title'>
+
+                                                @error('back_title')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <span>{{ $message }}</span>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label>Birth Place</label>
+                                                <input type="text"
+                                                    class="form-control @error('birth_place') is-invalid @enderror"
+                                                    placeholder="Enter Your Birth Place" wire:model='birth_place'>
+
+                                                @error('birth_place')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <span>{{ $message }}</span>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label>Birth Date</label>
+                                                <input type="date"
+                                                    class="form-control @error('birth_date') is-invalid @enderror"
+                                                    placeholder="Enter Your Birth Date" wire:model='birth_date'>
+
+                                                @error('birth_date')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <span>{{ $message }}</span>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label>City</label>
                                                 <input type="text"
@@ -177,7 +251,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label>Country</label>
                                                 <input type="text"
@@ -254,6 +328,38 @@
                                                 </select>
 
                                                 @error('rank_id')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <span>{{ $message }}</span>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-vatno-input">Position Name</label>
+                                                <input type="text"
+                                                    class="form-control @error('position') is-invalid @enderror"
+                                                    placeholder="Enter Your Position Name" wire:model='position'>
+
+                                                @error('position')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <span>{{ $message }}</span>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicpill-vatno-input">Unit Name</label>
+                                                <input type="text"
+                                                    class="form-control @error('unit_name') is-invalid @enderror"
+                                                    placeholder="Enter Your Unit Name" wire:model='unit_name'>
+
+                                                @error('unit_name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <span>{{ $message }}</span>
                                                     </span>

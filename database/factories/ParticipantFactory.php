@@ -27,13 +27,18 @@ class ParticipantFactory extends Factory
             'rank_id' => $this->faker->optional()->randomElement(RankMaster::pluck('id')->toArray()),
             'front_name' => $this->faker->firstName,
             'back_name' => $this->faker->lastName,
+            'front_title' => $this->faker->optional()->randomElement(['Dr.', 'Prof.', 'Mr.', 'Ms.', 'Mrs.']),
+            'back_title' => $this->faker->optional()->randomElement(['PhD', 'MD', 'JD', 'Esq.', 'DDS']),
             'nik' => $this->faker->optional()->numerify('################'),
+            'nip' => $this->faker->optional()->numerify('###########'),
             'birth_place' => $this->faker->optional()->city,
             'birth_date' => $this->faker->optional()->date,
             'gender' => $this->faker->optional()->randomElement(['male', 'female']),
             'city' => $this->faker->optional()->city,
             'address' => $this->faker->optional()->address,
             'phone' => $this->faker->optional()->phoneNumber,
+            'unit_name' => $this->faker->optional()->company,
+            'position' => $this->faker->optional()->jobTitle,
         ];
     }
 }

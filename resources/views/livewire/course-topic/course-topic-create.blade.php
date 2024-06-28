@@ -110,7 +110,7 @@
                             <td>{{ $topic['title'] }}</td>
                             <td>{{ $topic['start_at'] }}</td>
                             <td>{{ $topic['end_at'] }}</td>
-                            <td>{{ $topic['type_topic_id'] }}</td>
+                            <td>{{ $topic['type_topic_id'] != "" ? $topic['type_name'] : "" }}</td>
                             <td>{{ $topic['percentage_value'] }}</td>
                             <td>
                                 <button class="btn btn-sm btn-danger" wire:click="deleteTopic({{ $key }})"><i
@@ -126,6 +126,12 @@
                     @endforeach
                 @endif
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" class="text-end fw-bold">Total</td>
+                    <td colspan="2">{{ $total_percentage_value }}</td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 

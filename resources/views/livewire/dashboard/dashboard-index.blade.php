@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xl-9 col-lg-8">
             <div class="row">
-                <div class="col-md-6">
+                {{-- <div class="col-md-6">
                     <div class="card p-1 border shadow-none">
                         <div class="p-3">
                             <h5><a href="blog-details.html" class="text-dark">Beautiful Day
@@ -161,10 +161,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
-
+{{-- 
         <div class="col-xl-3 col-lg-4">
             <div class="card">
                 <div class="card-body p-4">
@@ -290,7 +290,7 @@
                 </div>
             </div>
             <!-- end card -->
-        </div>
+        </div> --}}
     </div>
 
     @push('plugin')

@@ -164,6 +164,52 @@
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <div class="mb-3">
+                                                <label for="nip">NIP</label>
+                                                <input type="text"
+                                                class="form-control @error('nip') is-invalid @enderror"
+                                                placeholder="Enter Your NIK" wire:model='nip'>
+
+                                                @error('nip')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <span>{{ $message }}</span>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label>Front Title</label>
+                                                <input type="text"
+                                                    class="form-control @error('front_title') is-invalid @enderror"
+                                                    placeholder="Enter Your NIK" wire:model='front_title'>
+
+                                                @error('front_title')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <span>{{ $message }}</span>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label>Back Title</label>
+                                                <input type="text"
+                                                    class="form-control @error('back_title') is-invalid @enderror"
+                                                    placeholder="Enter Your Back Title" wire:model='back_title'>
+
+                                                @error('back_title')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <span>{{ $message }}</span>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
                                                 <label>City</label>
                                                 <input type="text"
                                                     class="form-control @error('city') is-invalid @enderror"

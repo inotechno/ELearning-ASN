@@ -39,8 +39,9 @@
                                 </div>
                                 
                                 <div>
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex justify-content-between">
                                         <a href="{{ route('courses.my-course.progress', $course->slug) }}" class="text-primary">Continue <i class="mdi mdi-arrow-right"></i></a>
+                                        <a href="{{ route('courses.my-course.certificate', $course->slug) }}" class="text-primary">View Certificate <i class="mdi mdi-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>

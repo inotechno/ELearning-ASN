@@ -21,6 +21,12 @@ class NavbarMenu extends Component
             'roles' => 'administrator|teacher|participant',
         ],
         [
+            'name' => 'Users',
+            'icon' => 'mdi mdi-account',
+            'url' => 'users',
+            'roles' => 'administrator',
+        ],
+        [
             'name' => 'Category',
             'icon' => 'mdi mdi-shape',
             'url' => 'category',

@@ -17,4 +17,9 @@ class RankMaster extends Model
     {
         return $this->hasMany(Participant::class, 'rank_id');
     }
+
+    public function teachers()
+    {
+        return $this->hasMany(Participant::class, 'rank_id');
+    }
 }

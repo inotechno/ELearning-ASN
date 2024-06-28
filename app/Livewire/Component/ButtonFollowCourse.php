@@ -51,6 +51,7 @@ class ButtonFollowCourse extends Component
             $course = Course::find($this->course_id);
             $course->participants()->attach(Auth::user()->participant->id, ['created_at' => now()]);
             $this->alert('success', 'Course has been followed');
+            return redirect()->route('courses.my-course.progress', $course->slug);
         } catch (\Throwable $th) {
             $this->alert('error', 'Something went wrong ' . $th->getMessage());
         }

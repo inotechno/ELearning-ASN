@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\CertificateController;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\RegisterTeacher;
 use App\Livewire\Category\CategoryIndex;
+use App\Livewire\Certificate\CertificateIndex;
 use App\Livewire\Course\CourseActive;
 use App\Livewire\Course\CourseActivity;
 use App\Livewire\Course\CourseCreate;
@@ -13,6 +15,8 @@ use App\Livewire\Course\CourseIndex;
 use App\Livewire\Course\CourseParticipant;
 use App\Livewire\Course\CourseProgress;
 use App\Livewire\Dashboard\DashboardIndex;
+use App\Livewire\Profile\ProfileIndex;
+use App\Livewire\User\UserIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,10 +42,15 @@ Route::group(['middleware' => ['guest']], function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', DashboardIndex::class)->name('dashboard');
+    Route::get('/profile', ProfileIndex::class)->name('profile')->middleware('role:teacher|participant');
 
     Route::group(['prefix' => 'course', 'middleware' => ['role:administrator|teacher']], function () {
         Route::get('create', CourseCreate::class)->name('course.create');
         Route::get('edit/{slug}', CourseEdit::class)->name('course.edit');
+    });
+
+    Route::group(['prefix' => 'users', 'middleware' => ['role:administrator']], function () {
+        Route::get('/', UserIndex::class)->name('users');
     });
 
     Route::get('/category', CategoryIndex::class)->name('category');
@@ -55,7 +64,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['role:participant']], function () {
         Route::get('/my-course', CourseParticipant::class)->name('courses.my-course');
         Route::get('/my-course/progress/{slug}', CourseProgress::class)->name('courses.my-course.progress');
+        Route::get('/my-course/certificate/{slug}', CertificateIndex::class)->name('courses.my-course.certificate');
     });
+
+    Route::get('/certificate/{slug}/{participant_id}', [CertificateController::class, 'generate'])->name('certificate.generate');
 
     Route::get('/course/{slug}', CourseDetail::class)->name('course.show');
     // Route::get('/course/{slug}', CourseDetail::class)->name('course.show');

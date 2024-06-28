@@ -8,7 +8,7 @@
                             <div class="p-3">
                                 <h5><a href="{{ route('course.show', $course->slug) }}"
                                         class="text-dark">{{ $course->title }}</a></h5>
-                                <p class="text-muted mb-0">{{ $course->created_at->diffForHumans() }}</p>
+                                <p class="text-muted mb-0">{{ $course->implementation_start->format('d M Y') }} - {{ $course->implementation_end->format('d M Y') }}</p>
                             </div>
 
                             <div class="position-relative">

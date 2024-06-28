@@ -19,13 +19,19 @@ return new class extends Migration
             $table->foreignId('rank_id')->nullable()->constrained('rank_masters')->nullOnDelete()->cascadeOnUpdate();
             $table->string('front_name');
             $table->string('back_name')->nullable();
+            $table->string('front_title')->nullable();
+            $table->string('back_title')->nullable();
             $table->string('nik', 16)->nullable();
+            $table->string('nip')->nullable();
             $table->string('birth_place')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('gender')->nullable();
             $table->string('city')->nullable();
+            $table->string('country')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
+            $table->string('unit_name')->nullable();
+            $table->string('position')->nullable();
             $table->timestamps();
         });
     }

@@ -4,6 +4,8 @@ namespace App\Livewire\Course;
 
 use App\Models\Course;
 use App\Models\ParticipantActivity;
+use App\Models\TypeTopic;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,9 +17,18 @@ class CourseActivity extends Component
 
     public $course, $courseId;
     public $breadcrumbData;
+    public $type_topics, $courses;
 
     public function mount($slug = null)
     {
+        $this->courses = Course::query();
+        if(Auth::user()->hasRole('teacher')) {
+            $this->courses->where('teacher_id', Auth::user()->teacher->id);
+        }
+
+        $this->courses = $this->courses->get();
+
+        $this->type_topics = TypeTopic::get();
         $this->course = Course::where('slug', $slug)->first();
 
         $this->breadcrumbData = [

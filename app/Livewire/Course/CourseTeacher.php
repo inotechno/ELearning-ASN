@@ -12,6 +12,6 @@ class CourseTeacher extends Component
 
     public function render()
     {
-        return view('livewire.course.course-teacher')->layout('layouts.app', ['breadcrumbData' => $this->breadcrumbData])->title(__('My Course'));
+        return view('livewire.course.course-teacher')->layout('layouts.app', ['breadcrumbData' => $this->breadcrumbData, 'title' => 'My Courses']););
     }
 }

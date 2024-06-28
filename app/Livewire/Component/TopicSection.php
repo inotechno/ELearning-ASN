@@ -15,13 +15,14 @@ class TopicSection extends Component
     use LivewireAlert, WithFileUploads;
 
     public $topic;
-    public $title, $start_at, $end_at, $type_topic_id, $course_id, $topic_id, $slug, $description, $video_url, $document_url, $document_path, $zoom_url, $percentage_value, $status, $success, $created_by, $created_at;
+    public $title, $start_at, $end_at, $type_topic_id, $course_id, $topic_id, $slug, $description, $video_url, $document_url, $document_path, $zoom_url, $percentage_value, $status, $success = false, $created_by, $created_at;
     public $now;
 
     public $file;
 
     protected $listeners = [
-        'selectTopic' => 'selectTopic'
+        'selectTopic' => 'selectTopic',
+        'startTopic'
     ];
 
     public function mount()
@@ -29,10 +30,31 @@ class TopicSection extends Component
         $this->now = Carbon::now();
     }
 
-    public function selectTopic($id, $success)
+    public function resetFields()
     {
-        // dd($success);
+       $this->title = '';
+       $this->start_at = '';
+       $this->end_at = '';
+       $this->type_topic_id = '';
+       $this->course_id = '';
+       $this->slug = '';
+       $this->description = '';
+       $this->video_url = '';
+       $this->document_url = '';
+       $this->document_path = '';
+       $this->zoom_url = '';
+       $this->percentage_value = '';
+       $this->status = '';
+       $this->success = false;
+       $this->created_by = '';
+       $this->created_at = '';
+    }
+
+    public function selectTopic($id, $activity = null)
+    {
+        $this->resetFields();
         $this->topic = CourseTopic::find($id);
+        // dd($this->topic);
 
         $this->title = $this->topic->title;
         $this->start_at = $this->topic->start_at;
@@ -49,7 +71,15 @@ class TopicSection extends Component
         $this->percentage_value = $this->topic->percentage_value;
         $this->status = $this->topic->status;
         $this->created_by = $this->topic->created_by;
-        $this->success = $success;
+
+        if (!is_null($activity) && !empty($activity)) {
+            $this->success = true;
+
+            // Check if type_topic_id is null before accessing activity file
+            if (is_null($this->type_topic_id)) {
+                $this->file = $activity['file'] ?? null;
+            }
+        }
     }
 
     public function uploadSPT()
@@ -59,11 +89,32 @@ class TopicSection extends Component
         ]);
 
         try {
-            $file = $this->file->store('public/documents');
+            $file = $this->file->store('documents', 'public');
             ParticipantActivity::create([
                 'course_id' => $this->course_id,
                 'course_topic_id' => $this->topic_id,
                 'file' => $file,
+                'progress' => $this->percentage_value,
+                'participant_id' => Auth::user()->participant->id
+            ]);
+
+            $this->alert('success', 'Aktivitas Berhasil Ditambahkan');
+            $this->dispatch('refreshPage');
+        } catch (\Exception $e) {
+            $this->alert('error', $e->getMessage());
+        }
+    }
+
+    public function startTopic()
+    {
+        try {
+            $this->validate([
+                'topic_id' => 'required'
+            ]);
+            
+            ParticipantActivity::create([
+                'course_id' => $this->course_id,
+                'course_topic_id' => $this->topic_id,
                 'progress' => $this->percentage_value,
                 'participant_id' => Auth::user()->participant->id
             ]);
@@ -89,9 +140,37 @@ class TopicSection extends Component
             } else {
                 if ($this->status == 'begin') {
                     $this->dispatch('showModalUploadFile');
+                } else if ($this->status == 'progress') {
+                    $this->confirm('Are you sure you want to start this topic?', [
+                        'icon' => 'info',
+                        'position' => 'center',
+                        'toast' => false,
+                        'timer' => null,
+                        'text' => 'If yes, click the button below!',
+                        'cancel' => true,
+                        'showConfirmButton' => true,
+                        'showCancelButton' => true,
+                        'onConfirmed' => 'startTopic',
+                        'confirmButtonText' => 'Yes, Start it!',
+                        'confirmButtonColor' => '#3085d6',
+                        'cancelButtonColor' => '#d33',
+                    ]);
+                } else {
+                    $this->confirm('Are you sure you want to finish this course?', [
+                        'icon' => 'info',
+                        'position' => 'center',
+                        'toast' => false,
+                        'timer' => null,
+                        'text' => 'If yes, click the button below!',
+                        'cancel' => true,
+                        'showConfirmButton' => true,
+                        'showCancelButton' => true,
+                        'onConfirmed' => 'startTopic',
+                        'confirmButtonText' => 'Yes, Finish it!',
+                        'confirmButtonColor' => '#3085d6',
+                        'cancelButtonColor' => '#d33',
+                    ]);
                 }
-
-                $this->alert('success', 'Topik Belum Selesai');
             }
         }
     }

@@ -76,8 +76,6 @@ class CourseIndex extends Component
         $courses = Course::when($this->search, function ($query) {
             $query->where('name', 'like', '%' . $this->search . '%')
                 ->orWhere('description', 'like', '%' . $this->search . '%');
-        })->where(function ($query) use ($now) {
-            $query->whereDate('implementation_end', '>=', $now);
         })->latest();
 
         // dd(Auth::user()->hasRole('teacher'));
@@ -86,7 +84,7 @@ class CourseIndex extends Component
         } else if (Auth::user()->hasRole('teacher')) {
             $courses = $courses->where('teacher_id', Auth::user()->teacher->id)->paginate(6);
         } else {
-            $courses = $courses->paginate(6);
+            $courses = $courses->where('implementation_start', '<=', $now)->where('deleted_at', null)->paginate(6);
         }
 
 

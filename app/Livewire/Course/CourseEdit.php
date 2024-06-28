@@ -48,7 +48,7 @@ class CourseEdit extends Component
         'title' => 'required|string|max:255',
         'category_id' => 'required|integer',
         'type_id' => 'required|integer',
-        'description_short' => 'required|string',
+        'description_short' => 'required|string|max:255',
         'description' => 'required|string',
         'implementation_start' => 'required|date',
         'implementation_end' => 'required|date|after_or_equal:implementation_start',
@@ -59,10 +59,10 @@ class CourseEdit extends Component
         'topics.*.start_at' => 'required|date',
         'topics.*.end_at' => 'required|date|after_or_equal:topics.*.start_at',
         'topics.*.type_topic_id' => 'nullable',
-        'topics.*.percentage_value' => 'required|min:1|max:100',
+        'topics.*.percentage_value' => 'required|integer|min:1|max:100',
         'topics.*.description' => 'required|string',
-        'topics.*.video_url' => 'nullable|required_if:topics.*.type_topic_id,1|url',
-        'topics.*.document_path' => 'nullable|required_if:topics.*.type_topic_id,2|file|mimes:pdf,doc,docx|max:2048',
+        'topics.*.video_url' => 'nullable|required_if:topics.*.type_topic_id,1',
+        'topics.*.document_path' => 'nullable|required_if:topics.*.type_topic_id,2',
         'topics.*.zoom_url' => 'nullable|required_if:topics.*.type_topic_id,3|url',
     ];
 
@@ -85,6 +85,7 @@ class CourseEdit extends Component
         $this->previewThumbnail = $course->img_thumbnail;
         $this->topics = $course->topics->toArray();
 
+        // dd($this->topics);
         $this->categories = \App\Models\CategoryCourse::get();
         $this->types = \App\Models\TypeCourse::get();
         $this->teachers = \App\Models\Teacher::get();
@@ -117,9 +118,9 @@ class CourseEdit extends Component
     public function update()
     {
         // dd($this->validate());
-
+        $this->validate();
+        
         try {
-            $this->validate();
 
             if ($this->img_thumbnail) {
                 $this->img_thumbnail_path = $this->img_thumbnail->store('thumbnails', 'public');

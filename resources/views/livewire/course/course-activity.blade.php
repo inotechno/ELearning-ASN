@@ -6,21 +6,22 @@
                 <div class="card-body border-bottom">
                     <div class="row g-3">
                         <div class="col-xxl-4 col-lg-6">
-                            <input type="search" class="form-control" id="searchInput" placeholder="Search for ...">
+                            <input type="search" class="form-control" id="searchInput" placeholder="Search for ..." wire:model="search">
                         </div>
                         <div class="col-xxl-2 col-lg-6">
                             <select class="form-control select2">
-                                <option>Status</option>
-                                <option value="Active">Active</option>
-                                <option value="New">New</option>
-                                <option value="Close">Close</option>
+                                <option>Type Topic</option>
+                                @foreach ($type_topics as $type)
+                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-xxl-2 col-lg-4">
                             <select class="form-control select2">
-                                <option>Select Type</option>
-                                <option value="1">Full Time</option>
-                                <option value="2">Part Time</option>
+                                <option>Select Course</option>
+                                @foreach ($courses as $course)
+                                    <option value="{{ $course->id }}">{{ $course->title }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-xxl-2 col-lg-4">

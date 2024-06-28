@@ -15,8 +15,8 @@ class Register extends Component
     public $step = 1;
 
     public $front_name, $back_name, $username, $email, $password, $password_confirmation;
-    public $nik, $phone, $gender, $city, $country = 'Indonesia';
-    public $institution_id, $education_id, $rank_id;
+    public $nik, $phone, $gender, $city, $country = 'Indonesia', $nip, $front_title, $back_title, $birth_place, $birth_date;
+    public $institution_id, $education_id, $rank_id, $unit_name, $position;
     public $institutions, $educations, $ranks;
 
     protected $rules = [
@@ -26,12 +26,20 @@ class Register extends Component
         'email' => 'required|email|unique:users',
         'password' => 'required|string|min:8|confirmed',
         'nik' => 'required|string|max:255',
+        'nip' => 'required|string|max:255',
         'phone' => 'required|string|max:255',
         'gender' => 'required|in:male,female',
         'city' => 'required|string|max:255',
         'institution_id' => 'required|exists:institution_masters,id',
         'education_id' => 'required|exists:education_masters,id',
         'rank_id' => 'required|exists:rank_masters,id',
+        'unit_name' => 'required|string|max:255',
+        'position' => 'required|string|max:255',
+        'birth_place' => 'required|string|max:255',
+        'birth_date' => 'required|date',
+        'front_title' => 'required|string|max:255',
+        'back_title' => 'required|string|max:255',
+        'country' => 'required|string|max:255',
     ];
 
     public function mount()
@@ -57,12 +65,19 @@ class Register extends Component
                 'phone'             => 'required',
                 'gender'            => 'required',
                 'city'              => 'required',
+                'birth_place'       => 'required',
+                'birth_date'        => 'required',
+                'front_title'       => 'required',
+                'back_title'        => 'required',
+                'nip'               => 'required',
             ]);
         } elseif ($this->step === 3) {
             $this->validate([
                 'institution_id'    => 'required',
                 'education_id'      => 'required',
                 'rank_id'           => 'required',
+                'unit_name'         => 'required',
+                'position'          => 'required',
             ]);
         }
 
@@ -83,13 +98,22 @@ class Register extends Component
         $this->password = '';
         $this->password_confirmation = '';
         $this->nik = '';
+        $this->nip = '';
+        $this->front_title = '';
+        $this->back_title = '';
+        $this->birth_place = '';
+        $this->birth_date = '';
         $this->phone = '';
         $this->gender = '';
         $this->city = '';
         $this->institution_id = null;
         $this->education_id = null;
         $this->rank_id = null;
+        $this->unit_name = '';
+        $this->position = '';
+
         $this->step = 1;
+
     }
 
     public function store()
@@ -103,6 +127,7 @@ class Register extends Component
                 'email' => $this->email,
                 'email_verified_at' => now(),
                 'password' => bcrypt($this->password),
+                'status' => false
             ]);
 
             $user->assignRole('participant');
@@ -114,12 +139,20 @@ class Register extends Component
                 'front_name' => $this->front_name,
                 'back_name' => $this->back_name,
                 'nik' => $this->nik,
+                'nip' => $this->nip,
+                'birth_place' => $this->birth_place,
+                'birth_date' => $this->birth_date,
+                'front_title' => $this->front_title,
+                'back_title' => $this->back_title,
                 'phone' => $this->phone,
                 'city' => $this->city,
                 'gender' => $this->gender,
+                'unit_name' => $this->unit_name,
+                'position' => $this->position,
+                'country' => $this->country,
             ]);
 
-            $this->alert('success', 'Register Successfully, Silahkan Login !');
+            $this->alert('success', 'Register Successfully, Waiting for Approval !');
             return redirect()->route('login');
         } catch (\Throwable $th) {
             $this->alert('error', $th->getMessage());

@@ -17,13 +17,19 @@ class Participant extends Model
         'rank_id',
         'front_name',
         'back_name',
+        'front_title',
+        'back_title',
+        'nip',
         'nik',
         'birth_place',
         'birth_date',
         'gender',
         'city',
+        'country',
         'address',
         'phone',
+        'unit_name',
+        'position'
     ];
 
     public function institution()

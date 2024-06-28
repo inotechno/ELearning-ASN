@@ -11,14 +11,24 @@ class Teacher extends Model
 
     protected $fillable = [
         'user_id',
+        'institution_id',
         'education_id',
+        'rank_id',
         'front_name',
         'back_name',
+        'front_title',
+        'back_title',
+        'nip',
         'nik',
+        'birth_place',
+        'birth_date',
         'gender',
-        'phone',
+        'city',
+        'country',
         'address',
-        'city'
+        'phone',
+        'unit_name',
+        'position'
     ];
 
     public function user()
@@ -26,10 +36,21 @@ class Teacher extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function institution()
+    {
+        return $this->belongsTo(InstitutionMaster::class, 'institution_id');
+    }
+
     public function education()
     {
         return $this->belongsTo(EducationMaster::class, 'education_id');
     }
+
+    public function rank()
+    {
+        return $this->belongsTo(RankMaster::class, 'rank_id');
+    }
+
 
     public function courses()
     {

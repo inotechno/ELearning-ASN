@@ -17,4 +17,9 @@ class InstitutionMaster extends Model
     {
         return $this->hasMany(Participant::class, 'institution_id');
     }
+
+    public function teachers()
+    {
+        return $this->hasMany(Teacher::class, 'institution_id');
+    }
 }

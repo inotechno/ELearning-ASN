@@ -1,9 +1,9 @@
 <div class="card">
     <div class="card-body">
-        <div class="w-100 mb-4">
+        {{-- <div class="w-100 mb-4">
             <img src="https://sibangkolak.serangkota.go.id/pluginfile.php/2/course/section/1/Blue%20Modern%20Dance%20.png"
                 alt="" class="img-fluid">
-        </div>
+        </div> --}}
 
         @if (empty($topic))
             <div class="d-flex">
@@ -52,15 +52,49 @@
                         </div>
                         <div class="d-flex flex-column flex-grow-1">
                             <h5 class="font-size-14 mb-1">
-                                <a href="{{ url($file) }}" class="text-dark">File SPT</a>
+                                <a href="{{ url('storage/' . $file) }}" class="text-dark">File SPT</a>
                             </h5>
                             <small></small>
                         </div>
                         <div class="d-flex align-items-center justify-content-center">
-                            <a href="{{ url($file) }}" class="text-dark">
+                            <a href="{{ url('storage/' . $file) }}" class="text-dark">
                                 <i class="bx bx-download h3 m-0"></i>
                             </a>
                         </div>
+                    </div>
+                @elseif($type_topic_id == 1)
+                    <iframe width="560" height="315" src="{{ $video_url }}" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                @elseif($type_topic_id == 2)
+                    <div class="d-flex align-items-center">
+                        <div style="width: 60px;">
+                            <div class="avatar-sm d-flex align-items-center justify-content-center">
+                                <span class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-24">
+                                    <i class="bx bxs-file-doc"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column flex-grow-1">
+                            <h5 class="font-size-14 mb-1">
+                                <a href="{{ $document_url }}" class="text-dark" target="_blank">Download Materi</a>
+                            </h5>
+                            <small></small>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <a href="{{ $document_url }}" class="text-dark" target="_blank">
+                                <i class="bx bx-download h3 m-0"></i>
+                            </a>
+                        </div>
+                    </div>
+                @elseif($type_topic_id == 3)
+                    <a href="{{ $zoom_url }}" class="text-dark" target="_blank" class="mb-3"><img width="200px"
+                            src="https://my.de.marist.edu/documents/223318/1893677/Zoom-Logo-Vector-.png/61edb984-8879-4648-a364-596716bb4d2d?t=1642001250000"
+                            alt="{{ $title }}" class="img-fluid"></a>
+                    <div class="mt-4">
+                        Link Zoom :
+                        <a href="{{ $zoom_url }}" target="_blank">{{ $zoom_url }}</a>
                     </div>
                 @endif
             @else

@@ -5,6 +5,7 @@ namespace App\Livewire\Course;
 use App\Livewire\Component\Quill;
 use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Joelwmale\LivewireQuill\Traits\HasQuillEditor;
 use Livewire\Component;
@@ -59,8 +60,8 @@ class CourseCreate extends Component
         'topics.*.type_topic_id' => 'nullable',
         'topics.*.percentage_value' => 'required|integer|min:1|max:100',
         'topics.*.description' => 'required|string',
-        'topics.*.video_url' => 'nullable|required_if:topics.*.type_topic_id,1|url',
-        'topics.*.document_path' => 'nullable|required_if:topics.*.type_topic_id,2|file|mimes:pdf,doc,docx|max:2048',
+        'topics.*.video_url' => 'nullable|required_if:topics.*.type_topic_id,1',
+        'topics.*.document_path' => 'nullable|required_if:topics.*.type_topic_id,2',
         'topics.*.zoom_url' => 'nullable|required_if:topics.*.type_topic_id,3|url',
     ];
 
@@ -77,6 +78,7 @@ class CourseCreate extends Component
 
     public function setTopics($topics)
     {
+        // dd($topics);
         $this->topics = $topics;
     }
 
@@ -122,8 +124,10 @@ class CourseCreate extends Component
             ]);
 
             foreach ($this->topics as $topic) {
-                if (isset($topic['document_path']) && is_object($topic['document_path'])) {
-                    $topic['document_path'] = $topic['document_path']->store('documents', 'public');
+                if (isset($topic['document_path']) && !is_null($topic['document_path'])) {
+                    $filePath = str_replace('temp/', '', $topic['document_path']);
+                    Storage::disk('public')->move($topic['document_path'], 'documents/' . $filePath);
+                    $topic['document_path'] = 'documents/' . $filePath;
                     $topic['document_url'] = url('storage/' . $topic['document_path']);
                 }
 

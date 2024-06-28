@@ -17,18 +17,17 @@ class CourseTask extends Component
         $this->course = $course;
         $courseTopics = CourseTopic::where('course_id', $this->course->id)
             ->with('activities')
-            ->whereHas('activities', function($query){
-                return $query->where('participant_id', Auth::user()->participant->id);
-            })
             ->orderBy('start_at')
             ->get();
 
         $this->courseTopics = [];
-
+        
         foreach ($courseTopics as $key => $topic) {
             $date = Carbon::parse($topic->start_at)->format('D, d M Y');
             $success = $topic->activities->isNotEmpty();
-            $activities = $topic->activities;
+            $cekActivity = $topic->activities->where('participant_id', Auth::user()->participant->id)->first();
+
+            $activity = $cekActivity ? $cekActivity : json_encode([]);
 
             $this->courseTopics[$date][] = [
                 'id' => $topic->id,
@@ -43,7 +42,7 @@ class CourseTask extends Component
                 'created_at' => $topic->created_at,
                 'updated_at' => $topic->updated_at,
                 'success' => $success,
-                'activities' => $activities
+                'activity' => $activity
             ];
 
         }
