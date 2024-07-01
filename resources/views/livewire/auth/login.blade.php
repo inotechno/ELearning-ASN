@@ -81,7 +81,7 @@
                             </div>
 
                             <div class="mt-4 text-center">
-                                <a href="auth-recoverpw.html" class="text-muted"><i class="mdi mdi-lock me-1"></i>
+                                <a href="{{ route('forgot-password') }}" class="text-muted"><i class="mdi mdi-lock me-1"></i>
                                     Lupa Password?</a>
                             </div>
                         </form>

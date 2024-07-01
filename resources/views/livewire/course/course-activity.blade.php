@@ -1,6 +1,6 @@
 <div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-9">
             <div class="card">
 
                 <div class="card-body border-bottom">
@@ -121,6 +121,7 @@
             </div><!--end card-->
         </div><!--end col-->
 
+        @livewire('component.course-activity-percentage', ['course_id' => $courseId])
     </div>
 
     @push('css')

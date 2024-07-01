@@ -2,12 +2,16 @@
 
 namespace App\Livewire\Dashboard;
 
+use App\Models\Course;
+use App\Models\CourseTopic;
+use App\Models\Participant;
+use App\Models\Teacher;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class DashboardIndex extends Component
 {
-    public $user, $name, $email, $image, $username, $totalCourse, $totalCourseTopic, $userDetail, $role;
+    public $user, $name, $email, $image, $username, $totalCourse, $totalCourseTopic, $userDetail, $role, $totalParticipant, $totalTeacher;
 
     public $breadcrumbData = [
         ['label' => 'Dashboard', 'url' => '/'],
@@ -29,10 +33,12 @@ class DashboardIndex extends Component
             $this->userDetail = $this->user->participant;
         } else {
             $this->userDetail = null;
+            $this->getTotalTeacher();
         }
 
         $this->getTotalCourse();
         $this->getTotalCourseTopic();
+        $this->getTotalParticipant();
     }
 
     public function getTotalCourse()
@@ -40,6 +46,8 @@ class DashboardIndex extends Component
         if ($this->role != null) {
             return $this->totalCourse = $this->user->{$this->role}->courses->count();
         }
+
+        return $this->totalCourse = Course::count();
     }
 
     public function getTotalCourseTopic()
@@ -51,7 +59,33 @@ class DashboardIndex extends Component
                 return $this->totalCourseTopic = $this->user->{$this->role}->topics->count();
             }
         }
+
+        return $this->totalCourseTopic = CourseTopic::count();
     }
+
+    public function getTotalTeacher()
+    {
+        if ($this->user->hasRole('administrator')) {
+            return $this->totalTeacher = Teacher::whereHas('user', function ($query) {
+                $query->where('status', true);
+            })->count();
+        }
+    }
+
+    public function getTotalParticipant()
+    {
+        if($this->role == 'teacher') {
+            return $this->totalParticipant = Participant::whereHas('courses', function ($query) {
+                $query->where('teacher_id', $this->user->teacher->id);
+            })->count();
+        }
+
+        return $this->totalParticipant = Participant::whereHas('user', function ($query) {
+            $query->where('status', true);
+        })->count();
+    }
+
+    
 
     public function render()
     {

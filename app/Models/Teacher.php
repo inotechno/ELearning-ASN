@@ -51,7 +51,6 @@ class Teacher extends Model
         return $this->belongsTo(RankMaster::class, 'rank_id');
     }
 
-
     public function courses()
     {
         return $this->hasMany(Course::class, 'teacher_id');
@@ -60,5 +59,9 @@ class Teacher extends Model
     public function topics()
     {
         return $this->hasManyThrough(CourseTopic::class, Course::class, 'teacher_id', 'course_id');
+    }
+
+    public function participants()
+    {
     }
 }

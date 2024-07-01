@@ -84,8 +84,8 @@ class CourseIndex extends Component
         } else if (Auth::user()->hasRole('teacher')) {
             $courses = $courses->where('teacher_id', Auth::user()->teacher->id)->paginate(6);
         } else {
-            $courses = $courses->where('implementation_start', '<=', $now)
-                ->where('implementation_end', '>=', $now)
+            $courses = $courses->whereDate('implementation_start', '<=', $now)
+                ->whereDate('implementation_end', '>=', $now)
                 ->where('deleted_at', null)->paginate(6);
         }
 

@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\CertificateController;
+use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\RegisterTeacher;
+use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Category\CategoryIndex;
 use App\Livewire\Certificate\CertificateIndex;
 use App\Livewire\Course\CourseActive;
@@ -38,6 +40,8 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('/login', Login::class)->name('login');
     Route::get('/register', Register::class)->name('register');
     Route::get('/register-teacher', RegisterTeacher::class)->name('register.teacher');
+    Route::get('/forgot-password', ForgotPassword::class)->name('forgot-password');
+    Route::get('/reset-password/{token}', ResetPassword::class)->name('password.reset');
 });
 
 Route::group(['middleware' => ['auth']], function () {

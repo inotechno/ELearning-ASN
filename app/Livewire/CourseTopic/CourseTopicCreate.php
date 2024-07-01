@@ -105,7 +105,7 @@ class CourseTopicCreate extends Component
     {
         $topic = $this->topics[$index];
 
-        $this->topic_id = $topic['id'];
+        $this->topic_id = $topic['id'] ?? null;
         $this->add_status = $topic['status'];
         $this->add_title = $topic['title'];
         $this->start_date = explode(' ', $topic['start_at'])[0];

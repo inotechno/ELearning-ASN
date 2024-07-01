@@ -23,7 +23,7 @@ class CourseActivity extends Component
     {
         $this->courses = Course::query();
 
-        if(Auth::user()->hasRole('teacher')) {
+        if (Auth::user()->hasRole('teacher')) {
             $this->courses->where('teacher_id', Auth::user()->teacher->id);
         }
 
@@ -31,6 +31,7 @@ class CourseActivity extends Component
 
         $this->type_topics = TypeTopic::get();
         $this->course = Course::where('slug', $slug)->first();
+        $this->courseId = $this->course->id;
 
         $this->breadcrumbData = [
             ['label' => 'Courses', 'url' => '/course'],
@@ -42,9 +43,9 @@ class CourseActivity extends Component
     {
         $course_activities = ParticipantActivity::with('participant', 'course', 'courseTopic')->whereHas('course', function () {
             return $this->course;
-        })->paginate(12);
+        })->latest()->paginate(12);
 
         // dd($course_activities);
-        return view('livewire.course.course-activity', compact('course_activities'))->title(__('Course Activity '.$this->course->title))->layout('layouts.app', ['breadcrumbData' => $this->breadcrumbData]);
+        return view('livewire.course.course-activity', compact('course_activities'))->title(__('Course Activity ' . $this->course->title))->layout('layouts.app', ['breadcrumbData' => $this->breadcrumbData]);
     }
 }

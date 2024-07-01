@@ -33,9 +33,9 @@ class DatabaseSeeder extends Seeder
         $administrator->assignRole('administrator');
 
         $teacher = User::create([
-            'name' => 'Teacher',
-            'username' => 'teacher',
-            'email' => 'teacher@app.com',
+            'name' => 'Pengajar',
+            'username' => 'pengajar',
+            'email' => 'pengajar@app.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => 'IAYSUAYnas',
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
         Teacher::create([
             'user_id' => $teacher->id,
             'education_id' => 1, // Sesuaikan dengan id yang sesuai di tabel education_masters
-            'front_name' => 'Teacher',
+            'front_name' => 'Pengajar',
             'back_name' => 'Smith',
             'nik' => '1234567890123456',
             'phone' => '1234567890',
@@ -55,9 +55,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $participant = User::create([
-            'name' => 'Participant',
-            'username' => 'participant',
-            'email' => 'participant@app.com',
+            'name' => 'Peserta',
+            'username' => 'peserta',
+            'email' => 'peserta@app.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => 'IAYSUAYnas',
@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
             'institution_id' => 1, // Sesuaikan dengan id yang sesuai di tabel institution_masters
             'education_id' => 1, // Sesuaikan dengan id yang sesuai di tabel education_masters
             'rank_id' => 1, // Sesuaikan dengan id yang sesuai di tabel rank_masters
-            'front_name' => 'Participant',
+            'front_name' => 'Peserta',
             'back_name' => 'Doe',
             'nik' => '1234567890123456',
             'birth_place' => 'Participant Birth Place',

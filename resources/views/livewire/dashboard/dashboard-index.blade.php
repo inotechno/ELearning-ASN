@@ -28,7 +28,7 @@
                         <div class="col-sm-8">
                             <div class="pt-4">
 
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-6">
                                         <h5 class="font-size-15">125</h5>
                                         <p class="text-muted mb-0">Projects</p>
@@ -37,7 +37,7 @@
                                         <h5 class="font-size-15">$1245</h5>
                                         <p class="text-muted mb-0">Revenue</p>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="mt-4">
                                     <a href="{{ route('profile') }}"
                                         class="btn btn-primary waves-effect waves-light btn-sm">View
@@ -57,7 +57,7 @@
                         <div class="card-body">
                             <div class="d-flex">
                                 <div class="flex-grow-1">
-                                    <p class="text-muted fw-medium">Total Course</p>
+                                    <p class="text-muted fw-medium">Total Pelatihan</p>
                                     <h4 class="mb-0">{{ $totalCourse }}</h4>
                                 </div>
 
@@ -77,7 +77,7 @@
                         <div class="card-body">
                             <div class="d-flex">
                                 <div class="flex-grow-1">
-                                    <p class="text-muted fw-medium">Total Course Topic</p>
+                                    <p class="text-muted fw-medium">Total Materi</p>
                                     <h4 class="mb-0">{{ $totalCourseTopic }}</h4>
                                 </div>
 
@@ -92,13 +92,15 @@
                         </div>
                     </div>
                 </div>
+
+                @hasrole('administrator|teacher')
                 <div class="col-md-4">
                     <div class="card mini-stats-wid">
                         <div class="card-body">
                             <div class="d-flex">
                                 <div class="flex-grow-1">
-                                    <p class="text-muted fw-medium">Average Price</p>
-                                    <h4 class="mb-0">$16.2</h4>
+                                    <p class="text-muted fw-medium">Total Peserta</p>
+                                    <h4 class="mb-0">{{$totalParticipant}}</h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center">
@@ -112,6 +114,7 @@
                         </div>
                     </div>
                 </div>
+                @endhasrole
             </div>
             <!-- end row -->
 
