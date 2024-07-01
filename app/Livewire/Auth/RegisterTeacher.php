@@ -37,8 +37,8 @@ class RegisterTeacher extends Component
         'position' => 'required|string|max:255',
         'birth_place' => 'required|string|max:255',
         'birth_date' => 'required|date',
-        'front_title' => 'required|string|max:255',
-        'back_title' => 'required|string|max:255',
+        'front_title' => 'nullable|string|max:255',
+        'back_title' => 'nullable|string|max:255',
         'country' => 'required|string|max:255',
     ];
 
@@ -67,8 +67,8 @@ class RegisterTeacher extends Component
                 'city'              => 'required',
                 'birth_place'       => 'required',
                 'birth_date'        => 'required',
-                'front_title'       => 'required',
-                'back_title'        => 'required',
+                'front_title'       => 'nullable',
+                'back_title'        => 'nullable',
                 'nip'               => 'required',
             ]);
         } elseif ($this->step === 3) {
@@ -113,8 +113,8 @@ class RegisterTeacher extends Component
         $this->position = '';
 
         $this->step = 1;
-
     }
+
 
     public function store()
     {
@@ -152,7 +152,7 @@ class RegisterTeacher extends Component
                 'country' => $this->country,
             ]);
 
-            $this->alert('success', 'Register Successfully, Waiting for Approval !');
+            $this->alert('success', 'Register Successfully, Silahkan tunggu validasi administrator !');
             return redirect()->route('login');
         } catch (\Throwable $th) {
             $this->alert('error', $th->getMessage());

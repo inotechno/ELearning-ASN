@@ -32,22 +32,22 @@ class TopicSection extends Component
 
     public function resetFields()
     {
-       $this->title = '';
-       $this->start_at = '';
-       $this->end_at = '';
-       $this->type_topic_id = '';
-       $this->course_id = '';
-       $this->slug = '';
-       $this->description = '';
-       $this->video_url = '';
-       $this->document_url = '';
-       $this->document_path = '';
-       $this->zoom_url = '';
-       $this->percentage_value = '';
-       $this->status = '';
-       $this->success = false;
-       $this->created_by = '';
-       $this->created_at = '';
+        $this->title = '';
+        $this->start_at = '';
+        $this->end_at = '';
+        $this->type_topic_id = '';
+        $this->course_id = '';
+        $this->slug = '';
+        $this->description = '';
+        $this->video_url = '';
+        $this->document_url = '';
+        $this->document_path = '';
+        $this->zoom_url = '';
+        $this->percentage_value = '';
+        $this->status = '';
+        $this->success = false;
+        $this->created_by = '';
+        $this->created_at = '';
     }
 
     public function selectTopic($id, $activity = null)
@@ -111,7 +111,7 @@ class TopicSection extends Component
             $this->validate([
                 'topic_id' => 'required'
             ]);
-            
+
             ParticipantActivity::create([
                 'course_id' => $this->course_id,
                 'course_topic_id' => $this->topic_id,

@@ -8,7 +8,8 @@
                             <div class="p-3">
                                 <h5><a href="{{ route('course.show', $course->slug) }}"
                                         class="text-dark">{{ $course->title }}</a></h5>
-                                <p class="text-muted mb-0">{{ $course->implementation_start->format('d M Y') }} - {{ $course->implementation_end->format('d M Y') }}</p>
+                                <p class="text-muted mb-0">{{ $course->implementation_start->format('d M Y') }} -
+                                    {{ $course->implementation_end->format('d M Y') }}</p>
                             </div>
 
                             <div class="position-relative">
@@ -31,18 +32,18 @@
                                         </a>
                                     </li>
                                 </ul>
-                                
+
                                 <p>{{ $course->description_short }}</p>
 
                                 <div>
                                     <div class="d-flex align-items-center">
-                                        <a href="{{ route('course.show', $course->slug) }}" class="text-primary">Read
-                                            more <i class="mdi mdi-arrow-right"></i></a>
+                                        <a href="{{ route('course.show', $course->slug) }}" class="text-primary">Lebih
+                                            Detail <i class="mdi mdi-arrow-right"></i></a>
 
                                         @hasrole('teacher')
                                             <div class="ms-auto">
                                                 <a href="{{ route('course.activity', $course->slug) }}"
-                                                    class="btn btn-sm btn-soft-warning">Detail Activity <i
+                                                    class="btn btn-sm btn-soft-warning">Detail Aktivitas <i
                                                         class="mdi mdi-eye"></i></a>
                                             </div>
                                         @endhasrole

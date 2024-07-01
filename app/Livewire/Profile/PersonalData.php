@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Profile;
 
-
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
@@ -11,31 +11,38 @@ class PersonalData extends Component
 {
     use LivewireAlert;
 
-    public $user, $user_id, $front_name, $back_name, $front_title, $back_title, $nik, $birth_place, $birth_date, $gender, $city, $country = 'Indonesia', $address, $phone;
-
-    public function mount()
+    public $user, $user_id, $front_name, $back_name, $front_title, $back_title, $nik, $birth_place, $birth_date, $gender, $city, $country = 'Indonesia', $address, $phone, $role;
+    public $editUserByAdmin  = false;
+    public function mount($id = null)
     {
-        $user = Auth::user();
+        if ($id == null) {
+            $user = Auth::user();
+        } else {
+            $user = User::find($id);
+            $this->editUserByAdmin = true;
+        }
+
+        $this->user = $user;
         $this->user_id = $user->id;
 
         if ($user->hasRole('participant')) {
-            $this->user = $user->participant;
+            $this->role = $user->participant;
         } else if ($user->hasRole('teacher')) {
-            $this->user = $user->teacher;
+            $this->role = $user->teacher;
         }
 
-        $this->user_id = $this->user->user_id;
-        $this->front_name = $this->user->front_name;
-        $this->back_name = $this->user->back_name;
-        $this->front_title = $this->user->front_title;
-        $this->back_title = $this->user->back_title;
-        $this->nik = $this->user->nik;
-        $this->birth_place = $this->user->birth_place;
-        $this->birth_date = $this->user->birth_date;
-        $this->gender = $this->user->gender;
-        $this->city = $this->user->city;
-        $this->address = $this->user->address;
-        $this->phone = $this->user->phone;
+        $this->user_id = $this->role->user_id;
+        $this->front_name = $this->role->front_name;
+        $this->back_name = $this->role->back_name;
+        $this->front_title = $this->role->front_title;
+        $this->back_title = $this->role->back_title;
+        $this->nik = $this->role->nik;
+        $this->birth_place = $this->role->birth_place;
+        $this->birth_date = $this->role->birth_date;
+        $this->gender = $this->role->gender;
+        $this->city = $this->role->city;
+        $this->address = $this->role->address;
+        $this->phone = $this->role->phone;
     }
 
     public function updatePersonalData()
@@ -43,8 +50,8 @@ class PersonalData extends Component
         $this->validate([
             'front_name' => 'required',
             'back_name' => 'required',
-            'front_title' => 'required',
-            'back_title' => 'required',
+            'front_title' => 'nullable',
+            'back_title' => 'nullable',
             'nik' => 'required',
             'birth_place' => 'required',
             'birth_date' => 'required',
@@ -55,7 +62,7 @@ class PersonalData extends Component
         ]);
 
         try {
-            $this->user->participant->update([
+            $this->role->update([
                 'front_name' => $this->front_name,
                 'back_name' => $this->back_name,
                 'front_title' => $this->front_title,

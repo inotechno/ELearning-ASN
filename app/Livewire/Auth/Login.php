@@ -24,8 +24,8 @@ class Login extends Component
             if (Auth::attempt(['username' => $this->username, 'password' => $this->password, 'status' => 1], $this->remember)) {
                 $this->alert('success', 'Login Berhasil, Selamat Datang');
                 return redirect()->route('dashboard');
-            } 
-            
+            }
+
             $this->alert('error', 'Login Gagal, Silahkan Coba Lagi');
             return back();
         } catch (\Throwable $th) {
@@ -36,6 +36,6 @@ class Login extends Component
 
     public function render()
     {
-        return view('livewire.auth.login')->layout('layouts.auth');
+        return view('livewire.auth.login')->layout('layouts.auth', ['title' => 'Login']);
     }
 }

@@ -53,7 +53,7 @@ class CourseEdit extends Component
         'implementation_start' => 'required|date',
         'implementation_end' => 'required|date|after_or_equal:implementation_start',
         'is_active' => 'boolean',
-        'img_thumbnail' => 'nullable|image|max:1024',
+        'img_thumbnail' => 'nullable|image|max:5024',
         'topics.*.status' => 'required|string',
         'topics.*.title' => 'required|string|max:255',
         'topics.*.start_at' => 'required|date',
@@ -87,7 +87,7 @@ class CourseEdit extends Component
         'is_active.boolean' => 'Status harus berupa true atau false.',
         'img_thumbnail.required' => 'Thumbnail gambar wajib diunggah.',
         'img_thumbnail.image' => 'Thumbnail harus berupa file gambar.',
-        'img_thumbnail.max' => 'Ukuran thumbnail tidak boleh lebih dari 1MB.',
+        'img_thumbnail.max' => 'Ukuran thumbnail tidak boleh lebih dari 5MB.',
         'topics.*.status.required' => 'Status topik wajib diisi.',
         'topics.*.status.string' => 'Status topik harus berupa teks.',
         'topics.*.title.required' => 'Judul topik wajib diisi.',
@@ -108,7 +108,7 @@ class CourseEdit extends Component
         'topics.*.zoom_url.required_if' => 'URL Zoom wajib diisi untuk topik dengan tipe Zoom.',
         'topics.*.zoom_url.url' => 'Format URL Zoom tidak valid.',
     ];
-    
+
     public function mount($slug)
     {
         $course = Course::where('slug', $slug)->first();
@@ -161,7 +161,7 @@ class CourseEdit extends Component
     public function update()
     {
         // dd($this->validate());
-        
+
         try {
             $this->validate();
 
@@ -188,6 +188,19 @@ class CourseEdit extends Component
                 'created_by' => Auth::user()->id,
             ]);
 
+
+            // Ambil semua ID topik yang ada di daftar baru
+            $newTopicIds = collect($this->topics)->pluck('id')->filter()->all();
+
+            // Ambil semua ID topik yang ada di database untuk kursus ini
+            $existingTopicIds = $this->course->topics()->pluck('id')->all();
+
+            // Hapus topik yang tidak ada di daftar baru
+            $topicsToDelete = array_diff($existingTopicIds, $newTopicIds);
+            if (!empty($topicsToDelete)) {
+                $this->course->topics()->whereIn('id', $topicsToDelete)->delete();
+            }
+
             foreach ($this->topics as $topic) {
                 if (isset($topic['document_path']) && is_object($topic['document_path'])) {
                     $topic['document_path'] = $topic['document_path']->store('documents', 'public');
@@ -197,8 +210,21 @@ class CourseEdit extends Component
                 $topic['created_by'] = Auth::user()->id;
                 $topic['slug'] = Str::slug($topic['title']);
 
-                // Find existing topic by unique criteria (e.g., slug or title)
-                $existingTopic = $this->course->topics()->where('slug', $topic['slug'])->first();
+                // $existingTopicBySlug = $this->course->topics()->where('slug', $topic['slug'])->first();
+
+                if (isset($topic['id'])) {
+                    $existingTopic = $this->course->topics()->find($topic['id']);
+                } else {
+                    $existingTopic = null;
+                }
+
+                if ($existingTopic) {
+                    // Update topik yang sudah ada
+                    $existingTopic->update($topic);
+                } else {
+                    // Buat topik baru
+                    $this->course->topics()->create($topic);
+                }
 
                 if ($existingTopic) {
                     // Update existing topic

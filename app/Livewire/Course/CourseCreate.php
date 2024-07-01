@@ -52,7 +52,7 @@ class CourseCreate extends Component
         'implementation_start' => 'required|date',
         'implementation_end' => 'required|date|after_or_equal:implementation_start',
         'is_active' => 'boolean',
-        'img_thumbnail' => 'required|image|max:1024',
+        'img_thumbnail' => 'required|image|max:5000',
         'topics.*.status' => 'required|string',
         'topics.*.title' => 'required|string|max:255',
         'topics.*.start_at' => 'required|date',
@@ -107,7 +107,7 @@ class CourseCreate extends Component
         'topics.*.zoom_url.required_if' => 'URL Zoom wajib diisi untuk topik dengan tipe Zoom.',
         'topics.*.zoom_url.url' => 'Format URL Zoom tidak valid.',
     ];
-    
+
 
     public function mount()
     {
@@ -143,10 +143,10 @@ class CourseCreate extends Component
     public function store()
     {
         // dd($this->validate());
-        
+
         try {
             $this->validate();
-            
+
             if ($this->img_thumbnail) {
                 $this->img_thumbnail_path = $this->img_thumbnail->store('thumbnails', 'public');
                 $this->img_thumbnail = url('storage/' . $this->img_thumbnail_path);

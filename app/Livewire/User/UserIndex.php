@@ -17,7 +17,9 @@ class UserIndex extends Component
 
     protected $listeners = [
         'changeStatusConfirm' => 'changeStatusConfirm',
-        'changeStatus' => 'changeStatus'
+        'confirmDelete' => 'confirmDelete',
+        'changeStatus' => 'changeStatus',
+        'deleteUser' => 'deleteUser',
     ];
 
     public function changeStatusConfirm($id, $type)
@@ -39,7 +41,6 @@ class UserIndex extends Component
             'confirmButtonColor' => '#3085d6',
             'cancelButtonColor' => '#d33',
         ]);
-
     }
 
     public function changeStatus()
@@ -70,6 +71,39 @@ class UserIndex extends Component
             // }
         } catch (\Exception $e) {
             $this->alert('error', $e->getMessage());
+        }
+    }
+
+    public function confirmDelete($id)
+    {
+        $this->user_id = $id;
+
+        $this->confirm('Are you sure you want to delete this user?', [
+            'icon' => 'warning',
+            'position' => 'center',
+            'toast' => false,
+            'timer' => null,
+            'text' => 'If yes, click the button below!',
+            'cancel' => true,
+            'showConfirmButton' => true,
+            'showCancelButton' => true,
+            'onConfirmed' => 'deleteUser',
+            'confirmButtonText' => 'Yes, Delete it!',
+            'confirmButtonColor' => '#d33',
+            'cancelButtonColor' => '#3085d6'
+        ]);
+    }
+
+    public function deleteUser()
+    {
+        try {
+            $user = User::find($this->user_id);
+            $user->delete();
+            $this->alert('success', 'User has been deleted');
+
+            $this->dispatch('refreshUserList');
+        } catch (\Throwable $th) {
+            $this->alert('error', 'User has not been deleted');
         }
     }
 

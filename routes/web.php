@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/', UserIndex::class)->name('users');
     });
 
+    Route::get('/user/edit/{id}', ProfileIndex::class)->name('user.edit')->middleware('role:administrator');
+
     Route::get('/category', CategoryIndex::class)->name('category');
 
     Route::get('/courses', CourseIndex::class)->name('courses');

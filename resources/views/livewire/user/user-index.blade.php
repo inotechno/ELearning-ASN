@@ -9,19 +9,19 @@
                         <li class="nav-item">
                             <a class="nav-link active" data-bs-toggle="tab" href="#all" role="tab">
                                 <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
-                                <span class="d-none d-sm-block">All</span>    
+                                <span class="d-none d-sm-block">All</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#participant" role="tab">
                                 <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
-                                <span class="d-none d-sm-block">Participant</span>    
+                                <span class="d-none d-sm-block">Peserta</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#teacher" role="tab">
                                 <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
-                                <span class="d-none d-sm-block">Teacher</span>    
+                                <span class="d-none d-sm-block">Guru</span>
                             </a>
                         </li>
                     </ul>

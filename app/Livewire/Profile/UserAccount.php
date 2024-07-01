@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Profile;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
@@ -11,28 +12,33 @@ class UserAccount extends Component
 {
     use WithFileUploads, LivewireAlert;
 
-    public $name, $front_name, $back_name, $email, $image, $username, $imagePreview, $image_path;
+    public $name, $front_name, $back_name, $email, $image, $username, $imagePreview, $image_path, $user;
 
-    public function mount()
+    public function mount($id = null)
     {
-        $user = Auth::user();
-        $this->email = $user->email;
-        $this->username = $user->username;
-        $this->image_path = $user->image_path;
+        if ($id == null) {
+            $this->user = Auth::user();
+        } else {
+            $this->user = User::find($id);
+        }
 
-        if ($user->image) {
-            $this->imagePreview = $user->image;
+        $this->email = $this->user->email;
+        $this->username = $this->user->username;
+        $this->image_path = $this->user->image_path;
+
+        if ($this->user->image) {
+            $this->imagePreview = $this->user->image;
         }
 
         $front_name = '';
         $back_name = '';
 
-        if($user->hasRole('teacher')) {
-            $front_name = $user->teacher->front_name;
-            $back_name = $user->teacher->back_name;
-        }else if($user->hasRole('participant')) {
-            $front_name = $user->participant->front_name;
-            $back_name = $user->participant->back_name;
+        if ($this->user->hasRole('teacher')) {
+            $front_name = $this->user->teacher->front_name;
+            $back_name = $this->user->teacher->back_name;
+        } else if ($this->user->hasRole('participant')) {
+            $front_name = $this->user->participant->front_name;
+            $back_name = $this->user->participant->back_name;
         }
 
         $this->front_name = $front_name;
@@ -63,9 +69,7 @@ class UserAccount extends Component
                 $this->image = $this->imagePreview;
             }
 
-            $user = Auth::user();
-
-            $user->update([
+            $this->user->update([
                 'email' => $this->email,
                 'username' => $this->username,
                 'image' => $this->image,

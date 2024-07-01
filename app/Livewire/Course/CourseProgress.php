@@ -20,7 +20,7 @@ class CourseProgress extends Component
         $this->course_id = $this->course->id;
         $this->title = $this->course->title;
         $this->slug = $this->course->slug;
-        
+
         $this->breadcrumbData  = [
             ['label' => 'My Courses', 'url' => '/my-courses'],
             ['label' => $this->title, 'url' => `/my-courses/progress/$this->slug`],

@@ -50,7 +50,8 @@
                 </div>
 
                 <div class="col-md mb-3">
-                    <label for="form-label">Percentage Value <small class="text-danger"> * Field Required </small></label>
+                    <label for="form-label">Percentage Value <small class="text-danger"> * Field Required
+                        </small></label>
                     <input type="number" class="form-control" wire:model.live='add_percentage_value'>
                 </div>
             </div>
@@ -110,7 +111,7 @@
                             <td>{{ $topic['title'] }}</td>
                             <td>{{ $topic['start_at'] }}</td>
                             <td>{{ $topic['end_at'] }}</td>
-                            <td>{{ $topic['type_topic_id'] != "" ? $topic['type_name'] : "" }}</td>
+                            <td>{{ $topic['type_topic_id'] != '' ? $topic['type_name'] : '' }}</td>
                             <td>{{ $topic['percentage_value'] }}</td>
                             <td>
                                 <button class="btn btn-sm btn-danger" wire:click="deleteTopic({{ $key }})"><i

@@ -4,9 +4,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title mb-4">Register Participant - Step {{ $step }}</h4>
-                        <a href="{{ route('register.teacher') }}" class="text-primary">Register for
-                            Teacher</a>
+                        <h4 class="card-title mb-4">Daftar Peserta - Step {{ $step }}</h4>
+                        <a href="{{ route('register.teacher') }}" class="text-primary">Daftar Sebagai Guru</a>
                     </div>
 
                     <form wire:submit.prevent="store">
@@ -14,15 +13,15 @@
 
                             @if ($step === 1)
                                 <!-- Seller Details -->
-                                <h3>User Account</h3>
+                                <h3>Akun Pengguna</h3>
                                 <section>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-firstname-input">First name</label>
+                                                <label for="basicpill-firstname-input">Nama Depan</label>
                                                 <input type="text"
                                                     class="form-control @error('front_name') is-invalid @enderror"
-                                                    placeholder="Enter Your First Name" wire:model='front_name'>
+                                                    placeholder="Masukan Nama Depan" wire:model='front_name'>
 
                                                 @error('front_name')
                                                     <span class="invalid-feedback" role="alert">
@@ -33,10 +32,10 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-lastname-input">Last name</label>
+                                                <label for="basicpill-lastname-input">Nama Belakang</label>
                                                 <input type="text"
                                                     class="form-control @error('back_name') is-invalid @enderror"
-                                                    placeholder="Enter Your Last Name" wire:model='back_name'>
+                                                    placeholder="Masukan Nama Belakang" wire:model='back_name'>
 
                                                 @error('back_name')
                                                     <span class="invalid-feedback" role="alert">
@@ -52,7 +51,7 @@
                                                 <label>Username</label>
                                                 <input type="text"
                                                     class="form-control @error('username') is-invalid @enderror"
-                                                    placeholder="Enter Your Username" wire:model='username'>
+                                                    placeholder="Masukan Username" wire:model='username'>
 
                                                 @error('username')
                                                     <span class="invalid-feedback" role="alert">
@@ -66,7 +65,7 @@
                                                 <label>Email</label>
                                                 <input type="email"
                                                     class="form-control @error('email') is-invalid @enderror"
-                                                    placeholder="Enter Your Email ID" wire:model='email'>
+                                                    placeholder="Masukan Email" wire:model='email'>
 
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
@@ -82,7 +81,7 @@
                                                 <label>Password</label>
                                                 <input type="password"
                                                     class="form-control @error('password') is-invalid @enderror"
-                                                    placeholder="Enter Your Password" wire:model='password'>
+                                                    placeholder="Masukan Password" wire:model='password'>
 
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
@@ -93,10 +92,10 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label>Password Confirmation</label>
+                                                <label>Konfirmasi Password</label>
                                                 <input type="password"
                                                     class="form-control @error('password_confirmation') is-invalid @enderror"
-                                                    placeholder="Enter Your Password Confirmation"
+                                                    placeholder="Masukan Konfirmasi Password"
                                                     wire:model='password_confirmation'>
 
                                                 @error('password_confirmation')
@@ -120,7 +119,7 @@
                                                 <label>NIK</label>
                                                 <input type="text"
                                                     class="form-control @error('nik') is-invalid @enderror"
-                                                    placeholder="Enter Your NIK" wire:model='nik'>
+                                                    placeholder="Masukan NIK" wire:model='nik'>
 
                                                 @error('nik')
                                                     <span class="invalid-feedback" role="alert">
@@ -131,10 +130,10 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
-                                                <label>Phone</label>
+                                                <label>No HP</label>
                                                 <input type="text"
                                                     class="form-control @error('phone') is-invalid @enderror"
-                                                    placeholder="Enter Your Phone" wire:model='phone'>
+                                                    placeholder="Masukan No HP" wire:model='phone'>
 
                                                 @error('phone')
                                                     <span class="invalid-feedback" role="alert">
@@ -145,12 +144,12 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
-                                                <label for="gender">Gender</label>
+                                                <label for="gender">Jenis Kelamin</label>
                                                 <select wire:model='gender'
                                                     class="form-control @error('gender') is-invalid @enderror">
-                                                    <option value="">Select for Gender</option>
-                                                    <option value="male">Male</option>
-                                                    <option value="female">Female</option>
+                                                    <option value="">Pillh Jenis Kelamin</option>
+                                                    <option value="male">Laki-laki</option>
+                                                    <option value="female">Perempuan</option>
                                                 </select>
 
                                                 @error('gender')
@@ -167,8 +166,8 @@
                                             <div class="mb-3">
                                                 <label for="nip">NIP</label>
                                                 <input type="text"
-                                                class="form-control @error('nip') is-invalid @enderror"
-                                                placeholder="Enter Your NIP" wire:model='nip'>
+                                                    class="form-control @error('nip') is-invalid @enderror"
+                                                    placeholder="Masukan NIP" wire:model='nip'>
 
                                                 @error('nip')
                                                     <span class="invalid-feedback" role="alert">
@@ -179,10 +178,10 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
-                                                <label>Front Title</label>
+                                                <label>Gelar Depan</label>
                                                 <input type="text"
                                                     class="form-control @error('front_title') is-invalid @enderror"
-                                                    placeholder="Enter Your Front Title" wire:model='front_title'>
+                                                    placeholder="Masukan Gelar Depan" wire:model='front_title'>
 
                                                 @error('front_title')
                                                     <span class="invalid-feedback" role="alert">
@@ -193,10 +192,10 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="mb-3">
-                                                <label>Back Title</label>
+                                                <label>Gelar Belakang</label>
                                                 <input type="text"
                                                     class="form-control @error('back_title') is-invalid @enderror"
-                                                    placeholder="Enter Your Back Title" wire:model='back_title'>
+                                                    placeholder="Masukan Gelar Belakang" wire:model='back_title'>
 
                                                 @error('back_title')
                                                     <span class="invalid-feedback" role="alert">
@@ -205,16 +204,16 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        
+
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3">
                                             <div class="mb-3">
-                                                <label>Birth Place</label>
+                                                <label>Tempat Lahir</label>
                                                 <input type="text"
                                                     class="form-control @error('birth_place') is-invalid @enderror"
-                                                    placeholder="Enter Your Birth Place" wire:model='birth_place'>
+                                                    placeholder="Masukan Tempat Lahir" wire:model='birth_place'>
 
                                                 @error('birth_place')
                                                     <span class="invalid-feedback" role="alert">
@@ -225,10 +224,10 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
-                                                <label>Birth Date</label>
+                                                <label>Tanggal Lahir</label>
                                                 <input type="date"
                                                     class="form-control @error('birth_date') is-invalid @enderror"
-                                                    placeholder="Enter Your Birth Date" wire:model='birth_date'>
+                                                    placeholder="Masukan Tanggal Lahir" wire:model='birth_date'>
 
                                                 @error('birth_date')
                                                     <span class="invalid-feedback" role="alert">
@@ -239,10 +238,10 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
-                                                <label>City</label>
+                                                <label>Kota</label>
                                                 <input type="text"
                                                     class="form-control @error('city') is-invalid @enderror"
-                                                    placeholder="Enter Your City" wire:model='city'>
+                                                    placeholder="Masukan Kota" wire:model='city'>
 
                                                 @error('city')
                                                     <span class="invalid-feedback" role="alert">
@@ -253,10 +252,10 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="mb-3">
-                                                <label>Country</label>
+                                                <label>Negara</label>
                                                 <input type="text"
                                                     class="form-control @error('country') is-invalid @enderror"
-                                                    placeholder="Enter Your Country" wire:model='country'
+                                                    placeholder="Masukan Negara" wire:model='country'
                                                     value="Indonesia" readonly>
 
                                                 @error('country')
@@ -276,10 +275,10 @@
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <div class="mb-3">
-                                                <label for="basicpill-pancard-input"> Institute ID</label>
+                                                <label for="basicpill-pancard-input">Institusi</label>
                                                 <select wire:model='institution_id'
                                                     class="form-control @error('institution_id') is-invalid @enderror">
-                                                    <option value="">Select Institution</option>
+                                                    <option value="">Pilih Institusi</option>
                                                     @foreach ($institutions as $institution)
                                                         <option value="{{ $institution->id }}">
                                                             {{ $institution->name }}
@@ -297,10 +296,10 @@
 
                                         <div class="col-lg-4">
                                             <div class="mb-3">
-                                                <label for="basicpill-vatno-input">Education ID</label>
+                                                <label for="basicpill-vatno-input">Pendidikan</label>
                                                 <select wire:model='education_id'
                                                     class="form-control @error('education_id') is-invalid @enderror">
-                                                    <option value="">Select for Education</option>
+                                                    <option value="">Pillh Pendidikan</option>
                                                     @foreach ($educations as $education)
                                                         <option value="{{ $education->id }}">{{ $education->name }}
                                                         </option>
@@ -317,10 +316,10 @@
 
                                         <div class="col-lg-4">
                                             <div class="mb-3">
-                                                <label for="basicpill-vatno-input">Rank ID</label>
+                                                <label for="basicpill-vatno-input">Golongan</label>
                                                 <select wire:model='rank_id'
                                                     class="form-control @error('rank_id') is-invalid @enderror">
-                                                    <option value="">Select for Rank</option>
+                                                    <option value="">Pillh Golongan</option>
                                                     @foreach ($ranks as $rank)
                                                         <option value="{{ $rank->id }}">{{ $rank->name }}
                                                         </option>
@@ -339,10 +338,10 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-vatno-input">Position Name</label>
+                                                <label for="basicpill-vatno-input">Nama Posisi</label>
                                                 <input type="text"
                                                     class="form-control @error('position') is-invalid @enderror"
-                                                    placeholder="Enter Your Position Name" wire:model='position'>
+                                                    placeholder="Masukan Nama Posisi" wire:model='position'>
 
                                                 @error('position')
                                                     <span class="invalid-feedback" role="alert">
@@ -354,10 +353,10 @@
 
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-vatno-input">Unit Name</label>
+                                                <label for="basicpill-vatno-input">Nama Unit</label>
                                                 <input type="text"
                                                     class="form-control @error('unit_name') is-invalid @enderror"
-                                                    placeholder="Enter Your Unit Name" wire:model='unit_name'>
+                                                    placeholder="Masukan Nama Unit" wire:model='unit_name'>
 
                                                 @error('unit_name')
                                                     <span class="invalid-feedback" role="alert">
@@ -375,12 +374,12 @@
                         <div class="mt-4">
                             @if ($step > 1)
                                 <button type="button" class="btn btn-primary"
-                                    wire:click="decreaseStep">Previous</button>
+                                    wire:click="decreaseStep">Kembali</button>
                             @endif
 
                             @if ($step < 3)
                                 <button type="button" class="btn btn-primary float-end"
-                                    wire:click="increaseStep">Next</button>
+                                    wire:click="increaseStep">Lanjut</button>
                             @else
                                 <button type="submit" class="btn btn-success float-end">Submit</button>
                             @endif
@@ -394,7 +393,7 @@
             <div class="mt-5 text-center">
 
                 <div>
-                    <p>Already have an account ? <a href="{{ route('login') }}" class="fw-medium text-primary">
+                    <p>Sudah Punya Akun ? <a href="{{ route('login') }}" class="fw-medium text-primary">
                             Login</a>
                     </p>
                     <p>©

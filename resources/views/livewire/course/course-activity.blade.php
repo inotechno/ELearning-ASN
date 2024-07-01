@@ -30,14 +30,10 @@
                                 <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd"
                                     data-date-autoclose="true" data-provide="datepicker"
                                     data-date-container='#datepicker6'>
-                                    <input type="text"
-                                        class="form-control @error('start_date') is-invalid @enderror"
-                                        wire:model="start_date" placeholder="Start Date"
-                                        id="start_date" />
-                                    <input type="text"
-                                        class="form-control @error('end_date') is-invalid @enderror"
-                                        wire:model="end_date" placeholder="End Date"
-                                        id="end_date" />
+                                    <input type="text" class="form-control @error('start_date') is-invalid @enderror"
+                                        wire:model="start_date" placeholder="Start Date" id="start_date" />
+                                    <input type="text" class="form-control @error('end_date') is-invalid @enderror"
+                                        wire:model="end_date" placeholder="End Date" id="end_date" />
                                 </div>
 
                                 @error('start_date')

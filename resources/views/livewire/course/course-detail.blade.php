@@ -108,8 +108,8 @@
                                                             </h5>
                                                             <p class="text-muted">{{ $topic->description }}</p>
                                                             <div>
-                                                                <a href="javascript: void(0);"
-                                                                    class="text-s`uccess">{{ $topic->typeTopic->name }}</a>
+                                                                <span
+                                                                    class="text-success">{{ $topic->typeTopic ? $topic->typeTopic->name : '' }}</span>
                                                             </div>
                                                         </div>
                                                     </div>

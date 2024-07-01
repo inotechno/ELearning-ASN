@@ -21,13 +21,19 @@ class CourseTask extends Component
             ->get();
 
         $this->courseTopics = [];
-        
+
         foreach ($courseTopics as $key => $topic) {
+            $success = false;
             $date = Carbon::parse($topic->start_at)->format('D, d M Y');
-            $success = $topic->activities->isNotEmpty();
+            // $success = $topic->activities->isNotEmpty();
             $cekActivity = $topic->activities->where('participant_id', Auth::user()->participant->id)->first();
 
-            $activity = $cekActivity ? $cekActivity : json_encode([]);
+            $activity = json_encode([]);
+
+            if ($cekActivity) {
+                $activity = $cekActivity;
+                $success = true;
+            }
 
             $this->courseTopics[$date][] = [
                 'id' => $topic->id,
@@ -44,7 +50,6 @@ class CourseTask extends Component
                 'success' => $success,
                 'activity' => $activity
             ];
-
         }
         // dd($this->courseTopics);
     }

@@ -4,10 +4,10 @@
             <input type="text" class="form-control" wire:model.live="search" placeholder="Search...">
         </div>
 
-        <div class="col-md-4 col-lg-2 col-sm-6 col-12">
+        <div class="col-md-4 col-lg-3 col-sm-6 col-12">
             <div class="row">
-                <label for="form-label" class="col-sm-3 col-form-label">Limit</label>
-                <div class="col-sm-9">
+                <label for="form-label" class="col-sm-4 col-form-label">Limit</label>
+                <div class="col-sm-8">
                     <select class="form-control" wire:model.live="limit">
                         <option value="10">10</option>
                         <option value="25">25</option>
@@ -58,14 +58,14 @@
                                         wire:click="$dispatch('changeStatusConfirm', {id: {{ $user->id }}, type:'all' })"><i
                                             class="mdi mdi-swap-horizontal mdi-18px"></i></a>
                                 </li>
-                                {{-- <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                    <a href="#" class="btn btn-sm btn-soft-info"><i
-                                            class="mdi mdi-pencil-outline"></i></a>
-                                </li>
+
+                                @livewire('component.edit-user', ['user' => $user], key($user->id))
                                 <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                    <a href="#jobDelete" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger"><i
-                                            class="mdi mdi-delete-outline"></i></a>
-                                </li> --}}
+                                    <a href="javascript:void(0);"
+                                        wire:click="$dispatch('confirmDelete', {id: {{ $user->id }} })"
+                                        class="btn btn-sm btn-soft-danger p-0 px-2"><i
+                                            class="mdi mdi-delete-outline mdi-18px"></i></a>
+                                </li>
                             </ul>
                         </td>
                     </tr>

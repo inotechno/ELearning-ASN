@@ -7,23 +7,27 @@
                         <h4 class="card-title">Course</h4>
                     </div>
                     <div class="mb-3">
-                        <label for="formrow-email-input" class="form-label">Thumbnail <small class="text-danger"> * Field Required </small></label>
+                        <label for="formrow-email-input" class="form-label">Thumbnail <small class="text-danger"> * Field
+                                Required </small></label>
                         <input type="file" class="form-control @error('img_thumbnail') is-invalid @enderror"
                             wire:model="img_thumbnail" placeholder="Enter Your Thumbnail">
-
-                        @if ($previewThumbnail)
-                            <img src="{{ $previewThumbnail }}" class="img-thumbnail mt-2" style="max-height: 500px;">
-                        @endif
 
                         @error('img_thumbnail')
                             <div class="invalid-feedback">
                                 <span role="alert">{{ $message }}</span>
                             </div>
                         @enderror
+
+                        @if ($previewThumbnail)
+                            <img src="{{ $previewThumbnail }}" class="img-thumbnail mt-2" style="max-height: 500px;">
+                        @endif
+
+
                     </div>
 
                     <div class="mb-3">
-                        <label for="formrow-firstname-input" class="form-label">Title <small class="text-danger"> * Field Required </small></label>
+                        <label for="formrow-firstname-input" class="form-label">Title <small class="text-danger"> *
+                                Field Required </small></label>
                         <input type="text" class="form-control @error('title') is-invalid @enderror"
                             wire:model="title" placeholder="Enter Your Title">
 
@@ -35,7 +39,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Description Short <small class="text-danger"> * Field Required </small></label>
+                        <label class="form-label">Description Short <small class="text-danger"> * Field Required
+                            </small></label>
                         <textarea class="form-control @error('description_short') is-invalid @enderror" wire:model="description_short"
                             cols="30" rows="10"></textarea>
 
@@ -47,7 +52,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Description <small class="text-danger"> * Field Required </small></label>
+                        <label class="form-label">Description <small class="text-danger"> * Field Required
+                            </small></label>
 
                         @livewire('livewire-quill', [
                             'quillId' => 'description',

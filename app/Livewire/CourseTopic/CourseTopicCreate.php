@@ -16,17 +16,21 @@ class CourseTopicCreate extends Component
     public $typeTopics;
     public $statuses = ['begin', 'progress', 'finish'];
     public $index = 0;
-    public $add_status, $add_title, $add_start_at, $add_end_at, $add_type_topic_id, $add_percentage_value, $add_description, $add_video_url, $add_document_path, $add_zoom_url, $start_date, $start_time, $end_date, $end_time;
-public $total_percentage_value = 0;
+    public $add_status, $add_title, $add_start_at, $add_end_at, $add_type_topic_id, $add_percentage_value, $add_description, $add_video_url, $add_document_path, $add_zoom_url, $start_date, $start_time, $end_date, $end_time, $topic_id;
+    public $total_percentage_value = 0;
     public $editMode = false;
+
     public function mount($courseId = null)
     {
         if ($courseId) {
             $topics = CourseTopic::where('course_id', $courseId)->get();
             $this->topics = $topics->map(function ($topic) {
+                $topic->topic_id = $topic->id;
                 $topic->type_name = $topic->typeTopic->name ?? null;
                 return $topic;
-            })->toArray();
+            });
+            $this->total_percentage_value = $this->topics->sum('percentage_value');
+            $this->topics = $this->topics->toArray();
         }
 
         $this->typeTopics = TypeTopic::all();
@@ -39,9 +43,17 @@ public $total_percentage_value = 0;
 
     public function addRow()
     {
+        $typeName = "";
         if ($this->editMode) {
-            $this->editMode = false;
             $this->index = count($this->topics);
+
+            if ($this->add_type_topic_id) {
+                $typeName = TypeTopic::where('id', $this->add_type_topic_id)->first()->name;
+            }
+        } else {
+            if ($this->add_type_topic_id) {
+                $typeName = $this->typeTopics->where('id', $this->add_type_topic_id)->first()->name;
+            }
         }
 
         // dd($this->add_document_path);
@@ -50,8 +62,7 @@ public $total_percentage_value = 0;
             $tempPath = $this->add_document_path->store('temp', 'public');
         }
 
-        $typeName = $this->typeTopics->where('id', $this->add_type_topic_id)->first()->name;
-// dd($typeName);
+        // dd($typeName);
         $this->topics[$this->index] = [
             'status' => $this->add_status,
             'title' => $this->add_title,
@@ -66,6 +77,13 @@ public $total_percentage_value = 0;
             'zoom_url' => $this->add_zoom_url,
             'slug' => Str::slug($this->add_title),
         ];
+
+        if ($this->editMode) {
+            $this->topics[$this->index]['id'] = $this->topic_id;
+            $this->editMode = false;
+        }
+
+        // dd($this->topics);
 
         $this->total_percentage_value += $this->add_percentage_value;
 
@@ -87,6 +105,7 @@ public $total_percentage_value = 0;
     {
         $topic = $this->topics[$index];
 
+        $this->topic_id = $topic['id'];
         $this->add_status = $topic['status'];
         $this->add_title = $topic['title'];
         $this->start_date = explode(' ', $topic['start_at'])[0];

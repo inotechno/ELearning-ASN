@@ -56,7 +56,7 @@ class CourseDetail extends Component
         $this->created_by = $course->created_by;
         $this->created_at = $course->created_at;
 
-        $this->topics = $course->topics->where('status', 'progress');
+        $this->topics = $course->topics;
         // dd($this->topics);
         // $this->categories = \App\Models\CategoryCourse::get();
         // $this->types = \App\Models\TypeCourse::get();

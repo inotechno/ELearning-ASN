@@ -1,22 +1,23 @@
 <div>
     <div class="row">
         <div class="col-12 mb-3">
-            <h5 class="mb-3">Image</h5>
+            <h5 class="mb-3">Foto</h5>
             <div class="avatar-wrapper">
-                <img class="profile-pic" src="{{ $imagePreview  }}" />
+                <img class="profile-pic" src="{{ $imagePreview }}" />
                 <div class="upload-button">
                     <i class="bx bx-upload" aria-hidden="true"></i>
                 </div>
+                {{-- <span wire:loading wire:target='image'>...</span> --}}
                 <input class="file-upload" type="file" accept="image/*" wire:model="image" />
             </div>
         </div>
         <div class="col-md-6 mb-3">
-            <label for="form-label">First Name</label>
+            <label for="form-label">Nama Depan</label>
             <input type="text" class="form-control" wire:model="front_name" disabled>
         </div>
 
         <div class="col-md-6 mb-3">
-            <label for="form-label">Last Name</label>
+            <label for="form-label">Nama Belakang</label>
             <input type="text" class="form-control" wire:model="back_name" disabled>
         </div>
 
@@ -31,7 +32,8 @@
         </div>
 
         <div class="col-12 d-flex justify-content-end gap-2">
-            <button type="button" class="btn btn-primary mt-3" wire:click="updateProfile" wire:loading.attr="disabled" wire:target="updateProfile" wire:target="image"><i class="bx bx-save"></i>
+            <button type="button" class="btn btn-primary mt-3" wire:click="updateProfile" wire:loading.attr="disabled"
+                wire:target="updateProfile" wire:target="image"><i class="bx bx-save"></i>
                 Update</button>
         </div>
     </div>

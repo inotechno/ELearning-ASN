@@ -56,4 +56,9 @@ class Teacher extends Model
     {
         return $this->hasMany(Course::class, 'teacher_id');
     }
+
+    public function topics()
+    {
+        return $this->hasManyThrough(CourseTopic::class, Course::class, 'teacher_id', 'course_id');
+    }
 }

@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <h5 class="font-size-20 mt-4">Topic Description :</h5>
+            <h5 class="font-size-20 mt-4">Deskripsi Topik :</h5>
 
             <p class="text-muted">{{ $description }}</p>
 
@@ -52,12 +52,12 @@
                         </div>
                         <div class="d-flex flex-column flex-grow-1">
                             <h5 class="font-size-14 mb-1">
-                                <a href="{{ url('storage/' . $file) }}" class="text-dark">File SPT</a>
+                                <a href="{{ url('storage/' . $file) }}" class="text-dark" target="_blank">File SPT</a>
                             </h5>
                             <small></small>
                         </div>
                         <div class="d-flex align-items-center justify-content-center">
-                            <a href="{{ url('storage/' . $file) }}" class="text-dark">
+                            <a href="{{ url('storage/' . $file) }}" class="text-dark" target="_blank">
                                 <i class="bx bx-download h3 m-0"></i>
                             </a>
                         </div>
@@ -98,7 +98,7 @@
                     </div>
                 @endif
             @else
-                <a href="javascript:void(0)" class="btn btn-primary" wire:click="confirmStartTopic">Start Topic</a>
+                <a href="javascript:void(0)" class="btn btn-primary" wire:click="confirmStartTopic">Mulai Topik</a>
             @endif
         @endif
     </div>

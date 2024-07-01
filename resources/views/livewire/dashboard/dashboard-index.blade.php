@@ -1,301 +1,120 @@
 <div>
     <div class="row">
-        <div class="col-xl-9 col-lg-8">
-            <div class="row">
-                {{-- <div class="col-md-6">
-                    <div class="card p-1 border shadow-none">
-                        <div class="p-3">
-                            <h5><a href="blog-details.html" class="text-dark">Beautiful Day
-                                    with Friends</a></h5>
-                            <p class="text-muted mb-0">10 Apr, 2020</p>
-                        </div>
-    
-                        <div class="position-relative">
-                            <img src="{{ asset('images/small/img-2.jpg') }}" alt="" class="img-thumbnail">
-                        </div>
-    
-                        <div class="p-3">
-                            <ul class="list-inline">
-                                <li class="list-inline-item me-3">
-                                    <a href="javascript: void(0);" class="text-muted">
-                                        <i class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                        Project
-                                    </a>
-                                </li>
-                                <li class="list-inline-item me-3">
-                                    <a href="javascript: void(0);" class="text-muted">
-                                        <i class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                        12 Comments
-                                    </a>
-                                </li>
-                            </ul>
-                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                                amet</p>
-    
-                            <div>
-                                <a href="javascript: void(0);" class="text-primary">Read
-                                    more <i class="mdi mdi-arrow-right"></i></a>
+        <div class="col-xl-4">
+            <div class="card overflow-hidden">
+                <div class="bg-primary bg-soft">
+                    <div class="row">
+                        <div class="col-7">
+                            <div class="text-primary p-3">
+                                <h5 class="text-primary">Welcome Back !</h5>
+                                <p>{{ config('app.name') }} Dashboard</p>
                             </div>
+                        </div>
+                        <div class="col-5 align-self-end">
+                            <img src="{{ asset('images/profile-img.png') }}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
-    
-                <div class="col-md-6">
-                    <div class="card p-1 border shadow-none">
-                        <div class="p-3">
-                            <h5><a href="blog-details.html" class="text-dark">Beautiful Day
-                                    with Friends</a></h5>
-                            <p class="text-muted mb-0">10 Apr, 2020</p>
-                        </div>
-    
-                        <div class="position-relative">
-                            <img src="{{ asset('images/small/img-2.jpg') }}" alt=""
-                                class="img-thumbnail">
-                        </div>
-    
-                        <div class="p-3">
-                            <ul class="list-inline">
-                                <li class="list-inline-item me-3">
-                                    <a href="javascript: void(0);" class="text-muted">
-                                        <i
-                                            class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                        Project
-                                    </a>
-                                </li>
-                                <li class="list-inline-item me-3">
-                                    <a href="javascript: void(0);" class="text-muted">
-                                        <i
-                                            class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                        12 Comments
-                                    </a>
-                                </li>
-                            </ul>
-                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                                amet</p>
-    
-                            <div>
-                                <a href="javascript: void(0);" class="text-primary">Read
-                                    more <i class="mdi mdi-arrow-right"></i></a>
+                <div class="card-body pt-0">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="avatar-md profile-user-wid mb-4">
+                                <img src="{{ $image }}" alt="" class="img-thumbnail rounded-circle">
                             </div>
+                            <h5 class="font-size-15 text-truncate">{{ $name }}</h5>
+                            <p class="text-muted mb-0 text-truncate">{{ $username }}</p>
                         </div>
-                    </div>
-                </div>
-    
-                <div class="col-md-6">
-                    <div class="card p-1 border shadow-none">
-                        <div class="p-3">
-                            <h5><a href="blog-details.html" class="text-dark">Beautiful Day
-                                    with Friends</a></h5>
-                            <p class="text-muted mb-0">10 Apr, 2020</p>
-                        </div>
-    
-                        <div class="position-relative">
-                            <img src="{{ asset('images/small/img-2.jpg') }}" alt=""
-                                class="img-thumbnail">
-                        </div>
-    
-                        <div class="p-3">
-                            <ul class="list-inline">
-                                <li class="list-inline-item me-3">
-                                    <a href="javascript: void(0);" class="text-muted">
-                                        <i
-                                            class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                        Project
-                                    </a>
-                                </li>
-                                <li class="list-inline-item me-3">
-                                    <a href="javascript: void(0);" class="text-muted">
-                                        <i
-                                            class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                        12 Comments
-                                    </a>
-                                </li>
-                            </ul>
-                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                                amet</p>
-    
-                            <div>
-                                <a href="javascript: void(0);" class="text-primary">Read
-                                    more <i class="mdi mdi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-6">
-                    <div class="card p-1 border shadow-none">
-                        <div class="p-3">
-                            <h5><a href="blog-details.html" class="text-dark">Beautiful Day
-                                    with Friends</a></h5>
-                            <p class="text-muted mb-0">10 Apr, 2020</p>
-                        </div>
-    
-                        <div class="position-relative">
-                            <img src="{{ asset('images/small/img-2.jpg') }}" alt=""
-                                class="img-thumbnail">
-                        </div>
-    
-                        <div class="p-3">
-                            <ul class="list-inline">
-                                <li class="list-inline-item me-3">
-                                    <a href="javascript: void(0);" class="text-muted">
-                                        <i
-                                            class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                        Project
-                                    </a>
-                                </li>
-                                <li class="list-inline-item me-3">
-                                    <a href="javascript: void(0);" class="text-muted">
-                                        <i
-                                            class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                        12 Comments
-                                    </a>
-                                </li>
-                            </ul>
-                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                                amet</p>
-    
-                            <div>
-                                <a href="javascript: void(0);" class="text-primary">Read
-                                    more <i class="mdi mdi-arrow-right"></i></a>
+                        <div class="col-sm-8">
+                            <div class="pt-4">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h5 class="font-size-15">125</h5>
+                                        <p class="text-muted mb-0">Projects</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <h5 class="font-size-15">$1245</h5>
+                                        <p class="text-muted mb-0">Revenue</p>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <a href="{{ route('profile') }}"
+                                        class="btn btn-primary waves-effect waves-light btn-sm">View
+                                        Profile <i class="mdi mdi-arrow-right ms-1"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
             </div>
+
         </div>
-{{-- 
-        <div class="col-xl-3 col-lg-4">
-            <div class="card">
-                <div class="card-body p-4">
-                    <div class="search-box">
-                        <p class="text-muted">Search</p>
-                        <div class="position-relative">
-                            <input type="text" class="form-control rounded bg-light border-light"
-                                placeholder="Search...">
-                            <i class="mdi mdi-magnify search-icon"></i>
+        <div class="col-xl-8">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <p class="text-muted fw-medium">Total Course</p>
+                                    <h4 class="mb-0">{{ $totalCourse }}</h4>
+                                </div>
+
+                                <div class="flex-shrink-0 align-self-center">
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-copy-alt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <p class="text-muted fw-medium">Total Course Topic</p>
+                                    <h4 class="mb-0">{{ $totalCourseTopic }}</h4>
+                                </div>
 
-                    <hr class="my-4">
-
-                    <div>
-                        <p class="text-muted">Categories</p>
-
-                        <ul class="list-unstyled fw-medium">
-                            <li><a href="javascript: void(0);" class="text-muted py-2 d-block"><i
-                                        class="mdi mdi-chevron-right me-1"></i> Design</a></li>
-                            <li><a href="javascript: void(0);" class="text-muted py-2 d-block"><i
-                                        class="mdi mdi-chevron-right me-1"></i> Development <span
-                                        class="badge badge-soft-success badge-pill float-end ms-1 font-size-12">04</span></a>
-                            </li>
-                            <li><a href="javascript: void(0);" class="text-muted py-2 d-block"><i
-                                        class="mdi mdi-chevron-right me-1"></i> Business</a></li>
-                            <li><a href="javascript: void(0);" class="text-muted py-2 d-block"><i
-                                        class="mdi mdi-chevron-right me-1"></i> Project</a></li>
-                            <li><a href="javascript: void(0);" class="text-muted py-2 d-block"><i
-                                        class="mdi mdi-chevron-right me-1"></i> Travel<span
-                                        class="badge badge-soft-success badge-pill ms-1 float-end font-size-12">12</span></a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <div>
-                        <p class="text-muted">Archive</p>
-
-                        <ul class="list-unstyled fw-medium">
-                            <li><a href="javascript: void(0);" class="text-muted py-2 d-block"><i
-                                        class="mdi mdi-chevron-right me-1"></i> 2020 <span
-                                        class="badge badge-soft-success badge-pill float-end ms-1 font-size-12">03</span></a>
-                            </li>
-                            <li><a href="javascript: void(0);" class="text-muted py-2 d-block"><i
-                                        class="mdi mdi-chevron-right me-1"></i> 2019 <span
-                                        class="badge badge-soft-success badge-pill float-end ms-1 font-size-12">06</span></a>
-                            </li>
-                            <li><a href="javascript: void(0);" class="text-muted py-2 d-block"><i
-                                        class="mdi mdi-chevron-right me-1"></i> 2018 <span
-                                        class="badge badge-soft-success badge-pill float-end ms-1 font-size-12">05</span></a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <div>
-                        <p class="text-muted mb-2">Popular Posts</p>
-
-                        <div class="list-group list-group-flush">
-
-                            <a href="javascript: void(0);" class="list-group-item text-muted py-3 px-2">
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-shrink-0 me-3">
-                                        <img src="{{ asset('images/small/img-7.jpg') }}" alt=""
-                                            class="avatar-md h-auto d-block rounded">
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="font-size-13 text-truncate">Beautiful Day with Friends</h5>
-                                        <p class="mb-0 text-truncate">10 Apr, 2020</p>
+                                <div class="flex-shrink-0 align-self-center ">
+                                    <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                        <span class="avatar-title rounded-circle bg-primary">
+                                            <i class="bx bx-archive-in font-size-24"></i>
+                                        </span>
                                     </div>
                                 </div>
-                            </a>
-
-                            <a href="javascript: void(0);" class="list-group-item text-muted py-3 px-2">
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-shrink-0 me-3">
-                                        <img src="{{ asset('images/small/img-4.jpg') }}" alt=""
-                                            class="avatar-md h-auto d-block rounded">
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="font-size-13 text-truncate">Drawing a sketch</h5>
-                                        <p class="mb-0 text-truncate">24 Mar, 2020</p>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="javascript: void(0);" class="list-group-item text-muted py-3 px-2">
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-shrink-0 me-3">
-                                        <img src="{{ asset('images/small/img-6.jpg') }}" alt=""
-                                            class="avatar-md h-auto d-block rounded">
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="font-size-13 text-truncate">Project discussion with team</h5>
-                                        <p class="mb-0 text-truncate">11 Mar, 2020</p>
-                                    </div>
-                                </div>
-                            </a>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <p class="text-muted fw-medium">Average Price</p>
+                                    <h4 class="mb-0">$16.2</h4>
+                                </div>
 
-                    <hr class="my-4">
-
-                    <div>
-                        <p class="text-muted">Tags</p>
-
-                        <div class="d-flex flex-wrap gap-2 widget-tag">
-                            <div><a href="javascript: void(0);" class="badge bg-light font-size-12">Design</a></div>
-                            <div><a href="javascript: void(0);" class="badge bg-light font-size-12">Development</a>
-                            </div>
-                            <div><a href="javascript: void(0);" class="badge bg-light font-size-12">Business</a></div>
-                            <div><a href="javascript: void(0);" class="badge bg-light font-size-12">Project</a></div>
-                            <div><a href="javascript: void(0);" class="badge bg-light font-size-12">Travel</a></div>
-                            <div><a href="javascript: void(0);" class="badge bg-light font-size-12">Lifestyle</a>
-                            </div>
-                            <div><a href="javascript: void(0);" class="badge bg-light font-size-12">Photography</a>
+                                <div class="flex-shrink-0 align-self-center">
+                                    <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                        <span class="avatar-title rounded-circle bg-primary">
+                                            <i class="bx bx-purchase-tag-alt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- end card -->
-        </div> --}}
-    </div>
+            <!-- end row -->
 
-    @push('plugin')
-        <!-- apexcharts -->
-        <script src="{{ asset('libs/apexcharts/apexcharts.min.js') }}"></script>
-        <script src="{{ asset('js/pages/dashboard.init.js') }}"></script>
-    @endpush
+        </div>
+    </div>
 </div>

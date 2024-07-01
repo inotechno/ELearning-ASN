@@ -19,8 +19,8 @@
                                         </td>
                                         <td>
                                             <h5 class="text-truncate font-size-14 m-0">
-                                                <a href="javascript: void(0);"
-                                                    class="text-dark" wire:click="$dispatch('selectTopic', { id: {{ $topic['id'] }}, activity: {{ $topic['activity'] }} })">{{ $topic['title'] }}</a>
+                                                <a href="javascript: void(0);" class="text-dark"
+                                                    wire:click="$dispatch('selectTopic', { id: {{ $topic['id'] }}, activity: {{ $topic['activity'] }} })">{{ $topic['title'] }}</a>
                                             </h5>
                                         </td>
 

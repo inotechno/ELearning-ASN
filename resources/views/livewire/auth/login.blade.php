@@ -17,7 +17,7 @@
                 </div>
                 <div class="card-body pt-0">
                     <div class="auth-logo">
-                        <a href="index.html" class="auth-logo-light">
+                        <a href="javascript:void();" class="auth-logo-light">
                             <div class="avatar-md profile-user-wid mb-4">
                                 <span class="avatar-title rounded-circle bg-light">
                                     <img src="{{ asset('images/logo-light.svg') }}" alt=""
@@ -26,7 +26,7 @@
                             </div>
                         </a>
 
-                        <a href="index.html" class="auth-logo-dark">
+                        <a href="javascript:void();" class="auth-logo-dark">
                             <div class="avatar-md profile-user-wid mb-4">
                                 <span class="avatar-title rounded-circle bg-light">
                                     <img src="{{ asset('images/logo.svg') }}" alt="" class="rounded-circle"
@@ -82,7 +82,7 @@
 
                             <div class="mt-4 text-center">
                                 <a href="auth-recoverpw.html" class="text-muted"><i class="mdi mdi-lock me-1"></i>
-                                    Forgot your password?</a>
+                                    Lupa Password?</a>
                             </div>
                         </form>
                     </div>
@@ -92,8 +92,8 @@
             <div class="mt-5 text-center">
 
                 <div>
-                    <p>Don't have an account ? <a href="{{ route('register') }}" class="fw-medium text-primary">
-                            Signup now </a> </p>
+                    <p>Belum Punya Akun ? <a href="{{ route('register') }}" class="fw-medium text-primary">
+                            Daftar Sekarang </a> </p>
                     <p>©
                         <script>
                             document.write(new Date().getFullYear())
