@@ -17,7 +17,7 @@ class CertificateController extends Controller
             'course' => $course->title,
             'date' => now()->format('F d, Y')
         ];
-
+        // return view('certificates.template', $data);
         $pdf = Pdf::loadView('certificates.template', $data)->setPaper('a4', 'landscape');
         return $pdf->stream('certificate.pdf');
     }
