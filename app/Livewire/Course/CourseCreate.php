@@ -44,7 +44,7 @@ class CourseCreate extends Component
     ];
 
     protected $rules = [
-        'title' => 'required|string|max:255',
+        'title' => 'required|string|max:255|unique:courses',
         'category_id' => 'required|integer',
         'type_id' => 'required|integer',
         'description_short' => 'required|string|max:255',
@@ -67,6 +67,7 @@ class CourseCreate extends Component
 
     protected $messages = [
         'title.required' => 'Judul wajib diisi.',
+        'title.unique' => 'Judul sudah ada.',
         'title.string' => 'Judul harus berupa teks.',
         'title.max' => 'Judul maksimal 255 karakter.',
         'category_id.required' => 'Kategori wajib dipilih.',
