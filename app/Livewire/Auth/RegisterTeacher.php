@@ -18,7 +18,6 @@ class RegisterTeacher extends Component
     public $nik, $phone, $gender, $city, $country = 'Indonesia', $nip, $front_title, $back_title, $birth_place, $birth_date;
     public $institution_id, $education_id, $rank_id, $unit_name, $position;
     public $institutions, $educations, $ranks;
-
     protected $rules = [
         'front_name' => 'required|string|max:255',
         'back_name' => 'required|string|max:255',

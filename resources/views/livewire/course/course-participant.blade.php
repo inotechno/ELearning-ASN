@@ -8,7 +8,9 @@
                             <div class="p-3">
                                 <h5><a href="{{ route('courses.my-course.progress', $course->slug) }}"
                                         class="text-dark">{{ $course->title }}</a></h5>
-                                <p class="text-muted mb-0">Tanggal Pelaksanaan : {{ $course->implementation_start->format('d M Y') }} - {{ $course->implementation_end->format('d M Y') }}</p>
+                                <p class="text-muted mb-0">Tanggal Pelaksanaan :
+                                    {{ $course->implementation_start->format('d M Y') }} -
+                                    {{ $course->implementation_end->format('d M Y') }}</p>
                             </div>
 
                             <div class="position-relative">
@@ -31,17 +33,28 @@
                                         </a>
                                     </li>
                                 </ul>
-                                
+
                                 <div class="mb-4">
                                     <div class="progress progress-xl animated-progess">
-                                        <div class="progress-bar " role="progressbar" style="width: {{ $course->total_progress }}%;" aria-valuenow="{{ $course->total_progress }}" aria-valuemin="0" aria-valuemax="100">{{ $course->total_progress }}%</div>
+                                        <div class="progress-bar " role="progressbar"
+                                            style="width: {{ $course->total_progress }}%;"
+                                            aria-valuenow="{{ $course->total_progress }}" aria-valuemin="0"
+                                            aria-valuemax="100">{{ $course->total_progress }}%</div>
                                     </div>
                                 </div>
-                                
+
                                 <div>
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{ route('courses.my-course.progress', $course->slug) }}" class="text-primary">Continue <i class="mdi mdi-arrow-right"></i></a>
-                                        <a href="{{ route('courses.my-course.certificate', $course->slug) }}" class="text-primary">View Certificate <i class="mdi mdi-arrow-right"></i></a>
+                                        <a href="{{ route('courses.my-course.progress', $course->slug) }}"
+                                            class="text-primary">Continue <i class="mdi mdi-arrow-right"></i></a>
+
+                                        @if ($course->inactive == true)
+                                            <a href="{{ route('courses.my-course.certificate', $course->slug) }}"
+                                                class="text-primary">View Certificate <i
+                                                    class="mdi mdi-arrow-right"></i></a>
+                                        @else
+                                            <span class="text-warning">Sertifikat Belum Tersedia</span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

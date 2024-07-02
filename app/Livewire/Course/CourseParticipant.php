@@ -26,11 +26,19 @@ class CourseParticipant extends Component
             });
         })->whereHas('participants', function ($query) use ($participantId) {
             $query->where('participant_id', $participantId);
-        })->with(['activities' => function ($query) use ($participantId) {
-            $query->where('participant_id', $participantId);
-        }])->latest()->paginate(12);
+        })->with([
+                    'activities' => function ($query) use ($participantId) {
+                        $query->where('participant_id', $participantId);
+                    }
+                ])->latest()->paginate(12);
 
         $courses->getCollection()->transform(function ($course) {
+            $inactive = false;
+            if ($course->implementation_end <= date('Y-m-d')) {
+                $inactive = true;
+            }
+
+            $course->inactive = $inactive;
             $course->total_progress = $course->activities->sum('progress');
             return $course;
         });

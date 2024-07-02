@@ -15,10 +15,10 @@ class CertificateController extends Controller
         $data = [
             'name' => $participant->front_name . ' ' . $participant->back_name,
             'course' => $course->title,
-            'date' => now()->format('F d, Y')
+            'date' => now()->format('d M Y'),
         ];
         // return view('certificates.template', $data);
         $pdf = Pdf::loadView('certificates.template', $data)->setPaper('a4', 'landscape');
-        return $pdf->stream('certificate.pdf');
+        return $pdf->stream("{$course->title}-{$participant->front_name}-{$participant->back_name}.pdf");
     }
 }

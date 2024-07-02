@@ -129,7 +129,7 @@ class CourseCreate extends Component
     public function updatedImgThumbnail()
     {
         $this->validate([
-            'img_thumbnail' => 'image|max:1024', // Validasi untuk gambar maksimal 1MB
+            'img_thumbnail' => 'image|max:5000', // Validasi untuk gambar maksimal 1MB
         ]);
 
         $this->previewThumbnail = $this->img_thumbnail->temporaryUrl();
