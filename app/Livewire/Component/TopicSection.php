@@ -141,12 +141,12 @@ class TopicSection extends Component
                 if ($this->status == 'begin') {
                     $this->dispatch('showModalUploadFile');
                 } else if ($this->status == 'progress') {
-                    $this->confirm('Are you sure you want to start this topic?', [
+                    $this->confirm('Apakah anda yakin ingin memulai topik ini?', [
                         'icon' => 'info',
                         'position' => 'center',
                         'toast' => false,
                         'timer' => null,
-                        'text' => 'If yes, click the button below!',
+                        'text' => 'Jika ya, klik tombol dibawah!',
                         'cancel' => true,
                         'showConfirmButton' => true,
                         'showCancelButton' => true,
@@ -156,12 +156,12 @@ class TopicSection extends Component
                         'cancelButtonColor' => '#d33',
                     ]);
                 } else {
-                    $this->confirm('Are you sure you want to finish this course?', [
+                    $this->confirm('Apakah anda yakin ingin menyelesaikan topik ini?', [
                         'icon' => 'info',
                         'position' => 'center',
                         'toast' => false,
                         'timer' => null,
-                        'text' => 'If yes, click the button below!',
+                        'text' => 'Jika ya, klik tombol dibawah!',
                         'cancel' => true,
                         'showConfirmButton' => true,
                         'showCancelButton' => true,
