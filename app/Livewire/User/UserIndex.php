@@ -27,12 +27,12 @@ class UserIndex extends Component
         $this->user_id = $id;
         $this->type = $type;
 
-        $this->confirm('Are you sure you want to change the status?', [
+        $this->confirm('Apakah anda yakin ingin mengganti status?', [
             'icon' => 'warning',
             'position' => 'center',
             'toast' => false,
             'timer' => null,
-            'text' => 'If yes, click the button below!',
+            'text' => 'Jika ya, Klik tombol dibawah!',
             'cancel' => true,
             'showConfirmButton' => true,
             'showCancelButton' => true,
@@ -78,12 +78,12 @@ class UserIndex extends Component
     {
         $this->user_id = $id;
 
-        $this->confirm('Are you sure you want to delete this user?', [
+        $this->confirm('Apakah anda yakin ingin menghapus data user?', [
             'icon' => 'warning',
             'position' => 'center',
             'toast' => false,
             'timer' => null,
-            'text' => 'If yes, click the button below!',
+            'text' => 'Jika ya, Klik tombol dibawah!',
             'cancel' => true,
             'showConfirmButton' => true,
             'showCancelButton' => true,

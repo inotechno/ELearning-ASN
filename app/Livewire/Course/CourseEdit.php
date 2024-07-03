@@ -74,6 +74,7 @@ class CourseEdit extends Component
         return [
             'title.required' => 'Judul wajib diisi.',
             'title.string' => 'Judul harus berupa teks.',
+            'title.unique' => 'Judul sudah ada',
             'title.max' => 'Judul maksimal 255 karakter.',
             'category_id.required' => 'Kategori wajib dipilih.',
             'category_id.integer' => 'Kategori harus berupa angka.',

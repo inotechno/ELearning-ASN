@@ -64,12 +64,12 @@ class CategoryIndex extends Component
     public function confirmDelete($id)
     {
         $this->category_id = $id;
-        $this->confirm('Are you sure you want to delete this category?', [
+        $this->confirm('Apakah anda yakin ingin menghapus category ini?', [
             'icon' => 'warning',
             'position' => 'center',
             'toast' => false,
             'timer' => null,
-            'text' => 'If yes, click the button below!',
+            'text' => 'Jika ya, Klik tombol dibawah!',
             'cancel' => true,
             'showConfirmButton' => true,
             'showCancelButton' => true,

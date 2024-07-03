@@ -39,12 +39,12 @@ class CourseIndex extends Component
 
     public function destroy($id)
     {
-        $this->confirm('Are you sure you want to delete this course?', [
+        $this->confirm('Apakah anda yakin ingin menghapus pelatihan ini?', [
             'icon' => 'warning',
             'position' => 'center',
             'toast' => false,
             'timer' => null,
-            'text' => 'If yes, click the button below!',
+            'text' => 'Jika ya, Klik tombol dibawah!',
             'cancel' => true,
             'showConfirmButton' => true,
             'showCancelButton' => true,
