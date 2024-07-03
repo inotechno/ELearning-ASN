@@ -70,24 +70,24 @@
             <img src="{{ public_path('images/garuda.jpg') }}" width="70" alt="">
         </div>
         <div>
-            PEMERINTAH KOTA SERANG <BR/>
+            PEMERINTAH KOTA SERANG <BR />
             BADAN KEPEGAWAIAN DAN PENGEMBANGAN SUMBER DAYA MANUSIA
         </div>
         <div class="marquee">
             Sertifikat Kelulusan Pelatihan
         </div>
         <div class="assignment">
-            Kepala Badan Kepegawaian dan Pengembangan Sumber Daya Manusia Kota Serang <br/>
+            Kepala Badan Kepegawaian dan Pengembangan Sumber Daya Manusia Kota Serang <br />
             Sertifikat ini diberikan kepada
         </div>
-        <br/>
+        <br />
         <div class="person">
-            {{ $name }}
+            {{ $gelar_depan ?? '' }} {{ $name }} {{ $gelar_belakang ?? '' }}
         </div>
         <div class="reason">
             Sebagai penghargaan atas keberhasilan dalam mengikuti dan menyelesaikan kegiatan<br />
-            {{ $course }} yang diselenggarakan oleh <br/>
-            Badan Kepegawaian dan Pengembangan Sumber Daya Manusia Kota Serang <br/>
+            {{ $course }} yang diselenggarakan oleh <br />
+            Badan Kepegawaian dan Pengembangan Sumber Daya Manusia Kota Serang <br />
             secara online/virtual melalui LMS (Learning Management System) <br />
             <h2>{{ $course }}</h2>
         </div>
