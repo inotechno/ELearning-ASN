@@ -59,7 +59,7 @@
             font-size: 42px;
             font-style: italic;
             margin: 10px auto;
-            width: 400px;
+            width: 800px;
         }
     </style>
 </head>
