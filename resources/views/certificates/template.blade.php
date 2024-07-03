@@ -84,7 +84,7 @@
             Sertifikat ini diberikan kepada
         </div>
         <div class="person">
-            {{ $name }}
+            {{ $gelar_depan ?? '' }} {{ $name }}, {{ $gelar_belakang ?? '' }}
         </div>
         <div class="reason">
             Sebagai penghargaan atas keberhasilan dalam mengikuti<br />
