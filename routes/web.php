@@ -73,7 +73,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/my-course/certificate/{slug}', CertificateIndex::class)->name('courses.my-course.certificate');
     });
 
-    Route::get('/certificate/{slug}/{participant_id}', [CertificateController::class, 'generate'])->name('certificate.generate');
+    Route::get('/certificate/{slug}/{participant_id}/generate', [CertificateController::class, 'generate'])->name('certificate.generate');
+    Route::get('/certificate/{slug}/{participant_id}/download', [CertificateController::class, 'download'])->name('certificate.download');
 
     Route::get('/course/{slug}', CourseDetail::class)->name('course.show');
     // Route::get('/course/{slug}', CourseDetail::class)->name('course.show');

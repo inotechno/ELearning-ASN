@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class CertificateIndex extends Component
 {
-    public $breadcrumbData, $certificate_url, $title, $user;
+    public $breadcrumbData, $generate_certificate_url, $download_certificate_url, $title, $user;
 
     public function mount($slug)
     {
@@ -16,13 +16,15 @@ class CertificateIndex extends Component
         $course = Course::where('slug', $slug)->first();
         $this->title = $course->title;
         $participant_id = $this->user->participant->id;
-        $this->certificate_url = url("/certificate/{$slug}/{$participant_id}#view=fit&toolbar=0&navpanes=0&scrollbar=0");
+        $this->generate_certificate_url = url("/certificate/{$slug}/{$participant_id}/generate");
+        $this->download_certificate_url = url("/certificate/{$slug}/{$participant_id}/download");
         // Set Breadcrumb
         $this->breadcrumbData = [
             ['label' => 'My Course', 'url' => '/my-course'],
             ['label' => 'Certificate', 'url' => '/my-course/certificate'],
         ];
     }
+
     public function render()
     {
         // dd($this->certificate_url);
