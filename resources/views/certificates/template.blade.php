@@ -66,33 +66,36 @@
 
 <body>
     <div class="container">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
         <div class="logo">
-            <img src="{{ public_path('images/logo-dark.png') }}" width="250" alt="">
+            <img src="{{ public_path('images/garuda.jpg') }}" width="70" alt="">
+        </div>
+        <div>
+            PEMERINTAH KOTA SERANG <BR/>
+            BADAN KEPEGAWAIAN DAN PENGEMBANGAN SUMBER DAYA MANUSIA
         </div>
         <div class="marquee">
-            Sertifikat Kelulusan
+            Sertifikat Kelulusan Pelatihan
         </div>
         <div class="assignment">
+            Kepala Badan Kepegawaian dan Pengembangan Sumber Daya Manusia Kota Serang <br/>
             Sertifikat ini diberikan kepada
         </div>
+        <br/>
         <div class="person">
-            {{ $gelar_depan ?? '' }} {{ $name }}, {{ $gelar_belakang ?? '' }}
+            {{ $name }}
         </div>
         <div class="reason">
-            Sebagai penghargaan atas keberhasilan dalam mengikuti<br />
-            dan menyelesaikan kursus<br />
+            Sebagai penghargaan atas keberhasilan dalam mengikuti dan menyelesaikan kegiatan<br />
+            {{ $course }} yang diselenggarakan oleh <br/>
+            Badan Kepegawaian dan Pengembangan Sumber Daya Manusia Kota Serang <br/>
+            secara online/virtual melalui LMS (Learning Management System) <br />
             <h2>{{ $course }}</h2>
         </div>
         <div class="assignment">
             Diberikan pada {{ $date }}
+        </div>
+        <div class="logo">
+            <img src="{{ public_path('images/ttd.jpeg') }}" width="290" alt="">
         </div>
     </div>
 </body>
