@@ -7,33 +7,36 @@
                     <div class="row g-2">
                         <div class="col-xxl-3 col-lg-6">
                             <input type="search" class="form-control" id="searchInput" placeholder="Search for ..."
-                                wire:model="search">
+                                wire:model.live="search">
                         </div>
                         <div class="col-xxl-1 col-lg-6">
-                            <select class="form-control select2">
+                            <select class="form-control select2" wire:model.live="type_topic_id">
                                 <option>Type Topic</option>
                                 @foreach ($type_topics as $type)
                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="col-xxl-3 col-lg-6">
-                            <select class="form-control select2">
-                                <option>Select Course</option>
-                                @foreach ($courses as $course)
+                            <select class="form-control select2" wire:model.live="course_topic_id">
+                                <option>Course Topic</option>
+                                @foreach ($course_topics as $course)
                                     <option value="{{ $course->id }}">{{ $course->title }}</option>
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="col-xxl-3 col-lg-6">
                             <div class="mb-4">
+
                                 <div class="input-daterange input-group" id="datepicker6" data-date-format="yyyy-mm-dd"
                                     data-date-autoclose="true" data-provide="datepicker"
                                     data-date-container='#datepicker6'>
                                     <input type="text" class="form-control @error('start_date') is-invalid @enderror"
-                                        wire:model="start_date" placeholder="Start Date" id="start_date" />
+                                        wire:model.live="start_date" placeholder="Start Date" id="start_date" />
                                     <input type="text" class="form-control @error('end_date') is-invalid @enderror"
-                                        wire:model="end_date" placeholder="End Date" id="end_date" />
+                                        wire:model.live="end_date" placeholder="End Date" id="end_date" />
                                 </div>
 
                                 @error('start_date')
@@ -49,9 +52,10 @@
                                 @enderror
                             </div>
                         </div>
+
                         <div class="col-xxl-2 col-lg-3">
-                            <button type="button" class="btn btn-soft-secondary w-100"><i
-                                    class="mdi mdi-filter-outline align-middle"></i> Filter</button>
+                            <button type="button" class="btn btn-soft-danger w-100" wire:click="resetFormFields()"><i
+                                    class="mdi mdi-close-circle align-middle"></i> Clear</button>
                         </div>
                     </div>
                 </div>

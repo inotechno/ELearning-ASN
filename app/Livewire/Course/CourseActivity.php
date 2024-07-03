@@ -12,25 +12,24 @@ use Livewire\WithPagination;
 class CourseActivity extends Component
 {
     use WithPagination;
-
     protected $paginationTheme = 'bootstrap';
 
-    public $course, $courseId, $start_date, $end_date, $type_topic_id;
+    public $course, $courseId, $course_topics, $course_topic_id, $start_date, $end_date, $type_topic_id, $search;
     public $breadcrumbData;
-    public $type_topics, $courses;
+    public $type_topics;
 
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'type_topic_id' => ['except' => ''],
+        'course_topic_id' => ['except' => ''],
+        'start_date' => ['except' => ''],
+        'end_date' => ['except' => ''],
+    ];
     public function mount($slug = null)
     {
-        $this->courses = Course::query();
-
-        if (Auth::user()->hasRole('teacher')) {
-            $this->courses->where('teacher_id', Auth::user()->teacher->id);
-        }
-
-        $this->courses = $this->courses->get();
-
         $this->type_topics = TypeTopic::get();
-        $this->course = Course::where('slug', $slug)->first();
+        $this->course = Course::with('topics')->where('slug', $slug)->first();
+        $this->course_topics = $this->course->topics;
         $this->courseId = $this->course->id;
 
         $this->breadcrumbData = [
@@ -39,13 +38,37 @@ class CourseActivity extends Component
         ];
     }
 
+    public function resetFormFields()
+    {
+        $this->course_topic_id = "";
+        $this->start_date = "";
+        $this->end_date = "";
+        $this->type_topic_id = "";
+        $this->search = "";
+    }
+
     public function render()
     {
-        $course_activities = ParticipantActivity::with('participant', 'course', 'courseTopic')->whereHas('course', function () {
+        $course_activities = ParticipantActivity::when($this->type_topic_id, function ($query) {
+            $query->whereHas('courseTopic', function ($query) {
+                $query->where('type_topic_id', $this->type_topic_id);
+            });
+        })->when($this->search, function ($query) {
+            $query->whereHas('participant', function ($query) {
+                $query->where('front_name', 'like', '%' . $this->search . '%')->orWhere('back_name', 'like', '%' . $this->search . '%');
+            });
+        })->when($this->course_topic_id, function ($query) {
+            $query->where('course_topic_id', $this->course_topic_id);
+        })->when($this->start_date && $this->end_date, function ($query) {
+            $query->whereHas('courseTopic', function ($query) {
+                $query->whereBetween('start_at', [$this->start_date, $this->end_date])
+                    ->orWhereBetween('end_at', [$this->start_date, $this->end_date]);
+            });
+        })->with('participant', 'course', 'courseTopic')->whereHas('course', function () {
             return $this->course;
         })->latest()->paginate(12);
 
         // dd($course_activities);
-        return view('livewire.course.course-activity', compact('course_activities'))->title(__('Course Activity ' . $this->course->title))->layout('layouts.app', ['breadcrumbData' => $this->breadcrumbData]);
+        return view('livewire.course.course-activity', compact('course_activities'))->layout('layouts.app', ['breadcrumbData' => $this->breadcrumbData, 'title' => __('Course Activity ' . $this->course->title)]);
     }
 }
