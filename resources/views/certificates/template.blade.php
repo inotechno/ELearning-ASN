@@ -95,7 +95,7 @@
             Diberikan pada {{ $date }}
         </div>
         <div class="logo">
-            <img src="{{ public_path('images/ttd.jpeg') }}" width="290" alt="">
+            <img src="{{ public_path('images/ttd.jpg') }}" width="290" alt="">
         </div>
     </div>
 </body>
