@@ -13,6 +13,8 @@ class CertificateController extends Controller
         $course = \App\Models\Course::where('slug', $slug)->firstOrFail();
         
         $data = [
+            'gelar_depan' => $participant->front_title,
+            'gelar_belakang' => $participant->back_title,
             'name' => $participant->front_name . ' ' . $participant->back_name,
             'course' => $course->title,
             'date' => now()->format('d M Y'),

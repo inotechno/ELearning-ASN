@@ -42,9 +42,9 @@
 
         <div class="col-lg-4">
             <div class="mb-3">
-                <label for="basicpill-vatno-input">Golongan </label>
+                <label for="basicpill-vatno-input">Pangkat/Golongan </label>
                 <select wire:model='rank_id' class="form-control @error('rank_id') is-invalid @enderror">
-                    <option value="">Pilih for Golongan</option>
+                    <option value="">Pilih for Pangkat/Golongan</option>
                     @foreach ($ranks as $rank)
                         <option value="{{ $rank->id }}">{{ $rank->name }}
                         </option>
@@ -60,7 +60,7 @@
         </div>
 
         <div class="col-md-6 mb-3">
-            <label for="form-label">Nama Posisi</label>
+            <label for="form-label">Jabatan</label>
             <input type="text" class="form-control @error('position') is-invalid @enderror" wire:model="position">
 
             @error('position')
@@ -71,7 +71,7 @@
         </div>
 
         <div class="col-md-6 mb-3">
-            <label for="form-label">Nama Unit</label>
+            <label for="form-label">Nama Unit Kerja</label>
             <input type="text" class="form-control @error('unit_name') is-invalid @enderror" wire:model="unit_name">
 
             @error('unit_name')

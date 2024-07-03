@@ -316,10 +316,10 @@
 
                                         <div class="col-lg-4">
                                             <div class="mb-3">
-                                                <label for="basicpill-vatno-input">Golongan</label>
+                                                <label for="basicpill-vatno-input">Pangkat/Golongan</label>
                                                 <select wire:model='rank_id'
                                                     class="form-control @error('rank_id') is-invalid @enderror">
-                                                    <option value="">Pillh Golongan</option>
+                                                    <option value="">Pillh Pangkat/Golongan</option>
                                                     @foreach ($ranks as $rank)
                                                         <option value="{{ $rank->id }}">{{ $rank->name }}
                                                         </option>
@@ -338,10 +338,10 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-vatno-input">Nama Posisi</label>
+                                                <label for="basicpill-vatno-input">Jabatan</label>
                                                 <input type="text"
                                                     class="form-control @error('position') is-invalid @enderror"
-                                                    placeholder="Masukan Nama Posisi" wire:model='position'>
+                                                    placeholder="Masukan Jabatan" wire:model='position'>
 
                                                 @error('position')
                                                     <span class="invalid-feedback" role="alert">
@@ -353,10 +353,10 @@
 
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <label for="basicpill-vatno-input">Nama Unit</label>
+                                                <label for="basicpill-vatno-input">Nama Unit Kerja</label>
                                                 <input type="text"
                                                     class="form-control @error('unit_name') is-invalid @enderror"
-                                                    placeholder="Masukan Nama Unit" wire:model='unit_name'>
+                                                    placeholder="Masukan Nama Unit Kerja" wire:model='unit_name'>
 
                                                 @error('unit_name')
                                                     <span class="invalid-feedback" role="alert">
