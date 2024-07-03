@@ -25,17 +25,17 @@ class ButtonFollowCourse extends Component
 
     public function follow()
     {
-        $this->confirm('Are you sure you want to follow this course?', [
+        $this->confirm('Apakah anda yakin ingin mengikuti pelatihan ini?', [
             'icon' => 'info',
             'position' => 'center',
             'toast' => false,
             'timer' => null,
-            'text' => 'If yes, click the button below!',
+            'text' => 'Jika ya, klik tombol dibawah!',
             'cancel' => true,
             'showConfirmButton' => true,
             'showCancelButton' => true,
             'onConfirmed' => 'followCourse',
-            'confirmButtonText' => 'Yes, Follow it!',
+            'confirmButtonText' => 'Ya, Ikuti!',
             'confirmButtonColor' => '#3085d6',
             'cancelButtonColor' => '#d33',
         ]);
@@ -50,7 +50,7 @@ class ButtonFollowCourse extends Component
         try {
             $course = Course::find($this->course_id);
             $course->participants()->attach(Auth::user()->participant->id, ['created_at' => now()]);
-            $this->alert('success', 'Course has been followed');
+            $this->alert('success', 'Pelatihan berhasil di ikuti');
             return redirect()->route('courses.my-course.progress', $course->slug);
         } catch (\Throwable $th) {
             $this->alert('error', 'Something went wrong ' . $th->getMessage());
