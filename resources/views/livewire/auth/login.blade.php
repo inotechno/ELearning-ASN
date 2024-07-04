@@ -4,14 +4,14 @@
             <div class="card overflow-hidden">
                 <div class="bg-primary bg-soft">
                     <div class="row">
-                        <div class="col-7">
+                        <div class="col-8">
                             <div class="text-primary p-4">
-                                <h5 class="text-primary">Welcome Back !</h5>
-                                <p>Sign in to continue to Skote.</p>
+                                <h4 class="text-primary">Selamat Datang kembali!</h4>
+                                <p>Masuk untuk melanjutkan ke LMS.</p>
                             </div>
                         </div>
-                        <div class="col-5 align-self-end">
-                            <img src="{{ asset('images/profile-img.png') }}" alt="" class="img-fluid">
+                        <div class="col-4 align-self-end">
+                            <img src="{{ asset('images/asn.png') }}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                         <script>
                             document.write(new Date().getFullYear())
                         </script> LMS ASN. Crafted with <i class="mdi mdi-heart text-danger"></i> by
-                        Inotechno
+                        Agoeng
                     </p>
                 </div>
             </div>

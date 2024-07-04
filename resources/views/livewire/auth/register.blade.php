@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h4 class="card-title mb-4">Daftar Peserta - Step {{ $step }}</h4>
-                        <a href="{{ route('register.teacher') }}" class="text-primary">Daftar Sebagai Guru</a>
+                        <a href="{{ route('register.teacher') }}" class="text-primary">Daftar Sebagai Pengajar</a>
                     </div>
 
                     <form wire:submit.prevent="store">
@@ -400,7 +400,7 @@
                         <script>
                             document.write(new Date().getFullYear())
                         </script> LMS ASN. Crafted with <i class="mdi mdi-heart text-danger"></i> by
-                        Inotechno
+                        Agoeng
                     </p>
                 </div>
             </div>

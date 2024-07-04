@@ -6,12 +6,12 @@
                     <div class="row">
                         <div class="col-7">
                             <div class="text-primary p-3">
-                                <h5 class="text-primary">Welcome Back !</h5>
+                                <h3 class="text-primary">Selamat Datang!</h3>
                                 <p>{{ config('app.name') }} Dashboard</p>
                             </div>
                         </div>
                         <div class="col-5 align-self-end">
-                            <img src="{{ asset('images/profile-img.png') }}" alt="" class="img-fluid">
+                            <img src="{{ asset('images/asn2.png') }}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>

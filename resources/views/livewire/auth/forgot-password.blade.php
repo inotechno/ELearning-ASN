@@ -6,12 +6,12 @@
                     <div class="row">
                         <div class="col-7">
                             <div class="text-primary p-4">
-                                <h5 class="text-primary"> Reset Password</h5>
-                                <p>Reset Password with {{ config('app.name') }}.</p>
+                                <h3 class="text-primary"> Reset Password</h3>
+                                <p>Atur Ulang Kata Sandi dengan {{ config('app.name') }}.</p>
                             </div>
                         </div>
                         <div class="col-5 align-self-end">
-                            <img src="{{ asset('images/profile-img.png') }}" alt="" class="img-fluid">
+                            <img src="{{ asset('images/asn5.png') }}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -46,11 +46,11 @@
                 </div>
             </div>
             <div class="mt-5 text-center">
-                <p>Remember It ? <a href="{{ route('login') }}" class="fw-medium text-primary"> Sign In here</a> </p>
+                <p>Ingat Password? <a href="{{ route('login') }}" class="fw-medium text-primary"> Sign In here</a> </p>
                 <p>©
                     <script>
                         document.write(new Date().getFullYear())
-                    </script> Skote. Crafted with <i class="mdi mdi-heart text-danger"></i> by Inotechno
+                    </script> LMS ASN. Crafted with <i class="mdi mdi-heart text-danger"></i> by Agoeng
                 </p>
             </div>
         </div>

@@ -399,7 +399,7 @@
                         <script>
                             document.write(new Date().getFullYear())
                         </script> LMS ASN. Crafted with <i class="mdi mdi-heart text-danger"></i> by
-                        Inotechno
+                        Agoeng
                     </p>
                 </div>
             </div>
