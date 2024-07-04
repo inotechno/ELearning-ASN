@@ -25,6 +25,7 @@ class CourseActivity extends Component
         'start_date' => ['except' => ''],
         'end_date' => ['except' => ''],
     ];
+    
     public function mount($slug = null)
     {
         $this->type_topics = TypeTopic::get();

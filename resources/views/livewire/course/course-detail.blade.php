@@ -135,5 +135,9 @@
         </div>
         <!-- end col -->
     </div>
+
+    @hasrole('administrator')
+        @livewire('course.course-activity', ['slug' => $slug])
+    @endhasrole
     <!-- end row -->
 </div>
