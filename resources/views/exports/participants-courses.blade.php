@@ -36,8 +36,7 @@
                     <td>
                         @foreach ($course->topics as $topic)
                             @if ($topic)
-                                <span
-                                    class="badge rounded-pill badge-soft-primary font-size-12">{{ $topic->title }}</span>
+                                {{ $topic->title }} | 
                             @endif
                         @endforeach
                     </td>
