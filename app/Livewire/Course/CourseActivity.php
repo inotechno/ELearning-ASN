@@ -2,12 +2,14 @@
 
 namespace App\Livewire\Course;
 
+use App\Exports\ParticipantActivityExport;
 use App\Models\Course;
 use App\Models\ParticipantActivity;
 use App\Models\TypeTopic;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CourseActivity extends Component
 {
@@ -18,6 +20,8 @@ class CourseActivity extends Component
     public $breadcrumbData;
     public $type_topics;
 
+    public $activities;
+
     protected $queryString = [
         'search' => ['except' => ''],
         'type_topic_id' => ['except' => ''],
@@ -25,7 +29,7 @@ class CourseActivity extends Component
         'start_date' => ['except' => ''],
         'end_date' => ['except' => ''],
     ];
-    
+
     public function mount($slug = null)
     {
         $this->type_topics = TypeTopic::get();
@@ -48,6 +52,12 @@ class CourseActivity extends Component
         $this->search = "";
     }
 
+    public function exportExcel()
+    {
+        // dd($this->activities);
+        return Excel::download(new ParticipantActivityExport($this->activities), 'participant-activity.xlsx');
+    }
+
     public function render()
     {
         $course_activities = ParticipantActivity::when($this->type_topic_id, function ($query) {
@@ -67,8 +77,11 @@ class CourseActivity extends Component
             });
         })->with('participant', 'course', 'courseTopic')->whereHas('course', function () {
             return $this->course;
-        })->latest()->paginate(12);
+        })->latest();
 
+        $this->activities = $course_activities->get();
+        $course_activities = $course_activities->paginate(10);
+        // dd($this->activities);
         // dd($course_activities);
         return view('livewire.course.course-activity', compact('course_activities'))->layout('layouts.app', ['breadcrumbData' => $this->breadcrumbData, 'title' => __('Course Activity ' . $this->course->title)]);
     }

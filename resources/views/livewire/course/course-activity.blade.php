@@ -53,10 +53,17 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-2 col-lg-3">
+                        <div class="col-xxl-1 col-lg-3">
                             <button type="button" class="btn btn-soft-danger w-100" wire:click="resetFormFields()"><i
                                     class="mdi mdi-close-circle align-middle"></i> Clear</button>
                         </div>
+
+                        <div class="col-xxl-1 col-lg-3">
+                            <button type="button" class="btn btn-primary w-100" wire:click="exportExcel"
+                            wire:target="exportExcel"> <i class="mdi mdi-file-excel align-middle"></i>
+                            Export</button>
+                        </div>
+
                     </div>
                 </div>
 
@@ -67,13 +74,15 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Participant Name</th>
-                                    <th scope="col">Education ID</th>
-                                    <th scope="col">Institution ID</th>
-                                    <th scope="col">Rank ID</th>
-                                    <th scope="col">Course Title</th>
-                                    <th scope="col">Course Topic</th>
-                                    <th scope="col">Date Activity</th>
+                                    <th scope="col">Nama Lengkap</th>
+                                    <th scope="col">NIP</th>
+                                    <th scope="col">Jabatan</th>
+                                    <th scope="col">Unit Kerja</th>
+                                    <th scope="col">Nama Instansi</th>
+                                    <th scope="col">Golongan / Pangkat</th>
+                                    <th scope="col">Judul</th>
+                                    <th scope="col">Materi</th>
+                                    <th scope="col">Tanggal Aktifitas</th>
                                     {{-- <th scope="col">Action</th> --}}
                                 </tr>
                             </thead>
@@ -85,7 +94,11 @@
                                             {{ $course_activity->participant ? $course_activity->participant->front_name : '' }}
                                             {{ $course_activity->participant ? $course_activity->participant->back_name : '' }}
                                         </td>
-                                        <td>{{ $course_activity->participant->education ? $course_activity->participant->education->name : '' }}
+                                        <td>{{ $course_activity->participant ? $course_activity->participant->nip : '' }}
+                                        </td>
+                                        <td>{{ $course_activity->participant ? $course_activity->participant->position : '' }}
+                                        </td>
+                                        <td>{{ $course_activity->participant ? $course_activity->participant->unit_name : '' }}
                                         </td>
                                         <td>{{ $course_activity->participant->institution ? $course_activity->participant->institution->name : '' }}
                                         </td>
@@ -133,7 +146,6 @@
             type="text/css">
         <link href="{{ asset('libs/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}" rel="stylesheet"
             type="text/css">
-
         {{-- <link href="{{ asset('libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" /> --}}
     @endpush
 

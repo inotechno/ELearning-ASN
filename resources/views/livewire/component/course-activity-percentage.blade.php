@@ -7,8 +7,9 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Percentage</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Persentasi</th>
+                                <th scope="col">Kualifikasi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -18,6 +19,7 @@
                                     <td scope="col"><span
                                             class="badge bg-{{ $participant['total_progress'] > 50 ? "success" : "warning" }}">{{ $participant['total_progress'] }}
                                             %</span></td>
+                                    <td scope="col">{{ $participant['qualification'] }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

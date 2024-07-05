@@ -14,6 +14,8 @@ class CourseParticipant extends Component
         ['label' => 'My Course', 'url' => '/my-course'],
     ];
 
+    
+
     public function render()
     {
         // $today = Carbon::today();

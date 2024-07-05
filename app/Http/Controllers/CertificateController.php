@@ -11,12 +11,22 @@ class CertificateController extends Controller
     {
         $participant = \App\Models\Participant::where('id', $participant_id)->firstOrFail();
         $course = \App\Models\Course::where('slug', $slug)->firstOrFail();
-        
+        $course_activity = $course->activities->where('participant_id', $participant_id)->sum('progress');
+        // dd($course_activity);
+
+        $qualification = "";
+        if($course_activity == 100) {
+            $qualification = "Sangat Baik";
+        }else if($course_activity >= 80) {
+            $qualification = "Baik";
+        }
+
         $data = [
             'gelar_depan' => $participant->front_title,
             'gelar_belakang' => $participant->back_title,
             'name' => $participant->front_name . ' ' . $participant->back_name,
             'course' => $course->title,
+            'qualification' => $qualification,
             'date' => now()->format('d M Y'),
         ];
         // return view('certificates.template', $data);
@@ -28,12 +38,22 @@ class CertificateController extends Controller
     {
         $participant = \App\Models\Participant::where('id', $participant_id)->firstOrFail();
         $course = \App\Models\Course::where('slug', $slug)->firstOrFail();
-        
+        $course_activity = $course->activities->where('participant_id', $participant_id)->sum('progress');
+        // dd($course_activity);
+
+        $qualification = "";
+        if($course_activity == 100) {
+            $qualification = "Sangat Baik";
+        }else if($course_activity >= 80) {
+            $qualification = "Baik";
+        }
+
         $data = [
             'gelar_depan' => $participant->front_title,
             'gelar_belakang' => $participant->back_title,
             'name' => $participant->front_name . ' ' . $participant->back_name,
             'course' => $course->title,
+            'qualification' => $qualification,
             'date' => now()->format('d M Y'),
         ];
         // return view('certificates.template', $data);

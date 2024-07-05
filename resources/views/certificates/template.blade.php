@@ -51,14 +51,14 @@
 
         .assignment,
         .reason {
-            margin: 10px 0;
+            margin: 5px 0;
         }
 
         .person {
             border-bottom: 2px solid black;
             font-size: 42px;
             font-style: italic;
-            margin: 10px auto;
+            margin: 5px auto;
             width: 700px;
         }
     </style>
@@ -86,10 +86,9 @@
         </div>
         <div class="reason">
             Sebagai penghargaan atas keberhasilan dalam mengikuti dan menyelesaikan kegiatan<br />
-            {{ $course }} yang diselenggarakan oleh <br />
+            <h2 style="margin: 5px;">{{ $course }} ( {{$qualification}} )</h2> yang diselenggarakan oleh <br />
             Badan Kepegawaian dan Pengembangan Sumber Daya Manusia Kota Serang <br />
             secara online/virtual melalui LMS (Learning Management System) <br />
-            <h2>{{ $course }}</h2>
         </div>
         <div class="assignment">
             Diberikan pada {{ $date }}

@@ -48,10 +48,16 @@
                                         <a href="{{ route('courses.my-course.progress', $course->slug) }}"
                                             class="text-primary">Continue <i class="mdi mdi-arrow-right"></i></a>
 
-                                        @if ($course->inactive == true)
-                                            <a href="{{ route('courses.my-course.certificate', $course->slug) }}"
-                                                class="text-primary">View Certificate <i
-                                                    class="mdi mdi-arrow-right"></i></a>
+                                        @if ($course->inactive)
+                                            @if ($course->total_progress >= 80)
+                                                <a href="{{ route('courses.my-course.certificate', $course->slug) }}"
+                                                    class="text-primary">View Certificate <i
+                                                        class="mdi mdi-arrow-right"></i></a>
+                                            @else
+                                                <span class="text-warning" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Penilaian Kurang Dari 80%">Tidak
+                                                    Mendapatkan Sertifikat</span>
+                                            @endif
                                         @else
                                             <span class="text-warning">Sertifikat Belum Tersedia</span>
                                         @endif

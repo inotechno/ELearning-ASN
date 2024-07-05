@@ -23,10 +23,19 @@ class CourseActivityPercentage extends Component
         $this->participants = $this->course->activities
             ->groupBy('participant_id')
             ->map(function ($activities) {
+                $qualification = "";
+                $progress = $activities->sum('progress');
+                if($progress == 100){
+                    $qualification = "Sangat Baik";
+                }else if($progress >= 80){
+                    $qualification = "Baik";
+                }
+
                 $participant = $activities->first()->participant;
                 return [
                     'name' => $participant->front_name . ' ' . $participant->back_name,
-                    'total_progress' => $activities->sum('progress'),
+                    'total_progress' => $progress,
+                    'qualification' => $qualification
                 ];
             });
 
