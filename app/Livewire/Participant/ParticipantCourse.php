@@ -44,7 +44,7 @@ class ParticipantCourse extends Component
 
     public function render()
     {
-        $participants_courses = Participant::whereHas('courses')->with('courses.topics', 'institution');
+        $participants_courses = Participant::whereHas('courses')->with(['courses', 'activities.courseTopic'])->with('institution');
 
         // Filter by course_id using when
         $participants_courses->when($this->course_id, function ($q) {

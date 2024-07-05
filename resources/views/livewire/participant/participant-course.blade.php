@@ -60,8 +60,8 @@
 
                         <div class="col-xxl-1 col-lg-3">
                             <button type="button" class="btn btn-primary w-100" wire:click="exportExcel"
-                            wire:target="exportExcel"> <i class="mdi mdi-file-excel align-middle"></i>
-                            Export</button>
+                                wire:target="exportExcel"> <i class="mdi mdi-file-excel align-middle"></i>
+                                Export</button>
                         </div>
 
                     </div>
@@ -83,57 +83,36 @@
                                     <th scope="col">Judul</th>
                                     <th scope="col">Materi</th>
                                     <th scope="col">Tanggal Mengikuti</th>
-                                    {{-- <th scope="col">Action</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($participants_courses as $key => $participant)
-                                    @foreach ($participant->courses as $course)
-                                        <tr>
-                                            <th scope="row">{{ $key + 1 }}</th>
-                                            <td>
-                                                {{ $participant ? $participant->front_name : '' }}
-                                                {{ $participant ? $participant->back_name : '' }}
-                                            </td>
-                                            <td>{{ $participant ? $participant->nip : '' }}
-                                            </td>
-                                            <td>{{ $participant ? $participant->position : '' }}
-                                            </td>
-                                            <td>{{ $participant ? $participant->unit_name : '' }}
-                                            </td>
-                                            <td>{{ $participant->institution ? $participant->institution->name : '' }}
-                                            </td>
-                                            <td>{{ $participant->rank ? $participant->rank->name : '' }}
-                                            </td>
-                                            <td>{{ $course->title }}</td>
-                                            <td>
-                                                @foreach ($course->topics as $topic)
-                                                    @if ($topic)
-                                                        <span
-                                                            class="badge rounded-pill badge-soft-primary font-size-12">{{ $topic->title }}</span>
-                                                    @endif
+                                @foreach ($participants_courses as $index => $participant)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $participant->front_name }} {{ $participant->back_name }}</td>
+                                        <td>{{ $participant->nip }}</td>
+                                        <td>{{ $participant->position }}</td>
+                                        <td>{{ $participant->unit_name }}</td>
+                                        <td>{{ $participant->institution->name }}</td>
+                                        <td>{{ $participant->rank->name }}</td>
+                                        <td>{{ $participant->courses->first()->title }}</td>
+                                        <td>
+                                            <ul class="list-unstyled">
+                                                @foreach ($participant->activities as $activity)
+                                                    <li>
+                                                        <span class="badge rounded-pill badge-soft-primary font-size-12">{{ $activity->courseTopic->title }}</span>
+                                                    </li>
                                                 @endforeach
-                                            </td>
-                                            <td>{{ $course->pivot->created_at->format('d M, Y h:i') }}</td>
-                                            {{-- <td>
-                                            <ul class="list-unstyled hstack gap-1 mb-0">
-                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                                    <a href="job-details.html" class="btn btn-sm btn-soft-primary"><i
-                                                            class="mdi mdi-eye-outline"></i></a>
-                                                </li>
-                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                    <a href="#" class="btn btn-sm btn-soft-info"><i
-                                                            class="mdi mdi-pencil-outline"></i></a>
-                                                </li>
-                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                    <a href="#jobDelete" data-bs-toggle="modal"
-                                                        class="btn btn-sm btn-soft-danger"><i
-                                                            class="mdi mdi-delete-outline"></i></a>
-                                                </li>
                                             </ul>
-                                        </td> --}}
-                                        </tr>
-                                    @endforeach
+                                        </td>
+                                        <td>
+                                            @if ($participant->activities->isNotEmpty() && $participant->activities->first())
+                                                {{ $participant->activities->first()->created_at->format('d M Y') }}
+                                            @else
+                                                N/A
+                                            @endif
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
