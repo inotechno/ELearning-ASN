@@ -52,7 +52,7 @@ class Course extends Model
 
     public function participants()
     {
-        return $this->belongsToMany(Participant::class, 'participants_courses', 'course_id', 'participant_id');
+        return $this->belongsToMany(Participant::class, 'participants_courses', 'course_id', 'participant_id')->withPivot('created_at');
     }
 
     public function topics()

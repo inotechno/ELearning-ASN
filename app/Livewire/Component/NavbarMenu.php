@@ -45,10 +45,10 @@ class NavbarMenu extends Component
             'roles' => 'participant',
         ],
         [
-            'name' => 'Role',
-            'icon' => 'bx bx-user',
-            'url' => 'role',
-            'roles' => 'view:role',
+            'name' => 'Participant Course',
+            'icon' => 'mdi mdi-cast-education',
+            'url' => 'participants/courses',
+            'roles' => 'administrator',
         ],
         [
             'name' => 'Site',

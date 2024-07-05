@@ -54,7 +54,7 @@ class Participant extends Model
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'participants_courses', 'participant_id', 'course_id');
+        return $this->belongsToMany(Course::class, 'participants_courses', 'participant_id', 'course_id')->withPivot('created_at');
     }
 
     public function activities()

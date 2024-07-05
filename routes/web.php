@@ -17,6 +17,7 @@ use App\Livewire\Course\CourseIndex;
 use App\Livewire\Course\CourseParticipant;
 use App\Livewire\Course\CourseProgress;
 use App\Livewire\Dashboard\DashboardIndex;
+use App\Livewire\Participant\ParticipantCourse;
 use App\Livewire\Profile\ProfileIndex;
 use App\Livewire\User\UserIndex;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/user/edit/{id}', ProfileIndex::class)->name('user.edit')->middleware('role:administrator');
+    Route::get('/participants/courses', ParticipantCourse::class)->name('participants.courses')->middleware('role:administrator');
 
     Route::get('/category', CategoryIndex::class)->name('category');
 
