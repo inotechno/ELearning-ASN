@@ -108,8 +108,20 @@
                                                             </h5>
                                                             <p class="text-muted">{{ $topic->description }}</p>
                                                             <div>
-                                                                <span
-                                                                    class="text-success">{{ $topic->typeTopic ? $topic->typeTopic->name : '' }}</span>
+
+                                                                @hasRole('administrator|teacher')
+                                                                @if($topic->type_topic_id ==  1)
+                                                                    <a href="{{ $topic->video_url }}">{{ $topic->typeTopic ? $topic->typeTopic->name : '' }}</a>
+                                                                @elseif($topic->type_topic_id ==  2)
+                                                                    <a href="{{ $topic->document_path }}">{{ $topic->typeTopic ? $topic->typeTopic->name : '' }}</a>
+                                                                @elseif($topic->type_topic_id ==  3)
+                                                                    <a href="{{ $topic->zoom_url }}">{{ $topic->typeTopic ? $topic->typeTopic->name : '' }}</a>
+                                                                @endif
+                                                                @endhasRole
+
+                                                                @hasRole('participant')
+                                                                <span class="text-success">{{ $topic->typeTopic ? $topic->typeTopic->name : '' }}</span>
+                                                                @endhasRole
                                                             </div>
                                                         </div>
                                                     </div>
