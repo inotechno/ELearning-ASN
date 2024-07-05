@@ -82,6 +82,7 @@
                                     <th scope="col">Golongan / Pangkat</th>
                                     <th scope="col">Judul</th>
                                     <th scope="col">Materi</th>
+                                    <th scope="col">File</th>
                                     <th scope="col">Tanggal Aktifitas</th>
                                     {{-- <th scope="col">Action</th> --}}
                                 </tr>
@@ -106,6 +107,11 @@
                                         </td>
                                         <td>{{ $course_activity->course->title }}</td>
                                         <td>{{ $course_activity->courseTopic->title }}</td>
+                                        <td>
+                                            @if($course_activity->file)
+                                                <a href="{{ asset('storage/'.$course_activity->file) }}" target="_blank" class="btn btn-sm btn-soft-primary">Download</a>
+                                            @endif
+                                        </td>
                                         <td>{{ $course_activity->created_at->format('d M, Y h:i') }}</td>
                                         {{-- <td>
                                             <ul class="list-unstyled hstack gap-1 mb-0">
