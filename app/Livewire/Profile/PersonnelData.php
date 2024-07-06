@@ -14,7 +14,7 @@ class PersonnelData extends Component
 {
     use LivewireAlert;
 
-    public $user, $institution_id, $education_id, $rank_id, $position, $unit_name, $role;
+    public $user, $institution_id, $education_id, $rank_id, $position, $unit_name, $role, $nip;
     public $educations, $institutions, $ranks;
 
     public function mount($id = null)
@@ -37,6 +37,7 @@ class PersonnelData extends Component
             $this->role = $user->teacher;
         }
 
+        $this->nip = $this->role->nip;
         $this->institution_id = $this->role->institution_id;
         $this->education_id = $this->role->education_id;
         $this->rank_id = $this->role->rank_id;
@@ -47,6 +48,7 @@ class PersonnelData extends Component
     public function updatePersonnelData()
     {
         $this->validate([
+            'nip' => 'required',
             'institution_id' => 'required',
             'education_id' => 'required',
             'rank_id' => 'required',
@@ -56,6 +58,7 @@ class PersonnelData extends Component
 
         try {
             $this->role->update([
+                'nip' => $this->nip,
                 'institution_id' => $this->institution_id,
                 'education_id' => $this->education_id,
                 'rank_id' => $this->rank_id,

@@ -1,7 +1,18 @@
 <div>
     <div class="row">
 
-        <div class="col-lg-4">
+        <div class="col-md-4 mb-3">
+            <label for="form-label">NIP</label>
+            <input type="text" class="form-control @error('nip') is-invalid @enderror" wire:model="nip">
+
+            @error('nip')
+                <span class="invalid-feedback" role="alert">
+                    <span>{{ $message }}</span>
+                </span>
+            @enderror
+        </div>
+
+        <div class="col-md-4 mb-3">
             <div class="mb-3">
                 <label for="basicpill-pancard-input"> Institusi</label>
                 <select wire:model='institution_id' class="form-control @error('institution_id') is-invalid @enderror">
@@ -21,7 +32,7 @@
             </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-md-4 mb-3">
             <div class="mb-3">
                 <label for="basicpill-vatno-input">Pendidikan</label>
                 <select wire:model='education_id' class="form-control @error('education_id') is-invalid @enderror">
@@ -40,7 +51,7 @@
             </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-md-4 mb-3">
             <div class="mb-3">
                 <label for="basicpill-vatno-input">Pangkat/Golongan </label>
                 <select wire:model='rank_id' class="form-control @error('rank_id') is-invalid @enderror">
@@ -59,7 +70,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
             <label for="form-label">Jabatan</label>
             <input type="text" class="form-control @error('position') is-invalid @enderror" wire:model="position">
 
@@ -70,7 +81,7 @@
             @enderror
         </div>
 
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
             <label for="form-label">Nama Unit Kerja</label>
             <input type="text" class="form-control @error('unit_name') is-invalid @enderror" wire:model="unit_name">
 
