@@ -15,7 +15,7 @@ class TopicSection extends Component
     use LivewireAlert, WithFileUploads;
 
     public $topic;
-    public $title, $start_at, $end_at, $type_topic_id, $course_id, $topic_id, $slug, $description, $video_url, $document_url, $document_path, $zoom_url, $percentage_value, $status, $success = false, $created_by, $created_at;
+    public $title, $start_at, $end_at, $type_topic_id, $course_id, $topic_id, $slug, $description, $video_id, $video_url, $document_url, $document_path, $zoom_url, $percentage_value, $status, $success = false, $created_by, $created_at;
     public $now;
 
     public $file;
@@ -80,6 +80,16 @@ class TopicSection extends Component
                 $this->file = $activity['file'] ?? null;
             }
         }
+
+        if ($this->video_url != null) {
+            $this->video_id = $this->extractVideoYoutube($this->video_url);
+        }
+    }
+
+    public function extractVideoYoutube($video_url)
+    {
+        parse_str(parse_url($video_url, PHP_URL_QUERY), $urlParams);
+        return $urlParams['v'] ?? null;
     }
 
     public function uploadSPT()

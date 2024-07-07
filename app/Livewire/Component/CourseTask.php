@@ -12,6 +12,8 @@ class CourseTask extends Component
     public $course;
     public $courseTopics;
 
+    protected $listeners = ['refreshPage' => '$refresh'];
+
     public function mount($course)
     {
         $this->course = $course;
