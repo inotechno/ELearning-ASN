@@ -77,7 +77,7 @@ class CourseActivity extends Component
             });
         })->with('participant', 'course', 'courseTopic')->whereHas('course', function () {
             return $this->course;
-        })->latest();
+        })->where('course_id', $this->courseId)->latest();
 
         $this->activities = $course_activities->get();
         $course_activities = $course_activities->paginate(10);

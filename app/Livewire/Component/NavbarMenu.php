@@ -15,21 +15,27 @@ class NavbarMenu extends Component
             'roles' => 'administrator|teacher|participant',
         ],
         [
-            'name' => 'Courses',
+            'name' => 'Kelola kategori',
+            'icon' => 'mdi mdi-shape',
+            'url' => 'category',
+            'roles' => 'administrator',
+        ],
+        [
+            'name' => 'Kelola Kursus',
             'icon' => 'mdi mdi-school',
             'url' => 'courses',
-            'roles' => 'administrator|teacher|participant',
+            'roles' => 'administrator|teacher',
+        ],
+        [
+            'name' => 'Pilih Kursus',
+            'icon' => 'mdi mdi-school',
+            'url' => 'courses',
+            'roles' => 'participant',
         ],
         [
             'name' => 'Users',
             'icon' => 'mdi mdi-account',
             'url' => 'users',
-            'roles' => 'administrator',
-        ],
-        [
-            'name' => 'Category',
-            'icon' => 'mdi mdi-shape',
-            'url' => 'category',
             'roles' => 'administrator',
         ],
         [
@@ -45,7 +51,7 @@ class NavbarMenu extends Component
             'roles' => 'participant',
         ],
         [
-            'name' => 'Participant Course',
+            'name' => 'Kelola Participant',
             'icon' => 'mdi mdi-cast-education',
             'url' => 'participants/courses',
             'roles' => 'administrator',

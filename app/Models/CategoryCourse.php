@@ -18,4 +18,15 @@ class CategoryCourse extends Model
     {
         return $this->hasMany(Course::class, 'category_id');
     }
+
+    public function activeCoursesCount()
+{
+    $now = now(); // Atau Carbon::now()
+
+    return $this->courses()
+        ->whereDate('implementation_start', '<=', $now)
+        ->whereDate('implementation_end', '>=', $now)
+        ->whereNull('deleted_at')
+        ->count();
+}
 }

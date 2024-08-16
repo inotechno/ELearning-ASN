@@ -96,8 +96,8 @@
                                             <td>{{ $participant->nip }}</td>
                                             <td>{{ $participant->position }}</td>
                                             <td>{{ $participant->unit_name }}</td>
-                                            <td>{{ $participant->institution->name }}</td>
-                                            <td>{{ $participant->rank->name }}</td>
+                                            <td>{{ $participant->institution ? $participant->institution->name : ''  }}</td>
+                                            <td>{{ $participant->rank ? $participant->rank->name : '' }}</td>
                                             <td>{{ $course->title }}</td>
                                             <td>
                                                 <ul class="list-unstyled">

@@ -45,4 +45,9 @@ class CourseTopic extends Model
     {
         return $this->hasMany(ParticipantActivity::class, 'course_topic_id');
     }
+
+    public function material()
+    {
+        return $this->hasOne(LearningMaterial::class, 'course_topic_id');
+    }
 }

@@ -21,7 +21,7 @@
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#teacher" role="tab">
                                 <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
-                                <span class="d-none d-sm-block">Guru</span>
+                                <span class="d-none d-sm-block">Pengajar</span>
                             </a>
                         </li>
                     </ul>

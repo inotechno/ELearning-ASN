@@ -97,6 +97,29 @@
                         <a href="{{ $zoom_url }}" target="_blank">{{ $zoom_url }}</a>
                     </div>
                 @endif
+
+                @if ($material)
+                    <div class="d-flex align-items-center mt-4">
+                        <div style="width: 60px;">
+                            <div class="avatar-sm d-flex align-items-center justify-content-center">
+                                <span class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-24">
+                                    <i class="bx bxs-file-{{ $material->file_type }}"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column flex-grow-1">
+                            <h5 class="font-size-14 mb-1">
+                                <a href="{{ url('storage/' . $material->file_path) }}" class="text-dark" target="_blank">{{$material->title}}.{{$material->file_type}}</a>
+                            </h5>
+                            <small></small>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <a href="{{ url('storage/' . $material->file_path) }}" class="text-dark" target="_blank">
+                                <i class="bx bx-download h3 m-0"></i>
+                            </a>
+                        </div>
+                    </div>
+                @endif
             @else
                 <a href="javascript:void(0)" class="btn btn-primary" wire:click="confirmStartTopic">Mulai Topik</a>
             @endif

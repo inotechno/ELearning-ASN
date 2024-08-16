@@ -15,7 +15,26 @@ class TopicSection extends Component
     use LivewireAlert, WithFileUploads;
 
     public $topic;
-    public $title, $start_at, $end_at, $type_topic_id, $course_id, $topic_id, $slug, $description, $video_id, $video_url, $document_url, $document_path, $zoom_url, $percentage_value, $status, $success = false, $created_by, $created_at;
+    public $title,
+    $start_at,
+    $end_at,
+    $type_topic_id,
+    $course_id,
+    $topic_id,
+    $slug,
+    $description,
+    $video_id,
+    $video_url,
+    $document_url,
+    $document_path,
+    $zoom_url,
+    $percentage_value,
+    $status,
+    $success = false,
+    $created_by,
+    $created_at,
+    $material;
+
     public $now;
 
     public $file;
@@ -71,6 +90,7 @@ class TopicSection extends Component
         $this->percentage_value = $this->topic->percentage_value;
         $this->status = $this->topic->status;
         $this->created_by = $this->topic->created_by;
+        $this->material = $this->topic->material;
 
         if (!is_null($activity) && !empty($activity)) {
             $this->success = true;

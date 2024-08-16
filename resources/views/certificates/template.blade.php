@@ -86,7 +86,8 @@
         </div>
         <div class="reason">
             Sebagai penghargaan atas keberhasilan dalam mengikuti dan menyelesaikan kegiatan<br />
-            <h2 style="margin: 5px;">{{ $course }} ( {{$qualification}} )</h2> yang diselenggarakan oleh <br />
+            <h2 style="margin: 5px;">{{ $course }} </h2> 
+            <h3 style="margin: 5px;">Kualifikasi : ( {{$qualification}} )</h3> yang diselenggarakan oleh <br />
             Badan Kepegawaian dan Pengembangan Sumber Daya Manusia Kota Serang <br />
             secara online/virtual melalui LMS (Learning Management System) <br />
         </div>
