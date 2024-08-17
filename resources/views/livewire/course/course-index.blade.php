@@ -38,7 +38,7 @@
                                     </li>
                                 </ul>
 
-                                <p>{{ $course->description_short }}</p>
+                                <p>{!! $course->description_short !!}</p>
 
                                 <div>
                                     <div class="d-flex align-items-center">
