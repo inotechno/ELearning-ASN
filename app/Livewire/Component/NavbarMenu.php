@@ -15,7 +15,7 @@ class NavbarMenu extends Component
             'roles' => 'administrator|teacher|participant',
         ],
         [
-            'name' => 'Kelola kategori / Tipe',
+            'name' => 'Kelola kategori',
             'icon' => 'mdi mdi-shape',
             'url' => 'category',
             'roles' => 'administrator',

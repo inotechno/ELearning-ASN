@@ -1,6 +1,6 @@
 /*
 SQLyog Community v13.2.0 (64 bit)
-MySQL - 10.4.32-MariaDB : Database - lms_asn
+MySQL - 10.4.28-MariaDB : Database - lms_asn
 *********************************************************************
 */
 
@@ -9,7 +9,6 @@ MySQL - 10.4.32-MariaDB : Database - lms_asn
 /*!40101 SET SQL_MODE=''*/;
 
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`lms_asn` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
@@ -17,6 +16,8 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`lms_asn` /*!40100 DEFAULT CHARACTER SET
 USE `lms_asn`;
 
 /*Table structure for table `category_courses` */
+
+DROP TABLE IF EXISTS `category_courses`;
 
 CREATE TABLE `category_courses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -34,6 +35,8 @@ insert  into `category_courses`(`id`,`name`,`slug`,`created_at`,`updated_at`) va
 (2,'TA2025','ta2025','2024-07-01 08:43:51','2024-07-01 08:43:51');
 
 /*Table structure for table `course_topics` */
+
+DROP TABLE IF EXISTS `course_topics`;
 
 CREATE TABLE `course_topics` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -60,7 +63,7 @@ CREATE TABLE `course_topics` (
   CONSTRAINT `course_topics_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `course_topics_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `course_topics_type_topic_id_foreign` FOREIGN KEY (`type_topic_id`) REFERENCES `type_topics` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `course_topics` */
 
@@ -91,9 +94,15 @@ insert  into `course_topics`(`id`,`course_id`,`type_topic_id`,`title`,`slug`,`de
 (24,5,3,'Quae libero voluptas.','culpa-dolorem-repudiandae-tempora','Voluptatum perferendis voluptas consectetur quaerat molestiae molestiae. Nam reprehenderit cupiditate atque id. Ea quo numquam assumenda ab unde. Sequi doloribus illum aut dolorem et. Dolorum quo vel voluptatem omnis incidunt nemo velit sed. Eos aut aperiam architecto sed eius. Aut qui accusamus at ab voluptate perspiciatis architecto. Voluptatem ipsam tempore nisi voluptatem ipsa necessitatibus officia pariatur. Itaque et voluptas animi illum repudiandae quaerat ducimus. Eum tempora error sed. Minima qui est placeat ea. Qui et sed ut quo. Eum nihil libero accusamus.','https://saptono.go.id/consequatur-nemo-earum-occaecati-sit.html','https://www.siregar.my.id/est-repellat-laudantium-magnam-iusto-et-et',NULL,'http://www.wasita.co.id/est-repudiandae-voluptatem-quo-cum-nam-quidem.html','1990-12-09 00:00:00','1985-11-13 00:00:00',8.00,'progress',37,'2024-07-01 08:43:52','2024-07-01 08:43:52'),
 (25,5,3,'Minus omnis quae voluptates.','ut-totam-id-neque','Id debitis aut cumque dolores laboriosam deleniti. Et quia in commodi tempora vel. Aut voluptas et minus enim voluptas facere. Omnis excepturi eaque minus quasi rem. Corporis veritatis rerum provident placeat sed ut est. Error tempore est natus ut laboriosam rerum fuga rerum. Est adipisci totam hic cupiditate facere. Id odit dolores eum omnis ut eligendi hic ea. Error inventore repellendus ea rem amet. Doloremque eveniet velit cumque.','http://www.salahudin.co/aut-atque-distinctio-deserunt-impedit-maiores-eum.html','http://tampubolon.biz/facere-illo-ipsa-repellendus-velit-quod-alias-dolor-et',NULL,'https://sihombing.tv/iusto-et-quo-voluptas-eos.html','1983-01-17 00:00:00','1993-07-03 00:00:00',84.00,'finish',6,'2024-07-01 08:43:52','2024-07-01 08:43:52'),
 (26,31,NULL,'FGHFGHFGH','fghfghfgh','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s',NULL,NULL,NULL,NULL,'2024-07-01 00:00:00','2024-07-01 15:00:00',50.00,'begin',1,'2024-07-01 11:19:54','2024-07-01 11:20:10'),
-(27,31,1,'materas','materas','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s','https://www.youtube.com/embed/vaPSz2-NVQs?si=eAhNaqJE-iXV5YOb',NULL,NULL,NULL,'2024-07-01 14:01:45','2024-07-01 18:00:00',50.00,'finish',1,'2024-07-01 11:19:54','2024-07-01 11:19:54');
+(27,31,1,'materas','materas','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s','https://www.youtube.com/embed/vaPSz2-NVQs?si=eAhNaqJE-iXV5YOb',NULL,NULL,NULL,'2024-07-01 14:01:45','2024-07-01 18:00:00',50.00,'finish',1,'2024-07-01 11:19:54','2024-07-01 11:19:54'),
+(28,32,NULL,'Upload SPT','upload-spt','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',NULL,NULL,NULL,NULL,'2024-08-17 07:00:00','2024-08-17 16:06:20',10.00,'begin',1,'2024-08-17 14:18:12','2024-08-17 14:18:12'),
+(29,32,3,'Belajar Operator PHP','belajar-operator-php','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',NULL,NULL,NULL,'https://youtube.com','2024-08-17 12:00:00','2024-08-17 16:00:00',30.00,'progress',1,'2024-08-17 14:18:12','2024-08-17 14:18:12'),
+(30,32,3,'Perulangan PHP','perulangan-php','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',NULL,NULL,NULL,'https://youtube.com','2024-08-17 13:00:00','2024-08-17 17:00:00',30.00,'progress',1,'2024-08-17 14:18:12','2024-08-17 14:18:12'),
+(31,32,3,'Penggunaan IF','penggunaan-if','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',NULL,NULL,NULL,'https://github.com','2024-08-18 07:00:00','2024-08-18 17:00:00',30.00,'finish',1,'2024-08-17 14:18:12','2024-08-17 14:18:12');
 
 /*Table structure for table `courses` */
+
+DROP TABLE IF EXISTS `courses`;
 
 CREATE TABLE `courses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -128,7 +137,7 @@ CREATE TABLE `courses` (
   CONSTRAINT `courses_teacher_id_foreign` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `courses_type_id_foreign` FOREIGN KEY (`type_id`) REFERENCES `type_courses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `courses_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `courses` */
 
@@ -163,9 +172,12 @@ insert  into `courses`(`id`,`category_id`,`type_id`,`teacher_id`,`img_thumbnail`
 (28,1,1,38,'https://via.placeholder.com/640x480.png/001122?text=soluta',NULL,'Quam eum quia eos animi qui.','ut-corporis-quis-voluptas-amet','Iste rem est itaque harum voluptatem.','In repellat sed qui ut consequatur dignissimos. Consectetur quo aut autem. Ab sed vero totam explicabo corrupti vel.','1991-03-21','2012-01-01',0,1,NULL,NULL,'2024-07-01 08:43:52','2024-07-01 08:43:52',NULL),
 (29,1,1,40,'https://via.placeholder.com/640x480.png/008800?text=porro',NULL,'Aspernatur quod ea qui asperiores voluptates molestias enim.','esse-deserunt-id-aliquam-laborum-et','Voluptates laborum amet suscipit nihil molestiae optio. Dolorem voluptatum et cupiditate voluptas quo provident et.','Asperiores nam harum saepe. Quisquam nemo facere exercitationem perferendis fugit vero.','1973-07-02','1983-04-08',0,37,NULL,NULL,'2024-07-01 08:43:52','2024-07-01 08:43:52',NULL),
 (30,1,1,42,'https://via.placeholder.com/640x480.png/006699?text=sed',NULL,'Quia placeat doloribus sunt enim nisi rerum.','amet-recusandae-cupiditate-nihil-expedita','Dolorem quo facilis eum sit.','Laborum dolorum dolor atque voluptate quidem consequatur ut. Accusamus ut odit a vel praesentium culpa atque. Aspernatur ea dolorum ut rem enim nam. Delectus voluptates dolores quia accusamus ut sit qui.','2018-02-12','1979-02-16',0,17,NULL,NULL,'2024-07-01 08:43:52','2024-07-01 08:43:52',NULL),
-(31,1,1,1,'http://localhost:8000/storage/thumbnails/FBGQKJOkrcM65WCjYZDo5y7Z4Bb6noMxAezbr5H0.png','thumbnails/FBGQKJOkrcM65WCjYZDo5y7Z4Bb6noMxAezbr5H0.png','asdasdasda sdas','asdasdasda-sdas','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s','<p><strong style=\"color: rgb(0, 0, 0);\">Lorem Ipsum</strong><span style=\"color: rgb(0, 0, 0);\">&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s</span></p>','2024-07-01','2024-07-01',1,1,NULL,NULL,'2024-07-01 11:19:54','2024-07-01 11:19:54',NULL);
+(31,1,1,1,'http://localhost:8000/storage/thumbnails/FBGQKJOkrcM65WCjYZDo5y7Z4Bb6noMxAezbr5H0.png','thumbnails/FBGQKJOkrcM65WCjYZDo5y7Z4Bb6noMxAezbr5H0.png','asdasdasda sdas','asdasdasda-sdas','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s','<p><strong style=\"color: rgb(0, 0, 0);\">Lorem Ipsum</strong><span style=\"color: rgb(0, 0, 0);\">&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s</span></p>','2024-07-01','2024-07-01',1,1,NULL,NULL,'2024-07-01 11:19:54','2024-07-01 11:19:54',NULL),
+(32,1,1,1,'http://localhost:8000/storage/thumbnails/7ukzdeXmbDzP4PJEtVcnPrA8UWWgGALjmh9r45jR.png','thumbnails/7ukzdeXmbDzP4PJEtVcnPrA8UWWgGALjmh9r45jR.png','Pemrograman PHP Basic','pemrograman-php-basic','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,','<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>','2024-08-17','2024-08-19',1,1,NULL,NULL,'2024-08-17 14:18:12','2024-08-17 14:18:12',NULL);
 
 /*Table structure for table `education_masters` */
+
+DROP TABLE IF EXISTS `education_masters`;
 
 CREATE TABLE `education_masters` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -192,6 +204,8 @@ insert  into `education_masters`(`id`,`name`,`created_at`,`updated_at`) values
 
 /*Table structure for table `failed_jobs` */
 
+DROP TABLE IF EXISTS `failed_jobs`;
+
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `uuid` varchar(255) NOT NULL,
@@ -207,6 +221,8 @@ CREATE TABLE `failed_jobs` (
 /*Data for the table `failed_jobs` */
 
 /*Table structure for table `institution_masters` */
+
+DROP TABLE IF EXISTS `institution_masters`;
 
 CREATE TABLE `institution_masters` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -252,14 +268,44 @@ insert  into `institution_masters`(`id`,`name`,`created_at`,`updated_at`) values
 (31,'RSUD','2024-07-01 08:43:50','2024-07-01 08:43:50'),
 (32,'DINDIKBUD','2024-07-01 08:43:50','2024-07-01 08:43:50');
 
+/*Table structure for table `learning_materials` */
+
+DROP TABLE IF EXISTS `learning_materials`;
+
+CREATE TABLE `learning_materials` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `course_topic_id` bigint(20) unsigned NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `file_path` varchar(255) DEFAULT NULL,
+  `file_url` varchar(255) DEFAULT NULL,
+  `file_type` varchar(255) DEFAULT NULL,
+  `file_size` varchar(255) DEFAULT NULL,
+  `file_mime` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `learning_materials_course_topic_id_foreign` (`course_topic_id`),
+  CONSTRAINT `learning_materials_course_topic_id_foreign` FOREIGN KEY (`course_topic_id`) REFERENCES `course_topics` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `learning_materials` */
+
+insert  into `learning_materials`(`id`,`course_topic_id`,`title`,`description`,`file_path`,`file_url`,`file_type`,`file_size`,`file_mime`,`created_at`,`updated_at`) values 
+(1,29,'Belajar Operator',NULL,'documents/wXwlOej70Bzix0Xs0wY4gJpEWRVy3r3Ktoheey3j.pdf','http://localhost:8000/storage/documents/wXwlOej70Bzix0Xs0wY4gJpEWRVy3r3Ktoheey3j.pdf','pdf','171081','application/pdf','2024-08-17 14:25:47','2024-08-17 14:25:47'),
+(2,30,'Perulangan PHP',NULL,'documents/kmwtgDeuCC1OG7MZtVyugUQR41ze30U0i72mOHoU.pdf','http://localhost:8000/storage/documents/kmwtgDeuCC1OG7MZtVyugUQR41ze30U0i72mOHoU.pdf','pdf','209178','application/pdf','2024-08-17 15:04:21','2024-08-17 15:04:21'),
+(3,31,'Penggunaan IF',NULL,'documents/ROZ3BZ5QdtWIRIcZo7NM0mcyEbSobBQTz8BqzRpl.pdf','http://localhost:8000/storage/documents/ROZ3BZ5QdtWIRIcZo7NM0mcyEbSobBQTz8BqzRpl.pdf','pdf','394842','application/pdf','2024-08-17 15:04:44','2024-08-17 15:04:44');
+
 /*Table structure for table `migrations` */
+
+DROP TABLE IF EXISTS `migrations`;
 
 CREATE TABLE `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `migrations` */
 
@@ -280,9 +326,13 @@ insert  into `migrations`(`id`,`migration`,`batch`) values
 (14,'2024_06_18_162724_create_type_topics_table',1),
 (15,'2024_06_18_170843_create_course_topics_table',1),
 (16,'2024_06_18_172651_participants_courses',1),
-(17,'2024_06_18_172755_create_participant_activities_table',1);
+(17,'2024_06_18_172755_create_participant_activities_table',1),
+(18,'2024_08_15_211659_create_learning_materials_table',2),
+(19,'2024_08_15_225948_change_description_learning_materials',2);
 
 /*Table structure for table `model_has_permissions` */
+
+DROP TABLE IF EXISTS `model_has_permissions`;
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint(20) unsigned NOT NULL,
@@ -296,6 +346,8 @@ CREATE TABLE `model_has_permissions` (
 /*Data for the table `model_has_permissions` */
 
 /*Table structure for table `model_has_roles` */
+
+DROP TABLE IF EXISTS `model_has_roles`;
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint(20) unsigned NOT NULL,
@@ -355,6 +407,8 @@ insert  into `model_has_roles`(`role_id`,`model_type`,`model_id`) values
 
 /*Table structure for table `participant_activities` */
 
+DROP TABLE IF EXISTS `participant_activities`;
+
 CREATE TABLE `participant_activities` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `participant_id` bigint(20) unsigned NOT NULL,
@@ -371,16 +425,20 @@ CREATE TABLE `participant_activities` (
   CONSTRAINT `participant_activities_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `participant_activities_course_topic_id_foreign` FOREIGN KEY (`course_topic_id`) REFERENCES `course_topics` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `participant_activities_participant_id_foreign` FOREIGN KEY (`participant_id`) REFERENCES `participants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `participant_activities` */
 
 insert  into `participant_activities`(`id`,`participant_id`,`course_id`,`course_topic_id`,`progress`,`file`,`created_at`,`updated_at`) values 
 (1,1,31,26,50.00,'documents/YXW2TMxoqnFg8SnuAVNLBaN5SqYA4j68FIUGRzTd.pdf','2024-07-01 14:01:36','2024-07-01 14:01:36'),
 (2,1,31,27,50.00,NULL,'2024-07-01 14:01:53','2024-07-01 14:01:53'),
-(3,2,31,26,50.00,'documents/lGWdwo9ZYlo3TuiFAuv3s9QWqKxxqP6AOQwpMbUi.jpg','2024-07-01 14:13:02','2024-07-01 14:13:02');
+(3,2,31,26,50.00,'documents/lGWdwo9ZYlo3TuiFAuv3s9QWqKxxqP6AOQwpMbUi.jpg','2024-07-01 14:13:02','2024-07-01 14:13:02'),
+(4,1,32,28,10.00,'documents/bWO3TETsHWCW3a5LRlKNLsmar9Ov9hZP2ZYYt1in.pdf','2024-08-17 15:07:02','2024-08-17 15:07:02'),
+(5,1,32,29,30.00,NULL,'2024-08-17 15:26:00','2024-08-17 15:26:00');
 
 /*Table structure for table `participants` */
+
+DROP TABLE IF EXISTS `participants`;
 
 CREATE TABLE `participants` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -438,6 +496,8 @@ insert  into `participants`(`id`,`user_id`,`institution_id`,`education_id`,`rank
 
 /*Table structure for table `participants_courses` */
 
+DROP TABLE IF EXISTS `participants_courses`;
+
 CREATE TABLE `participants_courses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `course_id` bigint(20) unsigned NOT NULL,
@@ -449,15 +509,18 @@ CREATE TABLE `participants_courses` (
   KEY `participants_courses_participant_id_foreign` (`participant_id`),
   CONSTRAINT `participants_courses_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `participants_courses_participant_id_foreign` FOREIGN KEY (`participant_id`) REFERENCES `participants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `participants_courses` */
 
 insert  into `participants_courses`(`id`,`course_id`,`participant_id`,`created_at`,`updated_at`) values 
 (1,31,1,'2024-07-01 14:00:38',NULL),
-(2,31,2,'2024-07-01 14:11:50',NULL);
+(2,31,2,'2024-07-01 14:11:50',NULL),
+(3,32,1,'2024-08-17 15:05:56',NULL);
 
 /*Table structure for table `password_reset_tokens` */
+
+DROP TABLE IF EXISTS `password_reset_tokens`;
 
 CREATE TABLE `password_reset_tokens` (
   `email` varchar(255) NOT NULL,
@@ -473,6 +536,8 @@ insert  into `password_reset_tokens`(`email`,`token`,`created_at`) values
 
 /*Table structure for table `permissions` */
 
+DROP TABLE IF EXISTS `permissions`;
+
 CREATE TABLE `permissions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -486,6 +551,8 @@ CREATE TABLE `permissions` (
 /*Data for the table `permissions` */
 
 /*Table structure for table `personal_access_tokens` */
+
+DROP TABLE IF EXISTS `personal_access_tokens`;
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -506,6 +573,8 @@ CREATE TABLE `personal_access_tokens` (
 /*Data for the table `personal_access_tokens` */
 
 /*Table structure for table `rank_masters` */
+
+DROP TABLE IF EXISTS `rank_masters`;
 
 CREATE TABLE `rank_masters` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -539,6 +608,8 @@ insert  into `rank_masters`(`id`,`name`,`created_at`,`updated_at`) values
 
 /*Table structure for table `role_has_permissions` */
 
+DROP TABLE IF EXISTS `role_has_permissions`;
+
 CREATE TABLE `role_has_permissions` (
   `permission_id` bigint(20) unsigned NOT NULL,
   `role_id` bigint(20) unsigned NOT NULL,
@@ -551,6 +622,8 @@ CREATE TABLE `role_has_permissions` (
 /*Data for the table `role_has_permissions` */
 
 /*Table structure for table `roles` */
+
+DROP TABLE IF EXISTS `roles`;
 
 CREATE TABLE `roles` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -570,6 +643,8 @@ insert  into `roles`(`id`,`name`,`guard_name`,`created_at`,`updated_at`) values
 (3,'participant','web','2024-07-01 08:43:50','2024-07-01 08:43:50');
 
 /*Table structure for table `teachers` */
+
+DROP TABLE IF EXISTS `teachers`;
 
 CREATE TABLE `teachers` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -653,22 +728,26 @@ insert  into `teachers`(`id`,`user_id`,`institution_id`,`education_id`,`rank_id`
 
 /*Table structure for table `type_courses` */
 
+DROP TABLE IF EXISTS `type_courses`;
+
 CREATE TABLE `type_courses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `type_courses` */
 
 insert  into `type_courses`(`id`,`name`,`created_at`,`updated_at`) values 
 (1,'Moneterial','2024-07-01 08:43:51','2024-07-01 08:43:51'),
-(2,'Teknis/Fungsional','2024-07-01 08:43:51','2024-07-01 08:43:51'),
+(2,'Teknis/Fungsional','2024-07-01 08:43:51','2024-08-17 16:14:06'),
 (3,'Sosio Kultural','2024-07-01 08:43:51','2024-07-01 08:43:51');
 
 /*Table structure for table `type_topics` */
+
+DROP TABLE IF EXISTS `type_topics`;
 
 CREATE TABLE `type_topics` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -686,6 +765,8 @@ insert  into `type_topics`(`id`,`name`,`created_at`,`updated_at`) values
 (3,'Zoom Link','2024-07-01 08:43:51','2024-07-01 08:43:51');
 
 /*Table structure for table `users` */
+
+DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -710,7 +791,7 @@ CREATE TABLE `users` (
 insert  into `users`(`id`,`name`,`username`,`email`,`email_verified_at`,`password`,`image`,`image_path`,`status`,`remember_token`,`created_at`,`updated_at`) values 
 (1,'Administrator','administrator','admin@app.com','2024-07-01 08:43:50','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','http://localhost:8000/storage/thumbnails/3nwKQCmC5Sn9RHbVqCwRXc72llRd0b3h6JDh9fgM.jpg','thumbnails/3nwKQCmC5Sn9RHbVqCwRXc72llRd0b3h6JDh9fgM.jpg',1,'uEoiqP8CVwMuSHQSwKRhIwGWwiN2kqlvg7RuZmN2FrvtCR3ZDT5eK4f2aj3y','2024-07-01 08:43:50','2024-07-01 09:38:32'),
 (2,'Pengajar','pengajar','pengajar@app.com','2024-07-01 08:43:50','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',NULL,NULL,1,'sQMcWozh1PLGVhY5IvzwVgda1YCmwPXvUZchBaz6EZ4GjEDiXbUyHrRASimN','2024-07-01 08:43:50','2024-07-01 08:43:50'),
-(3,'Peserta','peserta','peserta@app.com','2024-07-01 08:43:50','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',NULL,NULL,1,'ItJKkouVf284SkOs2NGUJxUqrFVE4ruGwNWkDEc1pZNJm7Nvv4n47CuFhFlf','2024-07-01 08:43:50','2024-07-01 08:43:50'),
+(3,'Peserta','peserta','peserta@app.com','2024-07-01 08:43:50','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',NULL,NULL,1,'rULiaZKCmqRUjJCcU4CJjTX7cPPCgI2amS3KZMmIHPCVHpVnh90eT5UnAw82','2024-07-01 08:43:50','2024-07-01 08:43:50'),
 (4,'Ozy Mahendra','cyuliarti','ahmad.fatoni@mindotek.com','2024-07-01 08:43:51','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','https://via.placeholder.com/640x480.png/00ffcc?text=people+est',NULL,1,'MIucFDlDyrL2d4ml2twnjgK00lde4v4TjEv57tR87P0lYr56knChbg9UXgXm','2024-07-01 08:43:51','2024-07-01 10:45:20'),
 (5,'Padmi Nasyiah','gina.halimah','jpalastri@example.org','2024-07-01 08:43:51','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','https://via.placeholder.com/640x480.png/00bbaa?text=people+nesciunt',NULL,1,'NP1xWM5Ug5','2024-07-01 08:43:51','2024-07-01 08:43:51'),
 (6,'Janet Hafshah Safitri S.IP','simon53','daru.kuswandari@example.com','2024-07-01 08:43:51','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','https://via.placeholder.com/640x480.png/007755?text=people+voluptatem',NULL,1,'YNP9cb5au4','2024-07-01 08:43:51','2024-07-01 08:43:51'),
@@ -753,6 +834,5 @@ insert  into `users`(`id`,`name`,`username`,`email`,`email_verified_at`,`passwor
 (43,'Ilyas Candra Suryono','riyanti.asirwada','farhunnisa68@example.org','2024-07-01 08:43:52','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','https://via.placeholder.com/640x480.png/00aadd?text=people+repellat',NULL,1,'LewcvmCT0b','2024-07-01 08:43:52','2024-07-01 08:43:52');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
