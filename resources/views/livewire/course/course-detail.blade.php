@@ -106,7 +106,7 @@
                                                             <h5 class="font-size-14 mb-1">{{ $topic->title }}<small
                                                                     class="text-muted float-end">{{ $topic->start_at }}</small>
                                                             </h5>
-                                                            <p class="text-muted">{{ $topic->description }}</p>
+                                                            <p class="text-muted">{!! $topic->description !!}</p>
                                                             <div>
 
                                                                 @hasrole('administrator|teacher')

@@ -194,7 +194,6 @@ class CourseEdit extends Component
                 'created_by' => Auth::user()->id,
             ]);
 
-
             // Ambil semua ID topik yang ada di daftar baru
             $newTopicIds = collect($this->topics)->pluck('id')->filter()->all();
 
