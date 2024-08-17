@@ -38,7 +38,7 @@
 
             <h5 class="font-size-20 mt-4">Deskripsi Topik :</h5>
 
-            <p class="text-muted">{{ $description }}</p>
+            <p class="text-muted">{!! $description !!}</p>
 
             @if ($success)
                 @if ($type_topic_id == null)
@@ -109,7 +109,8 @@
                         </div>
                         <div class="d-flex flex-column flex-grow-1">
                             <h5 class="font-size-14 mb-1">
-                                <a href="{{ url('storage/' . $material->file_path) }}" class="text-dark" target="_blank">{{$material->title}}.{{$material->file_type}}</a>
+                                <a href="{{ url('storage/' . $material->file_path) }}" class="text-dark"
+                                    target="_blank">{{ $material->title }}.{{ $material->file_type }}</a>
                             </h5>
                             <small></small>
                         </div>
