@@ -15,7 +15,7 @@ class NavbarMenu extends Component
             'roles' => 'administrator|teacher|participant',
         ],
         [
-            'name' => 'Kelola kategori',
+            'name' => 'Kelola kategori / Tipe',
             'icon' => 'mdi mdi-shape',
             'url' => 'category',
             'roles' => 'administrator',
@@ -51,7 +51,7 @@ class NavbarMenu extends Component
             'roles' => 'participant',
         ],
         [
-            'name' => 'Kelola Participant',
+            'name' => 'Participant',
             'icon' => 'mdi mdi-cast-education',
             'url' => 'participants/courses',
             'roles' => 'administrator',

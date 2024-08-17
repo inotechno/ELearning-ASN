@@ -48,11 +48,12 @@ class CourseIndex extends Component
 
     public function getCourse($id)
     {
-        $this->course = Course::with(['topics' => function($query){
+        $this->course = Course::with(['topics' => function ($query) {
             $query->where('status', '!=', 'begin');
         }])->find($id);
-        $this->topics = $this->course->topics->filter(function($topic) {
-            return $topic->material->isEmpty();
+        $this->topics = $this->course->topics->filter(function ($topic) {
+            // Cek apakah materi ada atau tidak
+            return !$topic->material; // Memeriksa apakah materi adalah null
         });
         $this->dispatch('openModal');
     }
@@ -125,9 +126,9 @@ class CourseIndex extends Component
         $courses = Course::when($this->search, function ($query) {
             $query->where('name', 'like', '%' . $this->search . '%')
                 ->orWhere('description', 'like', '%' . $this->search . '%');
-        })->when($this->category_id, function($query) {
+        })->when($this->category_id, function ($query) {
             $query->where('category_id', $this->category_id);
-        })->when($this->type_id, function($query){
+        })->when($this->type_id, function ($query) {
             $query->where('type_id', $this->type_id);
         })->latest();
 

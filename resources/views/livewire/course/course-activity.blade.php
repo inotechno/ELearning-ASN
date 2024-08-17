@@ -1,4 +1,26 @@
 <div>
+
+    <div class="row d-flex flex-wrap">
+        @foreach ($course_topics as $topic)
+            <div class="col-md">
+                <a href="#" wire:click.prevent="getCourseActivity({{ $topic->id }})" class="text-decoration-none">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <p class="text-muted fw-medium">
+                                        {{ $topic->title }}
+                                    </p>
+                                    <h4 class="mb-0">{{ $topic->activities->count() }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        @endforeach
+    </div>
+
     <div class="row">
         <div class="col-lg-9">
             <div class="card">
@@ -60,8 +82,8 @@
 
                         <div class="col-xxl-1 col-lg-3">
                             <button type="button" class="btn btn-primary w-100" wire:click="exportExcel"
-                            wire:target="exportExcel"> <i class="mdi mdi-file-excel align-middle"></i>
-                            Export</button>
+                                wire:target="exportExcel"> <i class="mdi mdi-file-excel align-middle"></i>
+                                Export</button>
                         </div>
 
                     </div>
@@ -108,8 +130,9 @@
                                         <td>{{ $course_activity->course->title }}</td>
                                         <td>{{ $course_activity->courseTopic->title }}</td>
                                         <td>
-                                            @if($course_activity->file)
-                                                <a href="{{ asset('storage/'.$course_activity->file) }}" target="_blank" class="btn btn-sm btn-soft-primary">Download</a>
+                                            @if ($course_activity->file)
+                                                <a href="{{ asset('storage/' . $course_activity->file) }}"
+                                                    target="_blank" class="btn btn-sm btn-soft-primary">Download</a>
                                             @endif
                                         </td>
                                         <td>{{ $course_activity->created_at->format('d M, Y h:i') }}</td>
@@ -146,6 +169,53 @@
 
         @livewire('component.course-activity-percentage', ['course_id' => $courseId])
     </div>
+
+    <div class="modal fade" id="activityModal" data-bs-backdrop="static" data-bs-keyboard="false" wire:ignore.self>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="activityModalLabel">Absen Peserta Topic</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-nowrap align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama Peserta</th>
+                                <th scope="col">Waktu Mengikuti</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (!empty($topic_participants))
+                                @foreach ($topic_participants as $key => $topic_participant)
+                                    <tr>
+                                        <th scope="row">{{ $key + 1 }}</th>
+                                        <td>{{ $topic_participant->participant->front_name }}
+                                            {{ $topic_participant->participant->back_name }}</td>
+                                        <td>{{ $topic_participant->created_at->format('d M, Y h:i') }}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @script
+        <script>
+            $wire.on('openModal', () => {
+                $('#activityModal').modal('show');
+            })
+
+            $wire.on('closeModal', () => {
+                $('#activityModal').modal('hide');
+            })
+        </script>
+    @endscript
 
     @push('css')
         <link href="{{ asset('libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet"

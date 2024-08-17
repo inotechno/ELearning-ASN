@@ -78,6 +78,9 @@ class ParticipantCourse extends Component
             $q->when($this->course_id, function ($q) {
                 $q->where('courses.id', $this->course_id);
             });
+        })->when($this->search, function ($query) {
+            $query->where('front_name', 'like', '%' . $this->search . '%')
+                ->orWhere('back_name', 'like', '%' . $this->search . '%');
         })->with(['courses' => function ($q) {
             $q->when($this->course_id, function ($q) {
                 $q->where('courses.id', $this->course_id);

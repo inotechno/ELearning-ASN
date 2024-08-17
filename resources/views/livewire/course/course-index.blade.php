@@ -30,7 +30,14 @@
                                             {{ $course->topics->count() }} Topics
                                         </a>
                                     </li>
+                                    <li class="list-inline-item">
+                                        <a href="javascript: void(0);" class="text-muted">
+                                            <i class="bx bx-star align-middle text-muted me-1"></i>
+                                            {{ $course->type->name }}
+                                        </a>
+                                    </li>
                                 </ul>
+
                                 <p>{{ $course->description_short }}</p>
 
                                 <div>

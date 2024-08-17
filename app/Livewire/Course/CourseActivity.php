@@ -19,6 +19,8 @@ class CourseActivity extends Component
     public $course, $courseId, $course_topics, $course_topic_id, $start_date, $end_date, $type_topic_id, $search;
     public $breadcrumbData;
     public $type_topics;
+    public $topic_participants = [];
+    public $selectedTopicId;
 
     public $activities;
 
@@ -56,6 +58,25 @@ class CourseActivity extends Component
     {
         // dd($this->activities);
         return Excel::download(new ParticipantActivityExport($this->activities), 'participant-activity.xlsx');
+    }
+
+    public function getCourseActivity($id)
+    {
+        $this->selectedTopicId = $id;
+
+        // Ambil topik berdasarkan ID
+        $topic = $this->course->topics->find($id);
+
+        if ($topic) {
+            // Ambil aktivitas terkait dengan topik
+            $this->topic_participants = $topic->activities()->with('participant')->get(); // Mengambil data peserta juga // Asumsi bahwa `activities` adalah relasi dari `Topic`
+        } else {
+            $this->topic_participants = [];
+        }
+
+        // dd($this->topic_participants);
+
+        $this->dispatch('openModal');
     }
 
     public function render()

@@ -41,7 +41,7 @@
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="mt-4 mt-sm-0">
-                                                    <p class="text-muted mb-2">Teacher</p>
+                                                    <p class="text-muted mb-2">Instruktur</p>
                                                     <h5 class="font-size-15">{{ $course->teacher->front_name ?? '' }}
                                                         {{ $course->teacher->back_name ?? '' }}
                                                     </h5>

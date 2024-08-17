@@ -27,10 +27,10 @@ class CourseParticipant extends Component
         })->whereHas('participants', function ($query) use ($participantId) {
             $query->where('participant_id', $participantId);
         })->with([
-                    'activities' => function ($query) use ($participantId) {
-                        $query->where('participant_id', $participantId);
-                    }
-                ])->latest()->paginate(12);
+            'activities' => function ($query) use ($participantId) {
+                $query->where('participant_id', $participantId);
+            }
+        ])->latest()->paginate(12);
 
         $courses->getCollection()->transform(function ($course) {
             $inactive = false;
